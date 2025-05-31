@@ -8,16 +8,72 @@ import { NavFullWidth } from "@/components/Nav"
 
 const inter = Inter({ subsets: ["latin"] })
 
-const varelaRound = Varela_Round({ 
+const varelaRound = Varela_Round({
   weight: '400',
   subsets: ["latin"],
   variable: '--font-varela-round',
 })
 
 export const metadata: Metadata = {
-  title: "CDI Chile",
-  description: "ONG CDI Chile",
-  generator: '2000k.dev'
+  title: {
+    default: 'CDI Chile - Transformando vidas a través de la tecnología',
+    template: '%s | CDI Chile'
+  },
+  description: 'CDI Chile - 25 años transformando vidas a través de la tecnología. Somos una ONG que capacita, educa y propone soluciones de empoderamiento digital para personas y organizaciones de la sociedad civil.',
+  generator: '2000k.dev',
+  metadataBase: new URL('https://cdichile.org'), // Cambia por tu dominio
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://cdichile.org', // Cambia por tu dominio
+    title: 'CDI Chile - Transformando vidas a través de la tecnología',
+    description: 'CDI Chile - 25 años transformando vidas a través de la tecnología. Somos una ONG que capacita, educa y propone soluciones de empoderamiento digital.',
+    images: [
+      {
+        url: '/logo.png', // Asegúrate de que esta imagen esté en public/
+        width: 1200,
+        height: 630,
+        alt: 'CDI Chile Logo',
+      },
+    ],
+    siteName: 'CDI Chile',
+    locale: 'es_CL',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@CDIChile', // Opcional: tu handle de Twitter
+    creator: '@CDIChile', // Opcional: tu handle de Twitter
+    title: 'CDI Chile - Transformando vidas a través de la tecnología',
+    description: 'CDI Chile - 25 años transformando vidas a través de la tecnología. Somos una ONG dedicada al empoderamiento digital.',
+    images: ['/logo.png'], // Misma imagen que Open Graph
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  // Metadatos adicionales
+  keywords: [
+    'CDI Chile',
+    'inclusión digital',
+    'tecnología',
+    'educación',
+    'ONG',
+    'empoderamiento digital',
+    'capacitación',
+    'transformación social'
+  ],
+  authors: [{ name: 'CDI Chile' }],
+  creator: 'CDI Chile',
+  publisher: 'CDI Chile',
 }
 
 export default function RootLayout({
@@ -26,7 +82,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        {/* Metadatos adicionales que no maneja automáticamente Next.js */}
+        <meta name="theme-color" content="#10B981" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
       <body className={`${varelaRound.variable} font-varela-round`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <NavFullWidth />
