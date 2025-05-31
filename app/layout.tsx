@@ -6,8 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { FooterSection } from "@/components/footer-section"
 import { NavFullWidth } from "@/components/Nav"
 
-const inter = Inter({ subsets: ["latin"] })
-
 const varelaRound = Varela_Round({
   weight: '400',
   subsets: ["latin"],
@@ -91,7 +89,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className={`${varelaRound.variable} font-varela-round`}>
+      <body className={`${varelaRound.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <NavFullWidth />
           {children}

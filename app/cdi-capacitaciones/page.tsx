@@ -14,7 +14,7 @@ export default function CDICapacitaciones() {
       >
         <h1 className="text-4xl font-bold mb-6">CDI Cosas</h1>
         <p className="text-lg text-muted-foreground mb-4">
-          Esta página reemplaza a "Primitives" y puede contener información sobre la fundación, misión, visión, equipo, etc.
+          Esta página reemplaza a &quot;Primitives&quot; y puede contener información sobre la fundación, misión, visión, equipo, etc.
         </p>
 
         <div className="bg-card rounded-lg p-6 shadow-md mb-8">

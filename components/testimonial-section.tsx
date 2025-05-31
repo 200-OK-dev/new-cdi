@@ -18,8 +18,8 @@ export function TestimonialSection() {
             <Card>
               <CardContent className="p-6">
                 <p className="mb-4 italic text-muted-foreground">
-                  "Radix has completely changed how I build components. The accessibility features built-in save me
-                  countless hours of work."
+&quot;Radix has completely changed how I build components. The accessibility features built-in save me
+                  countless hours of work.&quot;
                 </p>
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-muted"></div>
@@ -41,8 +41,8 @@ export function TestimonialSection() {
             <Card>
               <CardContent className="p-6">
                 <p className="mb-4 italic text-muted-foreground">
-                  "The unstyled approach gives me complete freedom while ensuring all the complex accessibility work is
-                  handled for me."
+&quot;The unstyled approach gives me complete freedom while ensuring all the complex accessibility work is
+                  handled for me.&quot;
                 </p>
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-muted"></div>
@@ -64,8 +64,8 @@ export function TestimonialSection() {
             <Card>
               <CardContent className="p-6">
                 <p className="mb-4 italic text-muted-foreground">
-                  "Our team's productivity skyrocketed after adopting Radix. We can focus on business logic instead of
-                  reinventing UI primitives."
+&quot;Our team&apos;s productivity skyrocketed after adopting Radix. We can focus on business logic instead of
+                  reinventing UI primitives.&quot;
                 </p>
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-muted"></div>

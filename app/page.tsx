@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Image from 'next/image'
 
 import { Button } from "@/components/ui/button"
 
@@ -99,10 +100,13 @@ export default function Home() {
               {/* Columna de imagen (derecha) */}
               <div className="flex justify-center lg:justify-end">
                 <div className="relative">
-                  <img
-                     src="/cdi25.png"
-                     alt="CDI Logo"
-                     className="w-full max-w-xl h-auto object-contain"
+                  <Image
+                    src="/cdi25.png"
+                    alt="CDI Logo"
+                    width={600}
+                    height={400}
+                    className="w-full max-w-xl h-auto object-contain"
+                    priority
                   />
                 </div>
               </div>
@@ -112,10 +116,13 @@ export default function Home() {
             <div className="flex flex-col lg:hidden h-full justify-center items-center text-center space-y-8">
               {/* Logo arriba en móvil */}
               <div className="order-1">
-                <img
-                   src="/cdi25.png"
-                   alt="CDI Logo"
-                   className="w-80 h-auto object-contain mx-auto"
+                <Image
+                  src="/cdi25.png"
+                  alt="CDI Logo"
+                  width={320}
+                  height={213}
+                  className="w-80 h-auto object-contain mx-auto"
+                  priority
                 />
               </div>
               
@@ -205,11 +212,12 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-12">
           <div className="container mx-auto px-4 pb-12">
-            <GoogleTestimonials 
-              locationName="accounts/123/locations/456"
-              autoPlay={true}
-              autoPlayInterval={15000}
-            />
+          <GoogleTestimonials 
+            title="Lo que dicen nuestros beneficiarios"
+            subtitle="Testimonios reales de personas que han experimentado nuestro impacto"
+            autoPlay={true}
+            autoPlayInterval={5000}
+          />
           </div>
         </section>
       </div>

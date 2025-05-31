@@ -22,16 +22,16 @@ export function NavFullWidth() {
       <div className="max-w-screen-2xl mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo a la izquierda */}
         <div className="flex-shrink-0">
-        <a href="/" className="flex items-center space-x-2">
-    <Image 
-      src="/cyan.png" 
-      alt="Cdi Chile" 
-      width={60}
-      height={30}
-      priority
-    />
-    <p className="text-lg text-custom-cyan pt-4">Chile</p>
-  </a>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image 
+              src="/cyan.png" 
+              alt="Cdi Chile" 
+              width={60}
+              height={30}
+              priority
+            />
+            <p className="text-lg text-custom-cyan pt-4">Chile</p>
+          </Link>
 
         </div>
 
