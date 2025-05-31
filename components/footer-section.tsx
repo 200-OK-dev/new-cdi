@@ -145,6 +145,7 @@ export function FooterSection() {
         <Separator className="mb-6" />
         <div className="text-xs text-muted-foreground/70">
           <p>© 2025 CDI Chile.</p>
+          <p>Sitio Hecho por <a href="https://2000k.dev" target="_blank" rel="noopener noreferrer">2000k.dev</a></p>
         </div>
       </div>
     </footer>
