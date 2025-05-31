@@ -1,7 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter, Varela_Round } from "next/font/google"
+import { Varela_Round } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FooterSection } from "@/components/footer-section"
 import { NavFullWidth } from "@/components/Nav"
@@ -28,14 +28,16 @@ export const metadata: Metadata = {
     url: 'https://cdichile.org', // Cambia por tu dominio
     title: 'CDI Chile - Transformando vidas a través de la tecnología',
     description: 'CDI Chile - 25 años transformando vidas a través de la tecnología. Somos una ONG que capacita, educa y propone soluciones de empoderamiento digital.',
-    images: [
+    /* images: [
       {
         url: '/logo.png', // Asegúrate de que esta imagen esté en public/
         width: 1200,
         height: 630,
         alt: 'CDI Chile Logo',
       },
+      
     ],
+     */
     siteName: 'CDI Chile',
     locale: 'es_CL',
   },

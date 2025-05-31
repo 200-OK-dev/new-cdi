@@ -35,9 +35,9 @@ export default function QuienesSomos() {
 
           <div className="max-w-3xl mx-auto text-center mb-16">
             <p className="text-muted-foreground italic mb-6">
-              "Nuestro objetivo es democratizar el acceso a las tecnologías de la información y promover 
+              Nuestro objetivo es democratizar el acceso a las tecnologías de la información y promover 
               una nueva conciencia ciudadana que utilice la tecnología de manera ética para generar 
-              transformaciones sociales positivas."
+              transformaciones sociales positivas.
             </p>
             <p className="text-muted-foreground/70 text-sm">Equipo CDI Chile</p>
           </div>
