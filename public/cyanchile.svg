@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="1366.2885"
+   height="841.32318"
+   viewBox="0 0 1366.2884 841.32318"
+   sodipodi:docname="Logo_Azul_Chile.ai"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath46">
+      <path
+         d="M 0,1080 H 1395.51 V 0 H 0 Z"
+         id="path44" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false" />
+  <g
+     id="g38"
+     inkscape:groupmode="layer"
+     inkscape:label="Page 2"
+     transform="matrix(1.3333333,0,0,-1.3333333,-34.448706,1053.7786)">
+    <g
+       id="g40">
+      <g
+         id="g42"
+         clip-path="url(#clipPath46)">
+        <g
+           id="g48"
+           transform="translate(194.9615,608.4731)">
+          <path
+             d="m 0,0 c 29.87,0 54.915,-11.512 74.46,-34.239 7.576,-8.586 16.715,-13.125 26.428,-13.125 17.777,0 32.24,14.037 32.24,31.291 0,9.016 -3.35,17.043 -10.501,25.215 C 94.081,43.496 48.239,64.005 0,64.005 c -94.836,0 -169.125,-72.207 -169.125,-164.387 0,-92.181 74.081,-164.388 168.651,-164.388 48.722,0 94.569,20.515 122.625,54.858 7.165,8.598 10.502,16.612 10.502,25.218 0,17.255 -14.25,31.293 -31.765,31.293 -9.79,0 -18.573,-4.275 -26.905,-13.129 C 53.712,-189.568 29.512,-200.767 0,-200.767 c -57.068,0 -98.488,42.017 -98.488,99.909 C -98.488,-42.417 -57.068,0 0,0"
+             style="fill:#4ec4cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path50" />
+        </g>
+        <g
+           id="g52"
+           transform="translate(487.5738,666.7954)">
+          <path
+             d="m 0,0 h -70.101 c -19.343,0 -35.081,-15.738 -35.081,-35.081 v -71.261 c 0,-18.952 15.419,-34.371 34.37,-34.371 18.953,0 34.372,15.419 34.372,34.371 v 43.759 h 35.966 c 63.381,0 102.753,-36.47 102.753,-95.175 0,-58.967 -40.333,-97.068 -102.753,-97.068 H -36.44 v 43.759 c 0,18.952 -15.419,34.37 -34.372,34.37 -18.951,0 -34.37,-15.418 -34.37,-34.37 v -71.261 c 0,-19.343 15.738,-35.081 35.081,-35.081 H 0 c 101.53,0 172.44,65.652 172.44,159.651 C 172.44,-63.397 103.143,0 0,0"
+             style="fill:#4ec4cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path54" />
+        </g>
+        <g
+           id="g56"
+           transform="translate(743.8209,672.4785)">
+          <path
+             d="m 0,0 c -20.053,0 -34.607,-14.754 -34.607,-35.081 v -258.615 c 0,-20.326 14.554,-35.079 34.607,-35.079 19.46,0 34.134,15.081 34.134,35.079 V -35.081 C 34.134,-15.082 19.46,0 0,0"
+             style="fill:#4ec4cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path58" />
+        </g>
+        <g
+           id="g60"
+           transform="translate(743.5865,708.457)">
+          <path
+             d="M 0,0 C 22.609,0 40.937,18.33 40.937,40.941 40.937,63.548 22.609,81.877 0,81.877 -22.615,81.877 -40.941,63.548 -40.941,40.941 -40.941,18.33 -22.615,0 0,0"
+             style="fill:#4ec4cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path62" />
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(1,0,0,-1,786.0029,160.6416)"
+       style="font-variant:normal;font-weight:300;font-stretch:normal;font-size:130px;font-family:'VAG Rounded Std Light';-inkscape-font-specification:VAGRoundedStd-Light;writing-mode:lr-tb;fill:#4ec4cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="text66"><tspan
+         x="0 77.089996 147.03 173.55 200.07001"
+         y="0"
+         sodipodi:role="line"
+         id="tspan64">Chile</tspan></text>
+  </g>
+</svg>
