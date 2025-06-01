@@ -7,13 +7,10 @@ import { Button } from "@/components/ui/button"
 
 import { CommunitySection } from "@/components/community-section"
 import { motion } from "framer-motion"
-import { Chart1 } from "@/components/charts/chart1"
-import { Chart2 } from "@/components/charts/chart2"
-import { Chart3 } from "@/components/charts/chart3"
+
 import CardsHome from "@/components/CardsHome"
 import GoogleTestimonials from "@/components/GoogleTestimonials"
 import { Aliados } from '@/components/Aliados'
-import { VerticalInfiniteScroll } from "@/components/Vertical-Infinite-Scroll"
 
 // Datos de ejemplo para el componente VerticalInfiniteScroll
 const cdiImages = [
@@ -160,35 +157,9 @@ export default function Home() {
         {/* Aliados Section */}
         <Aliados />
 
-        {/* Infinite Scroll Gallery Section */}
-        <section className="py-16 md:py-24">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl text-custom-yellow text-extra-bold">
-              Emprender es...
-            </h2>
-           
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {/* Columna 1 - Velocidad normal - Siempre visible */}
-  <div className="">
-    <VerticalInfiniteScroll images={cdiImages} speed={35} />
-  </div>
-  
-  {/* Columna 2 - Velocidad más lenta - Oculta en móvil */}
-  <div className="hidden md:block">
-    <VerticalInfiniteScroll images={cdiImages.slice().reverse()} speed={35} />
-  </div>
-  
-  {/* Columna 3 - Velocidad más rápida - Oculta en móvil */}
-  <div className="hidden lg:block">
-    {/* <h3 className="text-lg font-semibold mb-4 text-center text-foreground">Comunidad</h3> */}
-    <VerticalInfiniteScroll images={cdiImages} speed={35} />
-  </div>
-</div>
-        </section>
+       
       
-        {/* Charts Section */}
+        {/* Charts Section
         <section className="py-16 md:py-24">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl text-custom-green text-extra-bold mb-4">
@@ -204,7 +175,7 @@ export default function Home() {
             <Chart2 />
             <Chart3 />
           </div>
-        </section>
+        </section> */}
 
         {/* Community Section */}
         <CommunitySection />

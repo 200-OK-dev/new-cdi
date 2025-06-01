@@ -302,29 +302,6 @@ export default function ContactPage() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Business Hours */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Horarios de atención</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Lunes - Viernes</span>
-                    <span className="font-medium">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Sábado</span>
-                    <span className="font-medium">10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Domingo</span>
-                    <span className="font-medium">Cerrado</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
