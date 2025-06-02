@@ -117,26 +117,32 @@ export function FooterSection() {
           <div>
             <h4 className="text-sm font-medium mb-4 text-foreground">Contacto</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center">
-                <span>contacto@cdichile.org</span>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-6 w-6 ml-2 text-muted-foreground hover:text-foreground"
-                        onClick={() => copyToClipboard("contacto@cdichile.org")}
-                      >
-                        {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{copied ? "¡Copiado!" : "Copiar email"}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </li>
+            <li className="flex items-center">
+  <span id="email-address">contacto@cdichile.org</span>
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-6 w-6 ml-2 text-muted-foreground hover:text-foreground"
+          onClick={() => copyToClipboard("contacto@cdichile.org")}
+          aria-label={copied ? "Email copiado al portapapeles" : "Copiar email contacto@cdichile.org al portapapeles"}
+          aria-describedby="email-address"
+          type="button"
+        >
+          {copied ? 
+            <Check className="h-3.5 w-3.5" aria-hidden="true" /> : 
+            <Copy className="h-3.5 w-3.5" aria-hidden="true" />
+          }
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{copied ? "¡Copiado!" : "Copiar email"}</p>
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+</li>
               <li>+56 9 5130 3647</li>
               <li>Santiago, Chile</li>
             </ul>

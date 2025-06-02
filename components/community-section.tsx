@@ -15,7 +15,8 @@ export function CommunitySection() {
       href: "https://www.instagram.com/cdichile",
       color: "text-pink-600",
       bgColor: "bg-white/50 dark:bg-white",
-      cardBgColor: "bg-custom-red",
+      borderColor: "border-custom-red border-opacity-50",
+      cardBgColor: "bg-background",
     },
     {
       icon: <Facebook className="w-6 h-6 md:w-6 md:h-6" />,
@@ -24,7 +25,8 @@ export function CommunitySection() {
       href: "https://www.facebook.com/CDIChile",
       color: "text-blue-600",
       bgColor: "bg-white/50 dark:bg-white",
-      cardBgColor: "bg-custom-orange",
+      borderColor: "border-custom-orange border-opacity-50",
+      cardBgColor: "bg-background",
     },
     {
       icon: <Youtube className="w-6 h-6 md:w-6 md:h-6" />,
@@ -33,7 +35,8 @@ export function CommunitySection() {
       href: "https://www.youtube.com/@ongcdichile7907",
       color: "text-red-600",
       bgColor: "bg-white/50 dark:bg-white",
-      cardBgColor: "bg-custom-yellow",
+      borderColor: "border-custom-yellow border-opacity-50",
+      cardBgColor: "bg-background",
     },
     {
       icon: <MessageCircle className="w-6 h-6 md:w-6 md:h-6" />,
@@ -42,7 +45,8 @@ export function CommunitySection() {
       href: "https://www.whatsapp.com/channel/0029Vb5TEQmHAdNW4ZsZlH1t",
       color: "text-green-600",
       bgColor: "bg-white/50 dark:bg-white",
-      cardBgColor: "bg-custom-green",
+      borderColor: "border-custom-green border-opacity-50",
+      cardBgColor: "bg-background",
     },
     {
       icon: <Twitter className="w-6 h-6 md:w-6 md:h-6" />,
@@ -51,7 +55,8 @@ export function CommunitySection() {
       href: "https://twitter.com/CDIChile",
       color: "text-sky-600",
       bgColor: "bg-white/50 dark:bg-white",
-      cardBgColor: "bg-custom-cyan",
+      borderColor: "border-custom-cyan border-opacity-50",
+      cardBgColor: "bg-background",
     },
     {
       icon: <Linkedin className="w-6 h-6 md:w-6 md:h-6" />,
@@ -59,8 +64,9 @@ export function CommunitySection() {
       description: "",
       href: "https://www.linkedin.com/school/ongcdichile/?originalSubdomain=cl",
       color: "text-blue-700",
-      bgColor: "bg-white/50 dark:bg-white",
-      cardBgColor: "bg-custom-purple",
+      bgColor: "bg-slate-200 dark:bg-white",
+      borderColor: "border-blue-700 border-opacity-50",
+      cardBgColor: "bg-background",
     },
   
   ]
@@ -108,10 +114,11 @@ type SocialCardProps = {
   color: string
   bgColor: string
   cardBgColor?: string
+  borderColor?: string
   delay?: number
 }
 
-function SocialCard({ icon, title, description, color, bgColor, cardBgColor, delay = 0 }: SocialCardProps) {
+function SocialCard({ icon, title, description, color, bgColor, cardBgColor, borderColor, delay = 0 }: SocialCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -122,7 +129,7 @@ function SocialCard({ icon, title, description, color, bgColor, cardBgColor, del
       className="h-full w-full"
     >
       <Card
-        className={`h-full w-full border-none shadow-md hover:shadow-xl transition-all duration-100 group-hover:border-gray-200 ${cardBgColor || ""}`}
+        className={`h-full w-full border-2 ${borderColor || 'border-transparent'} shadow-md hover:shadow-xl transition-all duration-100 group-hover:border-opacity-100 ${cardBgColor || ""}`}
         style={cardBgColor ? { backgroundColor: "" } : {}}
       >
         <CardContent className="p-3 md:p-4 lg:p-3 text-center h-full flex flex-col justify-between">
@@ -132,8 +139,8 @@ function SocialCard({ icon, title, description, color, bgColor, cardBgColor, del
             >
               <div className={color}>{icon}</div>
             </div>
-            <h3 className="font-bold text-sm md:text-base lg:text-sm mb-1 md:mb-2 text-white">{title}</h3>
-            <p className="text-xs md:text-sm lg:text-xs text-black leading-relaxed line-clamp-3">{description}</p>
+            <h3 className="font-bold text-sm md:text-base lg:text-sm mb-1 md:mb-2 text-foreground">{title}</h3>
+            <p className="text-xs md:text-sm lg:text-xs text-black dark:text-white leading-relaxed line-clamp-3">{description}</p>
           </div>
 
           {/* Indicador de enlace */}
