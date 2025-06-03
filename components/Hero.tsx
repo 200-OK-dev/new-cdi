@@ -43,7 +43,7 @@ export function Hero() {
                 <span>en el</span>{' '}
                 <span>mundo</span>.
               </p>
-              <Link href="/quienes-somos" className="cursor-pointer">
+              <Link href="/nosotros" className="cursor-pointer">
                 <Button variant="default">¿Qué es CDI?</Button>
               </Link>
             </div>
@@ -94,7 +94,7 @@ export function Hero() {
                 <span className="text-gray-900">mundo</span>.
               </p>
               <div>
-                <Link href="/quienes-somos">
+                <Link href="/nosotros">
                   <Button variant="default">¿Qué es CDI?</Button>
                 </Link>
               </div>

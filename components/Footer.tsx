@@ -32,13 +32,18 @@ export function FooterSection() {
             <h4 className="text-sm font-medium mb-4 text-foreground">Navegación</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/quienes-somos" className="hover:text-foreground">
-                  Quiénes Somos
+                <Link href="/nosotros" className="hover:text-foreground">
+                  Nosotros
                 </Link>
               </li>
               <li>
-                <Link href="/cdi-capacitaciones" className="hover:text-foreground">
-                  CDI Capacitaciones
+                <Link href="/programas-y-proyectos" className="hover:text-foreground">
+                  Programas y Proyectos
+                </Link>
+              </li>
+              <li>
+                <Link href="/impacto" className="hover:text-foreground">
+                  Impacto
                 </Link>
               </li>
               <li>
@@ -47,11 +52,7 @@ export function FooterSection() {
                 </Link>
               </li>
 
-              <li>
-                <Link href="/impacto" className="hover:text-foreground">
-                  Impacto
-                </Link>
-              </li>
+              
             </ul>
           </div>
           <div>

@@ -6,9 +6,11 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 import Image from "next/image";
 
 const navLinks = [
-  { href: "/quienes-somos", label: "Quienes-somos" },
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/programas-y-proyectos", label: "Programas y Proyectos" },
+ 
   { href: "/impacto", label: "Impacto" },
-  { href: "/cdi-capacitaciones", label: "CDI Capacitaciones" },
+
   { href: "/aliados", label: "Aliados" },
  
   { href: "/contacto", label: "Contacto" },
@@ -24,13 +26,13 @@ export function NavFullWidth() {
         <div className="flex-shrink-0">
           <Link href="/" className="flex items-center space-x-2">
             <Image 
-              src="/cyan.png" 
+              src="/cdi25.png" 
               alt="Cdi Chile" 
-              width={60}
-              height={30}
+              width={160}
+              height={80}
               priority
             />
-            <p className="text-lg text-custom-cyan pt-4">Chile</p>
+            
           </Link>
 
         </div>

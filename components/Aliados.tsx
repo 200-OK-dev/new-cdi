@@ -1,8 +1,6 @@
 "use client"
-
 import { motion } from "framer-motion";
 import Image from 'next/image';
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const logos = [
   { src: "/Aliados/ACTI-LOGO.png", alt: "ACTI" },
@@ -20,50 +18,71 @@ const logos = [
 ];
 
 export const Aliados = () => {
+  // Triplicamos los logos para asegurar un loop continuo
+  const infiniteLogos = [...logos, ...logos, ...logos];
+
   return (
     <motion.section 
-      className="py-16 px-4 md:px-6"
+      className="py-16 px-4 md:px-6 bg-background"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
     >
       <div className="max-w-6xl mx-auto">
-        <Card className="border-border/40 bg-card/50 backdrop-blur-sm">
-          <CardHeader className="text-center pb-8">
-            
-            <h3 className="text-3xl md:text-5xl text-extra-bold text-custom-orange">
-              Empresas y Organizaciones líderes confían en nosotros
-            </h3>
-          </CardHeader>
-          
-          <CardContent className="px-8 pb-8">
-            <motion.div 
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            >
-              {logos.map((logo, index) => (
-                <motion.div 
-                  key={index}
-                  className="relative w-full h-20 flex items-center justify-center p-2 rounded-lg hover:bg-muted/20 transition-colors duration-200"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Image 
+        {/* Título fuera del banner */}
+        <div className="text-center mb-12">
+          <h3 className="text-3xl md:text-5xl text-extra-bold text-custom-orange">
+            Empresas y Organizaciones líderes confían en nosotros
+          </h3>
+        </div>
+        
+        {/* Container para el banner animado */}
+        <div className="relative overflow-hidden py-8">
+          <motion.div
+            className="flex gap-20 items-center"
+            animate={{
+              x: [0, `-${100 / 3}%`],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 40, // Duración más lenta para mejor visualización
+                ease: "linear",
+              },
+            }}
+            style={{
+              width: `${infiniteLogos.length * 320}px`, // Ancho fijo para cada logo
+            }}
+          >
+            {infiniteLogos.map((logo, index) => (
+              <motion.div
+                key={`${logo.alt}-${index}`}
+                className="flex-shrink-0 w-72 h-48 flex items-center justify-center p-4 rounded-lg"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="relative w-full h-full">
+                  <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
                     className="object-contain filter dark:brightness-90 dark:contrast-110"
-                    sizes="(max-width: 768px) 100px, 150px"
+                    sizes="288px"
                   />
-                </motion.div>
-              ))}
-            </motion.div>
-          </CardContent>
-        </Card>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          {/* Gradientes para el efecto de fade en los bordes */}
+          <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-background dark:from-background to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-background dark:from-background to-transparent pointer-events-none z-10" />
+        </div>
       </div>
     </motion.section>
   );
