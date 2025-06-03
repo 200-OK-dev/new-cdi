@@ -1,21 +1,26 @@
 import React from 'react';
+import Link from 'next/link';
 
 const FeaturedPrograms = () => {
   const programs = [
     {
       id: 1,
-      title: "Empleo y Emprendimiento Juvenil",
-      image: "/api/placeholder/300/400"
+      title: "TechSoup",
+      description: "A través de este programa, facilitamos tecnología donada o con descuentos para organizaciones sin fines de lucro, permitiéndoles maximizar su impacto digital.",
+      image: "/api/placeholder/400/200",
+      link: "/programas-y-proyectos"
     },
     {
       id: 2,
-      title: "Protección y Movilización Juvenil",
-      image: "/api/placeholder/300/400"
+      title: "Habilidades digitales para el emprendimiento y la empleabilidad",
+      description: "Capacitamos en habilidades digitales a emprendedores, jefas de hogar y personas vulnerables para mejorar sus oportunidades laborales y económicas a través de alianzas público-privadas.",
+      image: "/api/placeholder/400/200"
     },
     {
       id: 3,
-      title: "Nuestros Bosques y Paisajes",
-      image: "/api/placeholder/300/400"
+      title: "OTEC CDI Chile",
+      description: "Nuestra OTEC ofrece cursos de calidad que transforman vidas mediante el aprendizaje digital y el desarrollo de habilidades laborales.",
+      image: "/api/placeholder/400/200"
     }
   ];
 
@@ -31,31 +36,58 @@ const FeaturedPrograms = () => {
               PROGRAMAS
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              A través de nuestros programas{' '}
-              <span className="font-semibold text-custom-cyan">buscamos reducir las desigualdades</span>{' '}
-              de la región, generando mejores oportunidades de vida para personas y comunidades vulnerables.
+              En CDI Chile trabajamos a través de programas estratégicos que agrupan diversos proyectos e iniciativas, adaptadas a las necesidades de las comunidades.
             </p>
           </div>
 
           {/* Tarjetas de programas - lado derecho */}
           <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {programs.map((program) => (
-              <div key={program.id} className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                  <img
-                    src={program.image}
-                    alt={program.title}
-                    className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-white font-bold text-xl leading-tight">
+            {programs.map((program) => {
+              const cardContent = (
+                <div className="bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full">
+                  <div className="relative w-full h-48">
+                    <img
+                      src={program.image}
+                      alt={program.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-gray-900 font-semibold text-lg mb-2">
                       {program.title}
                     </h3>
+                    <p className="text-gray-700 text-sm mb-0 flex-grow">
+                      {program.description}
+                    </p>
+                    {program.link && (
+                       <div className="mt-4">
+                         <span className="text-custom-cyan hover:text-custom-cyan-dark font-semibold text-sm">
+                           Saber más →
+                         </span>
+                       </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+
+              return (
+                <div key={program.id} className="group h-full">
+                  {program.link ? (
+                    <Link
+                      href={program.link}
+                      passHref
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer block h-full no-underline"
+                    >
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <div className="cursor-default h-full">{cardContent}</div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
