@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // ========================================
 // TIPOS Y CONFIGURACIÓN
@@ -177,20 +178,44 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
   const currentReview = TESTIMONIALS[currentIndex];
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <motion.div 
+      className={`space-y-6 ${className}`}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+    >
       {/* Header Section */}
-      <div className="text-center">
+      <motion.div 
+        className="text-center"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+      >
         <h2 className="text-3xl md:text-5xl text-custom-purple text-extra-bold mb-4">{title}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-lg">{subtitle}</p>
-      </div>
+      </motion.div>
       
       {/* Carousel Container */}
-      <div className="relative max-w-6xl mx-auto">
+      <motion.div 
+        className="relative max-w-6xl mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+      >
         {/* Desktop Layout - Side by Side */}
         <div className="hidden lg:flex items-stretch gap-8">
           
           {/* Left Info Panel - Same height as testimonial card */}
-          <div className="w-80 bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-center">
+          <motion.div 
+            className="w-80 bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-center"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          >
             <div className="p-6 text-center">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">ONG CDI Chile</h3>
               <p className="text-sm text-gray-600 mb-4">
@@ -208,35 +233,49 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
               </div>
               <p className="text-sm text-gray-600">111 opiniones</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Testimonial Card */}
-          <div className="flex-1 relative">
-            <Card className="bg-white border border-gray-200 shadow-sm h-full">
-              <div className="p-8 h-full flex flex-col justify-center">
-                {/* Reviewer Info */}
-                <div className="flex items-center gap-4 mb-6">
-                  <ReviewerAvatar reviewer={currentReview.reviewer} size="lg" />
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900">
-                      {currentReview.reviewer.name}
-                    </h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <StarRating rating={currentReview.rating} size="md" />
-                      <span className="text-sm text-gray-500">{currentReview.date}</span>
+          <motion.div 
+            className="flex-1 relative"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          >
+            <motion.div
+              key={currentReview.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm h-full">
+                <div className="p-8 h-full flex flex-col justify-center">
+                  {/* Reviewer Info */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <ReviewerAvatar reviewer={currentReview.reviewer} size="lg" />
+                    <div>
+                      <h3 className="font-semibold text-lg text-gray-900">
+                        {currentReview.reviewer.name}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <StarRating rating={currentReview.rating} size="md" />
+                        <span className="text-sm text-gray-500">{currentReview.date}</span>
+                      </div>
                     </div>
                   </div>
+                  
+                  {/* Comment */}
+                  <div className="relative flex-1">
+                    <Quote className="absolute -left-2 -top-2 text-gray-200 w-8 h-8" />
+                    <p className="text-gray-700 leading-relaxed text-base pl-6">
+                      {currentReview.comment}
+                    </p>
+                  </div>
                 </div>
-                
-                {/* Comment */}
-                <div className="relative flex-1">
-                  <Quote className="absolute -left-2 -top-2 text-gray-200 w-8 h-8" />
-                  <p className="text-gray-700 leading-relaxed text-base pl-6">
-                    {currentReview.comment}
-                  </p>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
 
             {/* Navigation Arrows - Desktop */}
             {TESTIMONIALS.length > 1 && (
@@ -258,14 +297,20 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
                 </button>
               </>
             )}
-          </div>
+          </motion.div>
         </div>
 
         {/* Mobile/Tablet Layout - Stacked */}
         <div className="lg:hidden space-y-6">
           
           {/* Info Panel - Mobile */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+          <motion.div 
+            className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          >
             <div className="text-center">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">ONG CDI Chile</h3>
               <p className="text-sm text-gray-600 mb-4">
@@ -283,35 +328,49 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
               </div>
               <p className="text-sm text-gray-600">111 opiniones</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Testimonial Card - Mobile */}
-          <div className="relative">
-            <Card className="bg-white border border-gray-200 shadow-sm">
-              <div className="p-6">
-                {/* Reviewer Info */}
-                <div className="flex items-center gap-4 mb-6">
-                  <ReviewerAvatar reviewer={currentReview.reviewer} size="lg" />
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900">
-                      {currentReview.reviewer.name}
-                    </h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <StarRating rating={currentReview.rating} size="md" />
-                      <span className="text-sm text-gray-500">{currentReview.date}</span>
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          >
+            <motion.div
+              key={currentReview.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
+                <div className="p-6">
+                  {/* Reviewer Info */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <ReviewerAvatar reviewer={currentReview.reviewer} size="lg" />
+                    <div>
+                      <h3 className="font-semibold text-lg text-gray-900">
+                        {currentReview.reviewer.name}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <StarRating rating={currentReview.rating} size="md" />
+                        <span className="text-sm text-gray-500">{currentReview.date}</span>
+                      </div>
                     </div>
                   </div>
+                  
+                  {/* Comment */}
+                  <div className="relative">
+                    <Quote className="absolute -left-2 -top-2 text-gray-200 w-8 h-8" />
+                    <p className="text-gray-700 leading-relaxed text-base pl-6">
+                      {currentReview.comment}
+                    </p>
+                  </div>
                 </div>
-                
-                {/* Comment */}
-                <div className="relative">
-                  <Quote className="absolute -left-2 -top-2 text-gray-200 w-8 h-8" />
-                  <p className="text-gray-700 leading-relaxed text-base pl-6">
-                    {currentReview.comment}
-                  </p>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
 
             {/* Navigation Arrows - Mobile */}
             {TESTIMONIALS.length > 1 && (
@@ -333,12 +392,18 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
                 </button>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
 
         {/* Dots Indicator */}
         {TESTIMONIALS.length > 1 && (
-          <div className="flex justify-center gap-3 mt-8">
+          <motion.div 
+            className="flex justify-center gap-3 mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+          >
             {TESTIMONIALS.map((_, index) => (
               <button
                 key={index}
@@ -349,10 +414,10 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
                 aria-label={`Ir al testimonio ${index + 1}`}
               />
             ))}
-          </div>
+          </motion.div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

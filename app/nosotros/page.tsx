@@ -43,49 +43,68 @@ export default function QuienesSomos() {
           </div>
 
           {/* Team Section */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-4xl mx-auto mb-20">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="text-center">
-                <Avatar className="w-24 h-24 mx-auto mb-3">
-                  <AvatarImage src="/placeholder.svg?height=96&width=96" alt="Miembro del equipo" />
-                  <AvatarFallback>CDI</AvatarFallback>
-                </Avatar>
-                <h3 className="text-sm font-medium">Nombre Apellido</h3>
-                <p className="text-xs text-muted-foreground">Director/a</p>
-              </div>
-            ))}
-          </div>
-        </section>
+          <div className="max-w-5xl mx-auto mb-20">
+            {/* First Row - 4 members */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+              {[
+                { name: 'Eugenio Vergara', position: 'Co Fundador y Director Ejecutivo', image: '/Equipo/Eugenio Vergara - Co Fundador y Director Ejecutivo.png' },
+                { name: 'Carolina Escobar', position: 'Directora de Operación', image: '/Equipo/Carolina Escobar - Directora de Operación.png' },
+                { name: 'Liss Falcón', position: 'Directora de Programas y Proyectos', image: '/Equipo/Liss Falcón - Directora de Programas y Proyectos.png' },
+                { name: 'Marcy Cortez', position: 'Directora de Alianzas y Fundraising', image: '/Equipo/Marcy Cortez Paredes- Directora de Alianzas y Fundraising.png' },
+              ].map((member, index) => (
+                <div key={index} className="text-center">
+                  <Avatar className="w-32 h-32 mx-auto mb-4">
+                    <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                    <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-base font-medium">{member.name.split(' ')[0]}<br/>{member.name.split(' ').slice(1).join(' ')}</h3>
+                  <p className="text-sm text-muted-foreground">{member.position}</p>
+                </div>
+              ))}
+            </div>
 
-        {/* Logos Section - Aliados */}
-        <section className="py-10 border-t">
-          <div className="container mx-auto px-4">
-            <h3 className="text-center text-lg font-medium mb-6 text-muted-foreground">Nuestros Aliados</h3>
-            <div className="flex flex-wrap justify-center items-center gap-8">
-              <Image src="/placeholder.svg?height=40&width=120" alt="Organización aliada" width={120} height={40} />
-              <Image src="/placeholder.svg?height=40&width=120" alt="Organización aliada" width={120} height={40} />
-              <Image src="/placeholder.svg?height=40&width=120" alt="Organización aliada" width={120} height={40} />
-              <Image src="/placeholder.svg?height=40&width=120" alt="Organización aliada" width={120} height={40} />
+            {/* Second Row - 4 members */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+              {[
+                { name: 'Diego Cooper', position: 'Director de Estrategia e Innovación', image: '/Equipo/Diego Cooper - Director de Estrategia e Innovación.png' },
+                { name: 'Anyeli Mantilla', position: 'Coordinadora de Operaciones', image: '/Equipo/Anyeli Mantilla - Coordinadora de Operaciones.png' },
+                { name: 'Daisy Campaña', position: 'Coordinadora de Finanzas y Administración', image: '/Equipo/Daisy Campaña - Coordinadora de FInanzas y Administración.png' },
+                { name: 'Francisca Núñez', position: 'Coordinadora Programa TechSoup Chile', image: '/Equipo/Francisca Núñez - Coordinadora Programa TechSoup Chile.png' },
+              ].map((member, index) => (
+                <div key={index} className="text-center">
+                  <Avatar className="w-32 h-32 mx-auto mb-4">
+                    <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                    <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-base font-medium">{member.name.split(' ')[0]}<br/>{member.name.split(' ').slice(1).join(' ')}</h3>
+                  <p className="text-sm text-muted-foreground">{member.position}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Third Row - 3 members */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {[
+                { name: 'Jocelyn Olivares', position: 'Encargada Comunicación Digital', image: '/Equipo/Jocelyn Olivares - Encargada Comunicación Digital.png' },
+                { name: 'Macarena Contreras', position: 'Coordinadora de Administración', image: '/Equipo/Macarena Contreras - Coordinadora de Administración.png' },
+                { name: 'Nataly Cueto', position: 'Coordinadora de Convocatoria', image: '/Equipo/Nataly Cueto - Coordinadora de Convocatoria.png' }
+              ].map((member, index) => (
+                <div key={index} className="text-center">
+                  <Avatar className="w-32 h-32 mx-auto mb-4">
+                    <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                    <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-base font-medium">{member.name.split(' ')[0]}<br/>{member.name.split(' ').slice(1).join(' ')}</h3>
+                  <p className="text-sm text-muted-foreground">{member.position}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Team Grid */}
-        <section className="py-16 container mx-auto px-4">
-          <h2 className="text-xl font-medium mb-10">Nuestro equipo de transformadores sociales</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-20">
-            {Array.from({ length: 17 }).map((_, i) => (
-              <div key={i} className="text-center">
-                <Avatar className="w-20 h-20 mx-auto mb-3">
-                  <AvatarImage src="/placeholder.svg?height=80&width=80" alt="Miembro del equipo" />
-                  <AvatarFallback>CDI</AvatarFallback>
-                </Avatar>
-                <h3 className="text-sm font-medium">Nombre Apellido</h3>
-                <p className="text-xs text-muted-foreground">Coordinador/a</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        
+
+        
 
         {/* Timeline Section */}
         <section className="py-16 container mx-auto px-4">

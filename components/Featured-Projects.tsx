@@ -2,25 +2,25 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from "framer-motion";
 
-const FeaturedPrograms = () => {
-  const programs = [
+const FeaturedProjects = () => {
+  const projects = [
     {
       id: 1,
-      title: "TechSoup",
-      description: "A través de este programa, facilitamos tecnología donada o con descuentos para organizaciones sin fines de lucro, permitiéndoles maximizar su impacto digital.",
+      title: "Tránsformate",
+      description: "Un programa de formación para emprendedoras formales, desarrollado junto a Walmart Chile, que busca fortalecer sus negocios a través del acceso a herramientas digitales y redes de apoyo.",
       image: "/api/placeholder/400/200",
-      link: "/programas-y-proyectos"
+      link: "/proyectos"
     },
     {
       id: 2,
-      title: "Habilidades digitales para el emprendimiento y la empleabilidad",
-      description: "Capacitamos en habilidades digitales a emprendedores, jefas de hogar y personas vulnerables para mejorar sus oportunidades laborales y económicas a través de alianzas público-privadas.",
+      title: "Red Impacta Data",
+      description: "Una red que promueve la participación de mujeres migrantes en el sector tecnológico y de datos. Es un espacio de encuentro y desarrollo profesional, buscando reducir brechas de género en el ecosistema de datos.",
       image: "/api/placeholder/400/200"
     },
     {
       id: 3,
-      title: "OTEC CDI Chile",
-      description: "Nuestra OTEC ofrece cursos de calidad que transforman vidas mediante el aprendizaje digital y el desarrollo de habilidades laborales.",
+      title: "Emprendo y Aprendo",
+      description: "Proyecto junto a AFP Capital, orientado a entregar herramientas digitales y apoyo al emprendimiento para trabajadores independientes y sus familias.",
       image: "/api/placeholder/400/200"
     }
   ];
@@ -40,14 +40,14 @@ const FeaturedPrograms = () => {
           >
             <h2 className="text-4xl font-bold text-custom-yellow mb-6">
               NUESTROS<br />
-              PROGRAMAS
+              PROYECTOS
             </h2>
             <p className="text-foreground text-lg leading-relaxed">
-              En CDI Chile trabajamos a través de programas estratégicos que agrupan diversos proyectos e iniciativas, adaptadas a las necesidades de las comunidades.
+              Desarrollamos proyectos específicos con socios públicos y privados, adaptando nuestras metodologías para impactar positivamente en emprendimientos y trayectorias laborales en todo Chile.
             </p>
           </motion.div>
           
-          {/* Tarjetas de programas - lado derecho */}
+          {/* Tarjetas de proyectos - lado derecho */}
           <motion.div 
             className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             initial={{ opacity: 0, x: 100 }}
@@ -55,7 +55,7 @@ const FeaturedPrograms = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            {programs.map((program, index) => {
+            {projects.map((project, index) => {
               const cardContent = (
                 <motion.div 
                   className="bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
@@ -74,19 +74,19 @@ const FeaturedPrograms = () => {
                 >
                   <div className="relative w-full h-48">
                     <img
-                      src={program.image}
-                      alt={program.title}
+                      src={project.image}
+                      alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-gray-900 font-semibold text-lg mb-2">
-                      {program.title}
+                      {project.title}
                     </h3>
                     <p className="text-gray-700 text-sm mb-0 flex-grow">
-                      {program.description}
+                      {project.description}
                     </p>
-                    {program.link && (
+                    {project.link && (
                       <div className="mt-4">
                         <span className="text-custom-cyan hover:text-custom-cyan-dark font-semibold text-sm">
                           Saber más →
@@ -98,10 +98,10 @@ const FeaturedPrograms = () => {
               );
 
               return (
-                <div key={program.id} className="group h-full">
-                  {program.link ? (
+                <div key={project.id} className="group h-full">
+                  {project.link ? (
                     <Link
-                      href={program.link}
+                      href={project.link}
                       passHref
                       target="_blank"
                       rel="noopener noreferrer"
@@ -122,4 +122,4 @@ const FeaturedPrograms = () => {
   );
 };
 
-export default FeaturedPrograms;
+export default FeaturedProjects;

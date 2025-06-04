@@ -32,9 +32,10 @@ export const Aliados = () => {
       <div className="max-w-6xl mx-auto">
         {/* Título fuera del banner */}
         <div className="text-center mb-12">
-          <h3 className="text-3xl md:text-5xl text-extra-bold text-custom-orange">
-            Empresas y Organizaciones líderes confían en nosotros
-          </h3>
+        <h3 className="text-3xl md:text-5xl text-extra-bold text-custom-orange">
+            <span className="block">Transformamos realidades</span>
+            <span className="block">junto a aliados que creen en la innovación social</span>
+        </h3>
         </div>
         
         {/* Container para el banner animado */}

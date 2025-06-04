@@ -3,11 +3,10 @@
 import React from 'react'
 import { CommunitySection } from "@/components/community-section"
 import { Hero } from "@/components/Hero"
-import CardsHome from "@/components/CardsHome"
 import GoogleTestimonials from "@/components/GoogleTestimonials"
 import { Aliados } from '@/components/Aliados'
 import FeaturedPrograms from '@/components/Featured-Programs'
-
+import FeaturedProjects from '@/components/Featured-Projects'
 
 
 export default function Home() {
@@ -18,12 +17,13 @@ export default function Home() {
       {/* Resto del contenido */}
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* Cards Section */}
-        <CardsHome />
+       
         {/* Featured Programs Section */}
         <FeaturedPrograms />
         {/* Aliados Section */}
         <Aliados />
+        {/* Featured Projects Section */}
+        <FeaturedProjects />
         {/* Community Section */}
         <CommunitySection />
    
@@ -34,7 +34,7 @@ export default function Home() {
             title="Lo que dicen nuestros beneficiarios"
             subtitle="Testimonios reales de personas que han experimentado nuestro impacto"
             autoPlay={true}
-            autoPlayInterval={5000}
+            autoPlayInterval={10000}
           />
           </div>
         </section>

@@ -6,6 +6,43 @@ import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
+  // Definir las palabras con sus respectivas clases de color
+  const titleWords = [
+    { text: "25", className: "text-custom-yellow" },
+    { text: "años", className: "text-custom-yellow" },
+    { text: "transformando", className: "text-gray-900" },
+    { text: "vidas", className: "text-custom-green" },
+    { text: "a", className: "text-gray-900" },
+    { text: "través", className: "text-gray-900" },
+    { text: "de", className: "text-gray-900" },
+    { text: "la", className: "text-gray-900" },
+    { text: "tecnología", className: "text-custom-cyan" },
+    { text: "en", className: "text-gray-900" },
+    { text: "Chile", className: "text-custom-purple" }
+  ];
+
+  // Variantes de animación para el contenedor y las palabras
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.2 * i }
+    })
+  };
+
+  const child = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100
+      }
+    }
+  };
+
   return (
     <section 
       className="relative h-screen overflow-hidden border-b flex items-center" 
@@ -29,27 +66,53 @@ export function Hero() {
           <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center h-full">
             {/* Left column - text */}
             <div className="ml-6 space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-                <span className="text-custom-yellow">25 años</span>{' '}
-                <span className="text-gray-900">transformando</span>{' '}
-                <span className="text-custom-green">vidas</span>{' '}
-                <span className="text-gray-900">a través de la</span>{' '}
-                <span className="text-custom-cyan">tecnología</span>{' '}
-                <span className="text-gray-900">en</span>{' '}
-                <span className="text-custom-purple">Chile</span>
-              </h1>
-              <p className="text-lg text-muted-foreground">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter"
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                viewport={{ once: true }}
+              >
+                <div className="flex flex-wrap">
+                  {titleWords.map((word, index) => (
+                    <motion.span
+                      key={index}
+                      variants={child}
+                      className={`inline-block mr-2 mb-1 ${word.className}`}
+                    >
+                      {word.text}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.h1>
+              <motion.p 
+                className="text-lg text-muted-foreground"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
                 <span>30 años</span>{' '}
                 <span>en el</span>{' '}
                 <span>mundo</span>.
-              </p>
-              <Link href="/nosotros" className="cursor-pointer">
-                <Button variant="default">¿Qué es CDI?</Button>
-              </Link>
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
+                <Link href="/nosotros" className="cursor-pointer">
+                  <Button variant="default">¿Qué es CDI?</Button>
+                </Link>
+              </motion.div>
             </div>
                             
             {/* Right column - image */}
-            <div className="flex justify-center lg:justify-end">
+            <motion.div 
+              className="flex justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               <div className="relative">
                 <Image
                   src="/cdi25.png"
@@ -60,13 +123,18 @@ export function Hero() {
                   priority
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Mobile: Vertical layout */}
           <div className="flex flex-col lg:hidden h-full justify-center items-center text-center space-y-8">
             {/* Top logo on mobile */}
-            <div className="order-1">
+            <motion.div 
+              className="order-1"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            >
               <Image
                 src="/cdi25.png"
                 alt="CDI Logo"
@@ -75,29 +143,48 @@ export function Hero() {
                 className="w-80 h-auto object-contain mx-auto"
                 priority
               />
-            </div>
+            </motion.div>
             
             {/* Text and button below on mobile */}
             <div className="order-2 space-y-6 max-w-lg">
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tighter">
-                <span className="text-custom-yellow">25 años</span>{' '}
-                <span className="text-gray-900">transformando</span>{' '}
-                <span className="text-custom-red">vidas</span>{' '}
-                <span className="text-gray-900">a través de la</span>{' '}
-                <span className="text-custom-cyan">tecnología</span>{' '}
-                <span className="text-gray-900">en</span>{' '}
-                <span className="text-custom-purple">Chile</span>
-              </h1>
-              <p className="text-xl text-muted-foreground">
+              <motion.h1 
+                className="text-3xl md:text-4xl font-bold tracking-tighter"
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                viewport={{ once: true }}
+              >
+                <div className="flex flex-wrap justify-center">
+                  {titleWords.map((word, index) => (
+                    <motion.span
+                      key={index}
+                      variants={child}
+                      className={`inline-block mr-2 mb-1 ${word.text === "vidas" ? "text-custom-red" : word.className}`}
+                    >
+                      {word.text}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-muted-foreground"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
                 <span className="text-gray-900">30 años</span>{' '}
                 <span className="text-gray-900">en el</span>{' '}
                 <span className="text-gray-900">mundo</span>.
-              </p>
-              <div>
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
                 <Link href="/nosotros">
                   <Button variant="default">¿Qué es CDI?</Button>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
