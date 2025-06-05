@@ -20,10 +20,11 @@ export default function Home() {
        
         {/* Featured Programs Section */}
         <FeaturedPrograms />
-        {/* Aliados Section */}
-        <Aliados />
+        
         {/* Featured Projects Section */}
         <FeaturedProjects />
+        {/* Aliados Section */}
+        <Aliados />
         {/* Community Section */}
         <CommunitySection />
    

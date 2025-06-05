@@ -1,42 +1,107 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from "framer-motion";
 
 const FeaturedPrograms = () => {
+  // Hook para detectar si es desktop después de la hidratación
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    
+    return () => window.removeEventListener('resize', checkIsDesktop);
+  }, []);
+
   const programs = [
     {
       id: 1,
       title: "TechSoup",
       description: "A través de este programa, facilitamos tecnología donada o con descuentos para organizaciones sin fines de lucro, permitiéndoles maximizar su impacto digital.",
-      image: "/api/placeholder/400/200",
+      image: "", // Imagen eliminada para mejorar rendimiento
       link: "/programas-y-proyectos"
     },
     {
       id: 2,
       title: "Habilidades digitales para el emprendimiento y la empleabilidad",
       description: "Capacitamos en habilidades digitales a emprendedores, jefas de hogar y personas vulnerables para mejorar sus oportunidades laborales y económicas a través de alianzas público-privadas.",
-      image: "/api/placeholder/400/200"
+      image: "" // Imagen eliminada para mejorar rendimiento
     },
     {
       id: 3,
       title: "OTEC CDI Chile",
       description: "Nuestra OTEC ofrece cursos de calidad que transforman vidas mediante el aprendizaje digital y el desarrollo de habilidades laborales.",
-      image: "/api/placeholder/400/200"
+      image: "" // Imagen eliminada para mejorar rendimiento
     }
   ];
 
+  // Variantes de animación condicionales
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: isMounted && isDesktop ? 50 : 0 
+    },
+    visible: (index: number) => ({ 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: isMounted && isDesktop ? 0.6 : 0,
+        delay: isMounted && isDesktop ? 0.6 + (index * 0.2) : 0,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  const textVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: isMounted && isDesktop ? -100 : 0 
+    },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        duration: isMounted && isDesktop ? 0.8 : 0,
+        delay: isMounted && isDesktop ? 0.2 : 0,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const gridVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: isMounted && isDesktop ? 100 : 0 
+    },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        duration: isMounted && isDesktop ? 0.8 : 0,
+        delay: isMounted && isDesktop ? 0.4 : 0,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <div className="bg-background py-32">
+    <div className="bg-background pt-8 pb-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-20 items-start">
           
           {/* Texto principal - lado izquierdo */}
           <motion.div 
             className="lg:col-span-1 mb-8 lg:mb-0"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            variants={textVariants}
           >
             <h2 className="text-4xl font-bold text-custom-yellow mb-6">
               NUESTROS<br />
@@ -50,34 +115,33 @@ const FeaturedPrograms = () => {
           {/* Tarjetas de programas - lado derecho */}
           <motion.div 
             className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            variants={gridVariants}
           >
             {programs.map((program, index) => {
               const cardContent = (
                 <motion.div 
                   className="bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial="hidden"
+                  whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 0.6 + (index * 0.2), 
-                    ease: "easeOut" 
-                  }}
-                  whileHover={{ 
+                  variants={cardVariants}
+                  custom={index}
+                  whileHover={isMounted && isDesktop ? { 
                     scale: 1.02,
                     transition: { duration: 0.2 }
-                  }}
+                  } : {}}
                 >
                   <div className="relative w-full h-48">
-                    <img
-                      src={program.image}
-                      alt={program.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                    {program.image && (
+                      <img
+                        src={program.image}
+                        alt={program.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    )}
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-gray-900 font-semibold text-lg mb-2">

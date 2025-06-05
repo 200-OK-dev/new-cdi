@@ -10,15 +10,15 @@ export function Hero() {
   const titleWords = [
     { text: "25", className: "text-custom-yellow" },
     { text: "años", className: "text-custom-yellow" },
-    { text: "transformando", className: "text-gray-900" },
+    { text: "transformando", className: "text-white/80" },
     { text: "vidas", className: "text-custom-green" },
-    { text: "a", className: "text-gray-900" },
-    { text: "través", className: "text-gray-900" },
-    { text: "de", className: "text-gray-900" },
-    { text: "la", className: "text-gray-900" },
+    { text: "a", className: "text-white/80" },
+    { text: "través", className: "text-white/80" },
+    { text: "de", className: "text-white/80" },
+    { text: "la", className: "text-white/80" },
     { text: "tecnología", className: "text-custom-cyan" },
-    { text: "en", className: "text-gray-900" },
-    { text: "Chile", className: "text-custom-purple" }
+    { text: "en", className: "text-white/80" },
+    { text: "Chile", className: "text-custom-red" }
   ];
 
   // Variantes de animación para el contenedor y las palabras
@@ -45,65 +45,133 @@ export function Hero() {
 
   return (
     <section 
-      className="relative h-screen overflow-hidden border-b flex items-center" 
+      className="relative min-h-screen border-b flex items-center py-16 mb-32 lg:py-20"
       style={{backgroundColor: 'oklch(0.9911 0 0)'}}
     >
-      {/* Background image */}
-      <div 
-        className="absolute inset-0 z-0 w-full h-full bg-cover bg-center opacity-90"
-        style={{backgroundImage: `url('/bg.svg')`}}
-      ></div>
+      {/* Background video - Desktop */}
+      <div className="absolute inset-0 z-0 w-full h-full hidden lg:block">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onError={(e) => {
+            // Fallback a imagen si falla el video
+            e.currentTarget.style.display = 'none';
+            const nextSibling = e.currentTarget.nextElementSibling as HTMLElement | null;
+            if (nextSibling) {
+              nextSibling.style.display = 'block';
+            }
+          }}
+        >
+          <source src="/hero24fps.webm" type="video/webm" />
+        </video>
+        
+        {/* Fallback SVG Desktop (oculto por defecto) */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage: `url('/bg.svg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            display: 'none'
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      {/* Background video - Mobile */}
+      <div className="absolute inset-0 z-0 w-full h-full block lg:hidden">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onError={(e) => {
+            // Fallback a imagen si falla el video
+            e.currentTarget.style.display = 'none';
+            const nextSibling = e.currentTarget.nextElementSibling as HTMLElement | null;
+            if (nextSibling) {
+              nextSibling.style.display = 'block';
+            }
+          }}
+        >
+          <source src="/herovertical.webm" type="video/webm" />
+        </video>
+        
+        {/* Fallback SVG Mobile (oculto por defecto) */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-90"
+          style={{
+            backgroundImage: `url('/bgm.svg')`,
+            display: 'none'
+          }}
+        />
+        
+        {/* Overlay para móvil */}
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
            
-      {/* Centered content */}
-      <div className="container mx-auto relative z-10 h-full flex items-center">
+      {/* Centered content con mejor spacing */}
+      <div className="container mx-auto relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 w-full"
         >
-          {/* Desktop: Two-column grid */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center h-full">
-            {/* Left column - text */}
-            <div className="ml-6 space-y-6">
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter"
-                variants={container}
-                initial="hidden"
-                animate="visible"
-                viewport={{ once: true }}
-              >
-                <div className="flex flex-wrap">
-                  {titleWords.map((word, index) => (
-                    <motion.span
-                      key={index}
-                      variants={child}
-                      className={`inline-block mr-2 mb-1 ${word.className}`}
-                    >
-                      {word.text}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.h1>
-              <motion.p 
-                className="text-lg text-muted-foreground"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                <span>30 años</span>{' '}
-                <span>en el</span>{' '}
-                <span>mundo</span>.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
-              >
-                <Link href="/nosotros" className="cursor-pointer">
-                  <Button variant="default">¿Qué es CDI?</Button>
-                </Link>
-              </motion.div>
+          {/* Desktop: Two-column grid con mejor spacing */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+            {/* Left column - text con background para legibilidad */}
+            <div className="ml-6 space-y-6 relative">
+              {/* Background sutil para mejorar legibilidad 
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-2xl -m-8 p-8 shadow-lg"></div>*/}
+              
+              <div className="relative z-10">
+                <motion.h1 
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter"
+                  variants={container}
+                  initial="hidden"
+                  animate="visible"
+                  viewport={{ once: true }}
+                >
+                  <div className="flex flex-wrap">
+                    {titleWords.map((word, index) => (
+                      <motion.span
+                        key={index}
+                        variants={child}
+                        className={`inline-block mr-2 mb-1 ${word.className}`}
+                      >
+                        {word.text}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.h1>
+                <motion.p 
+                  className="text-lg text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                >
+                  <span>30 años</span>{' '}
+                  <span>en el</span>{' '}
+                  <span>mundo</span>.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                >
+                  <Link href="/nosotros" className="cursor-pointer">
+                    <Button variant="default">¿Qué es CDI?</Button>
+                  </Link>
+                </motion.div>
+              </div>
             </div>
                             
             {/* Right column - image */}
@@ -126,8 +194,8 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Mobile: Vertical layout */}
-          <div className="flex flex-col lg:hidden h-full justify-center items-center text-center space-y-8">
+          {/* Mobile: Vertical layout con video de fondo */}
+          <div className="flex flex-col lg:hidden min-h-[90vh] justify-center items-center text-center space-y-8 py-8">
             {/* Top logo on mobile */}
             <motion.div 
               className="order-1"
@@ -167,14 +235,14 @@ export function Hero() {
                 </div>
               </motion.h1>
               <motion.p 
-                className="text-xl text-muted-foreground"
+                className="text-xl text-white/90"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
-                <span className="text-gray-900">30 años</span>{' '}
-                <span className="text-gray-900">en el</span>{' '}
-                <span className="text-gray-900">mundo</span>.
+                <span>30 años</span>{' '}
+                <span>en el</span>{' '}
+                <span>mundo</span>.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

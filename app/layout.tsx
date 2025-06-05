@@ -5,6 +5,7 @@ import { Varela_Round } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FooterSection } from "@/components/Footer"
 import { NavFullWidth } from "@/components/Nav"
+import { vagRoundedLight, vagRoundedBold, vagRoundedBlack } from './fonts';
 
 const varelaRound = Varela_Round({
   weight: '400',
@@ -28,16 +29,7 @@ export const metadata: Metadata = {
     url: 'https://cdichile.org', // Cambia por tu dominio
     title: 'CDI Chile - Transformando vidas a través de la tecnología',
     description: 'CDI Chile - 25 años transformando vidas a través de la tecnología. ONG dedicada al empoderamiento digital y capacitación tecnológica.',
-    /* images: [
-      {
-        url: '/logo.png', // Asegúrate de que esta imagen esté en public/
-        width: 1200,
-        height: 630,
-        alt: 'CDI Chile Logo',
-      },
-      
-    ],
-     */
+
     siteName: 'CDI Chile',
     locale: 'es_CL',
   },
@@ -87,13 +79,13 @@ export default function RootLayout({
         {/* Metadatos adicionales que no maneja automáticamente Next.js */}
         <meta name="description" content="CDI Chile - 25 años transformando vidas a través de la tecnología. ONG dedicada al empoderamiento digital y capacitación tecnológica." />
         <meta name="theme-color" content="#10B981" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className={`${varelaRound.variable} font-varela-round`}>
-      <ThemeProvider 
+      <body className={`${varelaRound.variable} ${vagRoundedLight.variable} ${vagRoundedBold.variable} ${vagRoundedBlack.variable} font-sans antialiased min-h-screen flex flex-col`}>
+        <ThemeProvider 
           attribute="class" 
           defaultTheme="light"
           enableSystem={false} // Cambiar a false

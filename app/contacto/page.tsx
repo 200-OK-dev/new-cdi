@@ -9,7 +9,46 @@ import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, MessageCircle, Youtube, Loader2, CheckCircle, AlertCircle } from "lucide-react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
+// Variantes de animación
+const fadeInUp = {
+  hidden: { 
+    opacity: 0, 
+    y: 60 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+const fadeIn = {
+  hidden: { 
+    opacity: 0 
+  },
+  visible: { 
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: "easeOut"
+    }
+  }
+};
+// Contenedor para animaciones secuenciales
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.2
+    }
+  }
+};
 export default function ContactPage() {
   // Estado del formulario
   const [formData, setFormData] = useState({
@@ -76,12 +115,21 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight mb-4">Contáctanos</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <motion.div className="text-center mb-12"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h1 className="text-4xl font-bold tracking-tight mb-4"
+          variants={fadeInUp}
+          >
+            Contáctanos
+          </motion.h1>
+          <motion.p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             ¿Tienes alguna pregunta o quieres saber más sobre nosotros? Nos encantaría saber de ti.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}

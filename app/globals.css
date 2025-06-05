@@ -1,6 +1,30 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: 'VAG Rounded Std Light';
+  src: url('/fonts/VAG-Rounded-Std-Light_47298.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VAG Rounded Std Bold';
+  src: url('/fonts/VAG-Rounded-Std-Bold_47297.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VAG Rounded Std Black';
+  src: url('/fonts/VAG-Rounded-Std-Black_47296.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: oklch(0.9911 0 0);
   --foreground: oklch(0 0 0);
@@ -34,9 +58,12 @@
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.9401 0 0);
   --sidebar-ring: oklch(0.9739 0.1037 114.0074);
-  --font-sans: Open Sans, sans-serif;
+  --font-sans: var(--font-vag-rounded-light), 'Open Sans', sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: Open Sans, sans-serif;
+  --font-mono: 'Open Sans', sans-serif;
+  --font-vag-rounded-light: 'VAG Rounded Std Light', sans-serif;
+  --font-vag-rounded-bold: 'VAG Rounded Std Bold', sans-serif;
+  --font-vag-rounded-black: 'VAG Rounded Std Black', sans-serif;
   --radius: 0.5rem;
   --shadow-2xs: 0px 1px 9.5px 0px hsl(0 0% 10.1961% / 0.09);
   --shadow-xs: 0px 1px 9.5px 0px hsl(0 0% 10.1961% / 0.09);
@@ -152,14 +179,21 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-vag-rounded-light), sans-serif;
   }
-}
-@theme {
-  --font-varela-round: 'var(--font-varela-round)', sans-serif;
+  
+  h1, h2, h3, h4, h5, h6, .font-bold, .font-black {
+    font-family: var(--font-vag-rounded-bold), sans-serif;
+  }
+  
+  .font-black {
+    font-family: var(--font-vag-rounded-black), sans-serif;
+  }
 }
 
 .text-extra-bold {
+  font-family: var(--font-vag-rounded-bold), sans-serif;
   font-weight: bold;
   -webkit-text-stroke: 0.3px currentColor;
   text-stroke: 0.3px currentColor;

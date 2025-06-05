@@ -8,11 +8,8 @@ import Image from "next/image";
 const navLinks = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/programas-y-proyectos", label: "Programas y Proyectos" },
- 
   { href: "/impacto", label: "Impacto" },
-
   { href: "/aliados", label: "Aliados" },
- 
   { href: "/contacto", label: "Contacto" },
 ];
 
@@ -23,20 +20,18 @@ export function NavFullWidth() {
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="max-w-screen-2xl mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo a la izquierda */}
-        <div className="flex-shrink-0">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image 
-              src="/cdi25.png" 
-              alt="Cdi Chile" 
-              width={160}
-              height={80}
-              priority
-            />
-            
-          </Link>
-
-        </div>
-
+<div className="flex-shrink-0">
+  <Link href="/" className="flex items-center space-x-2">
+  <Image
+  src="/cdi25.png"
+  alt="Cdi Chile"
+  width={1566}
+  height={400}
+  priority
+  className="h-10 w-[156px]"
+/>
+  </Link>
+</div>
         {/* Links centrados - solo visibles en desktop */}
         <div className="hidden md:flex flex-1 justify-center">
           <nav className="flex items-center space-x-6">
@@ -71,13 +66,13 @@ export function NavFullWidth() {
 
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-transparent md:hidden" onClick={() => setMenuOpen(false)}>
+        <div className="fixed inset-0 z-50 bg-black/20 md:hidden" onClick={() => setMenuOpen(false)}>
           <div
-            className="absolute top-0 right-0 w-64 h-full bg-background shadow-lg flex flex-col p-6"
+            className="absolute top-16 right-0 w-64 bg-background shadow-lg border-l flex flex-col p-6 min-h-[calc(100vh-4rem)] max-h-[calc(100vh-4rem)] overflow-y-auto"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="self-end mb-8 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+              className="self-end mb-6 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Cerrar menú"
               onClick={() => setMenuOpen(false)}
             >
@@ -86,16 +81,18 @@ export function NavFullWidth() {
                 <line x1="6" y1="6" x2="18" y2="18"/>
               </svg>
             </button>
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-lg font-medium mb-4 transition-colors hover:text-primary"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <nav className="flex flex-col space-y-4">
+              {navLinks.map(link => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-lg font-medium py-2 transition-colors hover:text-primary border-b border-gray-200 dark:border-gray-700 last:border-b-0"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
       )}
