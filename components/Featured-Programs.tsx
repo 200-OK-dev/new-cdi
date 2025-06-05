@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from "framer-motion";
+import Image from 'next/image';
 
 const FeaturedPrograms = () => {
   // Hook para detectar si es desktop después de la hidratación
@@ -136,7 +137,7 @@ const FeaturedPrograms = () => {
                 >
                   <div className="relative w-full h-48">
                     {program.image && (
-                      <img
+                      <Image
                         src={program.image}
                         alt={program.title}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
