@@ -27,17 +27,6 @@ const fadeInUp = {
   }
 };
 
-// Contenedor para animaciones secuenciales
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.2
-    }
-  }
-};
 export default function ContactPage() {
   // Estado del formulario
   const [formData, setFormData] = useState({
