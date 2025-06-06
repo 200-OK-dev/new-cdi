@@ -193,7 +193,7 @@ const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
       >
-        <h2 className="text-3xl md:text-5xl text-custom-purple text-extra-bold mb-4">{title}</h2>
+        <h2 className="text-3xl md:text-5xl text-custom-cyan text-extra-bold mb-4">{title}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-lg">{subtitle}</p>
       </motion.div>
       

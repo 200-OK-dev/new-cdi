@@ -49,16 +49,6 @@ export function CommunitySection() {
       cardBgColor: "bg-background",
     },
     {
-      icon: <Twitter className="w-6 h-6 md:w-6 md:h-6" />,
-      title: "Twitter",
-      description: "",
-      href: "https://twitter.com/CDIChile",
-      color: "text-sky-600",
-      bgColor: "bg-white/50 dark:bg-white",
-      borderColor: "border-custom-cyan border-opacity-50",
-      cardBgColor: "bg-background",
-    },
-    {
       icon: <Linkedin className="w-6 h-6 md:w-6 md:h-6" />,
       title: "LinkedIn",
       description: "",
@@ -80,19 +70,18 @@ export function CommunitySection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl text-custom-cyan text-extra-bold mb-4">Únete a Nuestra Comunidad</h2>
+          <h2 className="text-3xl md:text-5xl text-custom-green text-extra-bold mb-4"> ¡Tú haces falta en esta comunidad! </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-lg">
-            Conecta con personas comprometidas con la transformación social. Comparte ideas, obtén apoyo y contribuye al
-            cambio.
+          Juntas y juntos creamos caminos para crecer, emprender y generar oportunidades.
           </p>
 
-          {/* Grid más compacto en desktop */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-5xl mx-auto">
+          {/* Grid centrado para 5 elementos */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 max-w-4xl mx-auto justify-items-center">
             {socialLinks.map((social, index) => (
               <Link
                 key={social.title}
                 href={social.href}
-                className="block group aspect-square"
+                className="block group aspect-square w-full max-w-[200px]"
                 target="_blank"
                 rel="noopener noreferrer"
               >

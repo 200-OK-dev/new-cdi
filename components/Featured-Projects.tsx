@@ -23,10 +23,10 @@ const FeaturedProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "Tránsformate",
+      title: "Transfórmate",
       description: "Un programa de formación para emprendedoras formales, desarrollado junto a Walmart Chile, que busca fortalecer sus negocios a través del acceso a herramientas digitales y redes de apoyo.",
       image: "/programasyproyectos/transformate.webp",
-      link: "/proyectos"
+      link: "/programas-y-proyectos/proyecto/transformate"
     },
     {
       id: 2,
@@ -104,7 +104,7 @@ const FeaturedProjects = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={textVariants}
           >
-            <h2 className="text-4xl font-bold text-custom-yellow mb-6">
+            <h2 className="text-4xl font-bold text-custom-orange mb-6">
               NUESTROS<br />
               PROYECTOS
             </h2>
@@ -169,8 +169,7 @@ const FeaturedProjects = () => {
                     <Link
                       href={project.link}
                       passHref
-                      target="_blank"
-                      rel="noopener noreferrer"
+                     
                       className="cursor-pointer block h-full no-underline"
                     >
                       {cardContent}

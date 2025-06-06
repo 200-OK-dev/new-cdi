@@ -32,7 +32,7 @@ export const Aliados = () => {
       <div className="max-w-6xl mx-auto w-full">
         {/* Título */}
         <div className="text-center mb-8 md:mb-12 px-4">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-custom-orange">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-custom-yellow">
             <span className="block">Transformamos realidades</span>
             <span className="block">junto a aliados que creen en la innovación social</span>
           </h3>

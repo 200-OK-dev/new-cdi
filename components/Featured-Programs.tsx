@@ -26,7 +26,7 @@ const FeaturedPrograms = () => {
       title: "TechSoup",
       description: "A través de este programa, facilitamos tecnología donada o con descuentos para organizaciones sin fines de lucro, permitiéndoles maximizar su impacto digital.",
       image: "", // Imagen eliminada para mejorar rendimiento
-      link: "/programas-y-proyectos"
+      link: "/programas-y-proyectos/programa/techsoup"
     },
     {
       id: 2,
@@ -36,9 +36,10 @@ const FeaturedPrograms = () => {
     },
     {
       id: 3,
-      title: "OTEC CDI Chile",
-      description: "Nuestra OTEC ofrece cursos de calidad que transforman vidas mediante el aprendizaje digital y el desarrollo de habilidades laborales.",
-      image: "" // Imagen eliminada para mejorar rendimiento
+      title: "Red Impacta Data",
+      description: "Una red que promueve la participación de mujeres migrantes en el sector tecnológico y de datos. Es un espacio de encuentro y desarrollo profesional, buscando reducir brechas de género en el ecosistema de datos.",
+      image: "/programasyproyectos/redimpactadata.webp",
+      
     }
   ];
 
@@ -104,7 +105,7 @@ const FeaturedPrograms = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={textVariants}
           >
-            <h2 className="text-4xl font-bold text-custom-yellow mb-6">
+            <h2 className="text-4xl font-bold text-custom-red mb-6">
               NUESTROS<br />
               PROGRAMAS
             </h2>
@@ -141,6 +142,8 @@ const FeaturedPrograms = () => {
                         src={program.image}
                         alt={program.title}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        width={400}
+                        height={250}
                       />
                     )}
                   </div>
@@ -168,8 +171,7 @@ const FeaturedPrograms = () => {
                     <Link
                       href={program.link}
                       passHref
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      
                       className="cursor-pointer block h-full no-underline"
                     >
                       {cardContent}
