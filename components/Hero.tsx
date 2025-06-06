@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from "@/components/ui/button";
 
 export function Hero() {
   // Definir las palabras con sus respectivas clases de color
