@@ -10,14 +10,14 @@ export function Hero() {
   const titleWords = [
     { text: "25", className: "text-custom-yellow" },
     { text: "años", className: "text-custom-yellow" },
-    { text: "transformando", className: "text-white/80" },
+    { text: "transformando", className: "text-custom-background" },
     { text: "vidas", className: "text-custom-green" },
-    { text: "a", className: "text-white/80" },
-    { text: "través", className: "text-white/80" },
-    { text: "de", className: "text-white/80" },
-    { text: "la", className: "text-white/80" },
+    { text: "a", className: "text-custom-background" },
+    { text: "través", className: "text-custom-background" },
+    { text: "de", className: "text-custom-background" },
+    { text: "la", className: "text-custom-background" },
     { text: "tecnología", className: "text-custom-cyan" },
-    { text: "en", className: "text-white/80" },
+    { text: "en", className: "text-custom-background" },
     { text: "Chile", className: "text-custom-red" }
   ];
 
@@ -129,8 +129,7 @@ export function Hero() {
           <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             {/* Left column - text con background para legibilidad */}
             <div className="ml-6 space-y-6 relative">
-              {/* Background sutil para mejorar legibilidad 
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-2xl -m-8 p-8 shadow-lg"></div>*/}
+             
               
               <div className="relative z-10">
                 <motion.h1 
@@ -167,9 +166,7 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.4 }}
                 >
-                  <Link href="/nosotros" className="cursor-pointer">
-                    <Button variant="default">¿Qué es CDI?</Button>
-                  </Link>
+                  
                 </motion.div>
               </div>
             </div>
@@ -249,9 +246,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.4 }}
               >
-                <Link href="/nosotros">
-                  <Button variant="default">¿Qué es CDI?</Button>
-                </Link>
+                
               </motion.div>
             </div>
           </div>
