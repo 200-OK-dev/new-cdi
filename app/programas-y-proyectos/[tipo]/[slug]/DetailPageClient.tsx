@@ -1,7 +1,7 @@
 // programas-y-proyectos/[tipo]/[slug]/DetailPageClient.tsx
 "use client"
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Users, Target, Code, BookOpen, Globe, Lightbulb, Play } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Users, Target, Code, BookOpen, Globe, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import { ProgramaData, ProyectoData } from '../../data';
 

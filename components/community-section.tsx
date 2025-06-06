@@ -4,7 +4,7 @@ import type React from "react"
 
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
-import { Twitter, MessageCircle, Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
+import { MessageCircle, Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 
 export function CommunitySection() {
   const socialLinks = [
