@@ -32,7 +32,7 @@ export default function Home() {
         <section className="py-12">
           <div className="container mx-auto px-4 pb-12">
           <GoogleTestimonials 
-            title="Lo que dicen nuestros beneficiarios"
+            title="Lo que dicen nuestros Participantes"
             subtitle="Testimonios reales de personas que han experimentado nuestro impacto"
             autoPlay={true}
             autoPlayInterval={10000}
@@ -42,4 +42,4 @@ export default function Home() {
       </div>
     </div>
   )
-}
+} 

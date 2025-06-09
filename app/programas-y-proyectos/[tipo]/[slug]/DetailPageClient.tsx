@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Users, Target, Code, BookOpen, Globe, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import { ProgramaData, ProyectoData } from '../../data';
+import { StatsBanner } from '../../../../components/StatsBanner'; // Componente de estadísticas
 
 interface DetailPageClientProps {
   data: ProgramaData | ProyectoData;
@@ -53,6 +54,19 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
 
   // Verificar si el CTA es un video de YouTube
   const youtubeVideoId = data.fullContent.cta.link ? extractYouTubeId(data.fullContent.cta.link) : null;
+
+  // Función helper para renderizar el banner en la posición correcta
+  const renderBannerAtPosition = (position: string) => {
+    if (data.fullContent.banner?.position === position) {
+      return (
+        <StatsBanner 
+          config={data.fullContent.banner} 
+          fallbackColor={data.color}
+        />
+      );
+    }
+    return null;
+  };
 
   // Animaciones
   const fadeInUp = {
@@ -140,6 +154,9 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
           </motion.p>
         </motion.section>
 
+        {/* Banner después del hero */}
+        {renderBannerAtPosition('after-hero')}
+
         {/* Video de YouTube (si existe) */}
         {youtubeVideoId && (
           <YouTubeEmbed 
@@ -147,6 +164,12 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
             title={data.fullContent.cta.text}
           />
         )}
+
+        {/* Banner después del video */}
+        {renderBannerAtPosition('after-video')}
+
+        {/* Banner antes de las secciones */}
+        {renderBannerAtPosition('before-sections')}
 
         {/* Contenido principal */}
         <motion.div
@@ -157,66 +180,74 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
           className="space-y-12"
         >
           {data.fullContent.sections.map((section, index) => (
-            <motion.section key={index} variants={fadeInUp}>
-              {section.type === 'highlight' ? (
-                <div 
-                  className="p-8 rounded-2xl text-white relative overflow-hidden"
-                  style={{ backgroundColor: data.color }}
-                >
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-bold mb-4">{section.title}</h3>
-                    <div 
-                      className="text-lg leading-relaxed"
-                      dangerouslySetInnerHTML={{ 
-                        __html: section.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                      }}
-                    />
-                  </div>
-                  <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
-                    <IconComponent className="w-full h-full" />
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <h3 className="text-3xl font-bold mb-6 text-foreground">
-                    {section.title}
-                  </h3>
-                  
-                  {section.type === 'list' ? (
-                    <div>
-                      <p className="text-lg text-muted-foreground mb-6">
-                        {section.content}
-                      </p>
-                      <ul className="space-y-4">
-                        {section.items?.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start">
-                            <div 
-                              className="w-2 h-2 rounded-full mt-3 mr-4 flex-shrink-0"
-                              style={{ backgroundColor: data.color }}
-                            ></div>
-                            <div 
-                              className="text-lg leading-relaxed"
-                              dangerouslySetInnerHTML={{ 
-                                __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                              }}
-                            />
-                          </li>
-                        ))}
-                      </ul>
+            <div key={index}>
+              <motion.section variants={fadeInUp}>
+                {section.type === 'highlight' ? (
+                  <div 
+                    className="p-8 rounded-2xl text-white relative overflow-hidden"
+                    style={{ backgroundColor: data.color }}
+                  >
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold mb-4">{section.title}</h3>
+                      <div 
+                        className="text-lg leading-relaxed"
+                        dangerouslySetInnerHTML={{ 
+                          __html: section.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                        }}
+                      />
                     </div>
-                  ) : (
-                    <div 
-                      className="text-lg leading-relaxed text-muted-foreground"
-                      dangerouslySetInnerHTML={{ 
-                        __html: section.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                      }}
-                    />
-                  )}
-                </div>
-              )}
-            </motion.section>
+                    <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
+                      <IconComponent className="w-full h-full" />
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="text-3xl font-bold mb-6 text-foreground">
+                      {section.title}
+                    </h3>
+                    
+                    {section.type === 'list' ? (
+                      <div>
+                        <p className="text-lg text-muted-foreground mb-6">
+                          {section.content}
+                        </p>
+                        <ul className="space-y-4">
+                          {section.items?.map((item, itemIndex) => (
+                            <li key={itemIndex} className="flex items-start">
+                              <div 
+                                className="w-2 h-2 rounded-full mt-3 mr-4 flex-shrink-0"
+                                style={{ backgroundColor: data.color }}
+                              ></div>
+                              <div 
+                                className="text-lg leading-relaxed"
+                                dangerouslySetInnerHTML={{ 
+                                  __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                                }}
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <div 
+                        className="text-lg leading-relaxed text-muted-foreground"
+                        dangerouslySetInnerHTML={{ 
+                          __html: section.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
+              </motion.section>
+
+              {/* Banner después de sección específica */}
+              {renderBannerAtPosition(`after-section-${index}`)}
+            </div>
           ))}
         </motion.div>
+
+        {/* Banner antes de stats */}
+        {renderBannerAtPosition('before-stats')}
 
         {/* Stats */}
         {data.fullContent.stats && (
@@ -240,6 +271,9 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
             </div>
           </motion.section>
         )}
+
+        {/* Banner antes del CTA */}
+        {renderBannerAtPosition('before-cta')}
 
         {/* CTA */}
         <motion.section

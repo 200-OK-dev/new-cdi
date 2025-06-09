@@ -142,7 +142,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, size = 'md' }) => {
 // ========================================
 
 const GoogleTestimonials: React.FC<GoogleTestimonialsProps> = ({ 
-  title = "Lo que dicen nuestros beneficiarios",
+  title = "Lo que dicen nuestros Participantes",
   subtitle = "Testimonios reales de personas que han experimentado nuestro impacto",
   className = "",
   autoPlay = true,
