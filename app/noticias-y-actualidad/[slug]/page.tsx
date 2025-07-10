@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, User, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
+import Image from "next/image"
 import { getNewsBySlug, getRelatedNews } from "../news"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -28,7 +29,7 @@ export default function NewsDetailPage({ params }: NewsDetailPageProps) {
           Inicio
         </Link>
         <span>/</span>
-        <Link href="/noticias" className="hover:text-foreground transition-colors">
+        <Link href="/noticias-y-actualidad" className="hover:text-foreground transition-colors">
           Noticias
         </Link>
         <span>/</span>
@@ -50,11 +51,16 @@ export default function NewsDetailPage({ params }: NewsDetailPageProps) {
         <div className="lg:col-span-2">
           {/* Hero Image */}
           <div className="mb-8">
-            <img
-              src={news.image || "/placeholder.svg"}
-              alt={news.title}
-              className="w-full h-64 md:h-96 object-cover rounded-lg border"
-            />
+            <div className="relative w-full h-64 md:h-96">
+              <Image
+                src={news.image || "/placeholder.svg"}
+                alt={news.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover rounded-lg border"
+                priority
+              />
+            </div>
           </div>
 
           {/* Article Header */}

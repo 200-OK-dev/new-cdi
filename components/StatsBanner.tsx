@@ -1,6 +1,7 @@
 // components/StatsBanner.tsx
 "use client"
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { BannerConfig } from '../app/programas-y-proyectos/data';
 
 interface StatsBannerProps {
@@ -23,10 +24,13 @@ export const StatsBanner = ({ config }: StatsBannerProps) => {
         <div className="hidden md:flex items-center justify-between p-8">
           {/* Imagen izquierda */}
           <div className="flex-shrink-0">
-            <img 
+            <Image 
               src={config.leftImage}
               alt="Decoración izquierda"
-              className="w-48 h-48 object-contain"
+              width={192}  // 12rem = 192px (12 * 16)
+              height={192} // 12rem = 192px (12 * 16)
+              className="object-contain"
+              priority
             />
           </div>
           
@@ -44,10 +48,13 @@ export const StatsBanner = ({ config }: StatsBannerProps) => {
           
           {/* Imagen derecha */}
           <div className="flex-shrink-0">
-            <img 
+            <Image 
               src={config.rightImage}
               alt="Decoración derecha"
-              className="w-48 h-48 object-contain"
+              width={192}
+              height={192}
+              className="object-contain"
+              priority
             />
           </div>
         </div>
@@ -57,15 +64,19 @@ export const StatsBanner = ({ config }: StatsBannerProps) => {
           <div className="text-center">
             {/* Imágenes en fila */}
             <div className="flex justify-center items-center gap-6 mb-6">
-              <img 
+              <Image 
                 src={config.leftImage}
                 alt="Decoración izquierda"
-                className="w-16 h-16 object-contain"
+                width={64}
+                height={64}
+                className="object-contain"
               />
-              <img 
+              <Image 
                 src={config.rightImage}
                 alt="Decoración derecha"
-                className="w-16 h-16 object-contain"
+                width={64}
+                height={64}
+                className="object-contain"
               />
             </div>
                         
