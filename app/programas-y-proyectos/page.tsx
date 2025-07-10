@@ -1,6 +1,6 @@
 "use client"
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, Code, Target, Lightbulb, Globe, BookOpen } from 'lucide-react';
+import { ArrowRight, Users, Code, Target, Lightbulb, Globe, BookOpen, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 import { programasData, proyectosData } from './data';
 
@@ -46,6 +46,7 @@ export default function ProgramasYProyectos() {
     Globe: Globe,
     Target: Target,
     Lightbulb: Lightbulb,
+    BarChart3: BarChart3,
   };
 
   // Convertir datos a arrays para el renderizado
@@ -67,7 +68,7 @@ export default function ProgramasYProyectos() {
             className="text-4xl md:text-6xl font-bold mb-6"
             variants={fadeInUp}
           >
-            <span className="text-orange-500">Nuestros</span>{" "}
+            <span className="text-custom-cyan">Nuestros</span>{" "}
             <span className="text-foreground">Programas y Proyectos</span>
           </motion.h1>
           <motion.p 

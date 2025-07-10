@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Users, Target, Code, BookOpen, Globe, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import { ProgramaData, ProyectoData } from '../../data';
-import { StatsBanner } from '../../../../components/StatsBanner'; // Componente de estadísticas
+import { StatsBanner } from '../../../../components/StatsBanner';
 
 interface DetailPageClientProps {
   data: ProgramaData | ProyectoData;
@@ -61,7 +61,6 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
       return (
         <StatsBanner 
           config={data.fullContent.banner} 
-          fallbackColor={data.color}
         />
       );
     }
@@ -157,7 +156,7 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
         {/* Banner después del hero */}
         {renderBannerAtPosition('after-hero')}
 
-        {/* Video de YouTube (si existe) */}
+        {/* Video de YouTube del CTA (si existe) */}
         {youtubeVideoId && (
           <YouTubeEmbed 
             videoId={youtubeVideoId} 
@@ -200,42 +199,58 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
                       <IconComponent className="w-full h-full" />
                     </div>
                   </div>
+                ) : section.type === 'video' ? (
+                  // NUEVA SECCIÓN PARA VIDEOS
+                  <div>
+                    <h3 className="text-3xl font-bold mb-6 text-foreground">
+                      {section.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-6">
+                      {section.content}
+                    </p>
+                    {section.type === 'video' && section.videoUrl && extractYouTubeId(section.videoUrl) && (
+                      <YouTubeEmbed 
+                        videoId={extractYouTubeId(section.videoUrl)!} 
+                        title={section.title}
+                      />
+                    )}
+                  </div>
+                ) : section.type === 'list' ? (
+                  <div>
+                    <h3 className="text-3xl font-bold mb-6 text-foreground">
+                      {section.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-6">
+                      {section.content}
+                    </p>
+                    <ul className="space-y-4">
+                      {section.items?.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start">
+                          <div 
+                            className="w-2 h-2 rounded-full mt-3 mr-4 flex-shrink-0"
+                            style={{ backgroundColor: data.color }}
+                          ></div>
+                          <div 
+                            className="text-lg leading-relaxed"
+                            dangerouslySetInnerHTML={{ 
+                              __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                            }}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ) : (
                   <div>
                     <h3 className="text-3xl font-bold mb-6 text-foreground">
                       {section.title}
                     </h3>
-                    
-                    {section.type === 'list' ? (
-                      <div>
-                        <p className="text-lg text-muted-foreground mb-6">
-                          {section.content}
-                        </p>
-                        <ul className="space-y-4">
-                          {section.items?.map((item, itemIndex) => (
-                            <li key={itemIndex} className="flex items-start">
-                              <div 
-                                className="w-2 h-2 rounded-full mt-3 mr-4 flex-shrink-0"
-                                style={{ backgroundColor: data.color }}
-                              ></div>
-                              <div 
-                                className="text-lg leading-relaxed"
-                                dangerouslySetInnerHTML={{ 
-                                  __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                                }}
-                              />
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : (
-                      <div 
-                        className="text-lg leading-relaxed text-muted-foreground"
-                        dangerouslySetInnerHTML={{ 
-                          __html: section.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                        }}
-                      />
-                    )}
+                    <div 
+                      className="text-lg leading-relaxed text-muted-foreground"
+                      dangerouslySetInnerHTML={{ 
+                        __html: section.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                      }}
+                    />
                   </div>
                 )}
               </motion.section>

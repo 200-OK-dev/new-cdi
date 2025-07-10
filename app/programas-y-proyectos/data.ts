@@ -1,84 +1,146 @@
 // programas-y-proyectos/data.ts
 
-// Nueva interfaz para la configuración del banner
-export interface BannerConfig {
-  leftImage: string;
-  rightImage: string;
-  mainText: string;
-  subText?: string;
-  statNumber: string;
-  statLabel: string;
-  backgroundColor?: string; // Si no se especifica, usará data.color
-  position: 'after-hero' | 'after-video' | 'before-sections' | 'after-section-0' | 'after-section-1' | 'after-section-2' | 'before-stats' | 'before-cta';
-}
+import { ProgramaData, ProyectoData, BannerConfig } from './types';
 
-export interface ProgramaData {
-  slug: string;
-  title: string;
-  shortDescription: string;
-  category: string;
-  beneficiarios: string;
-  color: string;
-  icon: string;
-  fullContent: {
-    hero: {
-      title: string;
-      subtitle: string;
-      description: string;
-    };
-    sections: Array<{
-      title: string;
-      content: string;
-      type: 'text' | 'list' | 'highlight';
-      items?: string[];
-    }>;
-    stats?: {
-      number: string;
-      description: string;
-    };
-    cta: {
-      text: string;
-      link: string;
-    };
-    // Nueva propiedad para el banner
-    banner?: BannerConfig;
-  };
-}
-
-export interface ProyectoData {
-  slug: string;
-  title: string;
-  shortDescription: string;
-  partner: string;
-  duration: string;
-  color: string;
-  icon: string;
-  fullContent: {
-    hero: {
-      title: string;
-      subtitle: string;
-      description: string;
-    };
-    sections: Array<{
-      title: string;
-      content: string;
-      type: 'text' | 'list' | 'highlight';
-      items?: string[];
-    }>;
-    stats?: {
-      number: string;
-      description: string;
-    };
-    cta: {
-      text: string;
-      link: string;
-    };
-    // Nueva propiedad para el banner
-    banner?: BannerConfig;
-  };
-}
+export type { BannerConfig, ProgramaData, ProyectoData } from './types';
 
 export const programasData: Record<string, ProgramaData> = {
+
+  "red-impacta-data": {
+  slug: "red-impacta-data",
+  title: "Red Impacta Data",
+  shortDescription: "Pasantías con propósito para fortalecer el uso estratégico de datos en organizaciones sociales. Conectamos a mujeres formadas en análisis de datos con organizaciones que necesitan fortalecer sus capacidades.",
+  category: "Datos y Tecnología Social",
+  beneficiarios: "ONGs y Mujeres Migrantes",
+  color: "#10B981", // Verde esmeralda
+  icon: "BarChart3",
+  fullContent: {
+    hero: {
+      title: "Pasantías con propósito para fortalecer el uso estratégico de datos en organizaciones sociales",
+      subtitle: "",
+      description: "**Datos con Impacto Social** es un proyecto colaborativo entre dos programas de CDI CHILE: **la Red Impacta Data** con **TechSoup**, que conecta a mujeres formadas en análisis de datos con organizaciones sociales que necesitan fortalecer sus capacidades en esta área.\n\nA través de pasantías prácticas, las participantes acompañan a las organizaciones en la revisión, organización y análisis de su información, ayudándolas a tomar mejores decisiones basadas en datos y aportando valor a sus procesos de gestión e impacto."
+    },
+    
+    sections: [
+      {
+        title: "",
+        content: "",
+        type: "video",
+        videoUrl: "https://www.youtube.com/watch?v=x-RmEJ-U2o8"
+      },
+      {
+        title: "¿Cómo funciona?",
+        content: "Nuestro proceso está diseñado como una línea de tiempo que genera impacto real:",
+        type: "list",
+        items: [
+          "Mujeres que forman parte de la Red Impacta Data —muchas de ellas migrantes y egresadas de nuestros bootcamps— postulan a pasantías breves, diseñadas para resolver desafíos reales de organizaciones sociales.",
+          "Cada pasantía es acompañada por un equipo técnico que garantiza el aprendizaje mutuo, la calidad del proceso y el enfoque ético del uso de los datos.",
+          "Las organizaciones participantes reciben un apoyo concreto en el uso de su información, y las pasantes ganan experiencia aplicada y valiosa proyección profesional."
+        ]
+      },
+      {
+        title: "",
+        content: "**Los datos no solo son cifras, sino una herramienta poderosa para el cambio social cuando están en manos de quienes conocen los territorios, viven las desigualdades y tienen la motivación de transformar.**",
+        type: "highlight"
+      },
+      {
+        title: "Nuestro Impacto",
+        content: "Resultados que transforman:",
+        type: "list",
+        items: [
+          "✅ +30 Organizaciones sociales con procesos más informados",
+          "✅ Mujeres migrantes desarrollando experiencia y confianza profesional", 
+          "✅ Conexiones reales entre datos, personas y propósitos"
+        ]
+      },
+      {
+        title: "Conoce la experiencia de Policlínico El Salto",
+        content: "",
+        type: "video",
+        videoUrl: "https://www.youtube.com/watch?v=YU_xHL62hTo&t=37s"
+      },
+      {
+        title: "¿Quieres participar?",
+        content: "Hay múltiples formas de ser parte de esta iniciativa:\n\n• ¿Tienes una organización social y quieres recibir apoyo con tus datos?\n• ¿Eres parte de la Red Impacta Data y te interesa una pasantía?\n• ¿Quieres apoyar esta iniciativa desde tu institución?\n\n**Escríbenos a correo@cdichile.org**\n\nO síguenos en nuestras redes para conocer las próximas convocatorias",
+        type: "text"
+      }
+    ],
+    stats: {
+      number: "+30",
+      description: "organizaciones sociales con procesos más informados"
+    },
+    cta: {
+      text: "Contáctanos para participar",
+      link: "mailto:correo@cdichile.org"
+    },
+    banner: {
+      leftImage: "/programas-y-proyectos/DATA-ANALYSIS.png",
+      rightImage: "/programas-y-proyectos/SOCIAL-IMPACT.png",
+      mainText: "Datos + Propósito",
+      subText: "transformando organizaciones sociales",
+      statNumber: "+30",
+      statLabel: "organizaciones impactadas",
+      backgroundColor: "#10B981",
+      position: "after-section-1"
+    }
+  }
+},
+  "habilidades-digitales": {  // ← Clave corregida con guión
+    slug: "habilidades-digitales",
+    title: "Habilidades digitales para el emprendimiento y la empleabilidad",
+    shortDescription: "Tecnología y formación para fortalecer trayectorias laborales y emprendedoras. Entregamos herramientas digitales concretas a personas que quieren mejorar su empleabilidad o fortalecer sus emprendimientos.",
+    category: "Formación Digital",
+    beneficiarios: "Emprendedores y Trabajadores",
+    color: "#7C3AED", // Color violeta/púrpura
+    icon: "Target",
+    fullContent: {
+      hero: {
+        title: "Habilidades digitales para el emprendimiento y la empleabilidad",
+        subtitle: "Tecnología y formación para fortalecer trayectorias laborales y emprendedoras",
+        description: "Este programa busca entregar herramientas digitales concretas a personas que quieren mejorar su empleabilidad, fortalecer sus emprendimientos o abrir nuevas oportunidades económicas. A través de cursos, pasantías, asesorías y espacios formativos, conectamos a participantes con el mundo digital desde una perspectiva práctica, inclusiva y con foco en el impacto social que logramos con el apoyo de instituciones públicas y privadas."
+      },
+      sections: [
+        {
+          title: "Nuestros enfoques",
+          content: "Trabajamos desde cuatro pilares fundamentales:",
+          type: "list",
+          items: [
+            "**Formación digital aplicada**: Cursos prácticos que conectan directamente con oportunidades reales del mercado laboral y emprendedor.",
+            "**Apoyo al emprendimiento formal**: Acompañamiento especializado para la formalización y crecimiento de negocios.",
+            "**Enfoque de género y diversidad**: Programas específicos que abordan las brechas digitales con perspectiva inclusiva.",
+            "**Alianzas público-privadas**: Colaboración estratégica con instituciones que amplifican el impacto social."
+          ]
+        },
+        {
+          title: "Proyectos que forman parte del programa",
+          content: "**🔹 Tránsfórmate** - *Con Walmart Chile*: Formación digital para negocios formalizados. **+1.900 participantes** (Desde 2020)\n\n**🔹 Emprende y Aprende** - *Con AFP Capital*: Educación financiera y digital para independientes. **+270 personas** (Desde 2022)\n\n**🔹 Mujeres y Tecnología** - *Con Banco de Chile*: Formación digital para mujeres que buscan nuevas oportunidades. **+170 personas** (Desde 2022)\n\n**🔹 Inclusión y Diversidad** - *Con Empresas SB*: Cursos con foco en empleabilidad e inclusión. **+1.000 personas** (Desde 2017)\n\n**🔹 POETA** - *Con Trust for the Americas*: Inclusión digital con foco en empleo y emprendimiento. **+5.000 personas** (Desde 2021)",
+          type: "text"
+        },
+        {
+          title: "Impacto en números",
+          content: "En **CDI Chile** creemos que las **habilidades digitales son el puente hacia nuevas oportunidades**. No se trata solo de enseñar tecnología, sino de **abrir caminos**, construir confianza y generar impacto real en las vidas de las personas que participan de nuestros programas.",
+          type: "highlight"
+        }
+      ],
+      stats: {
+        number: "+8.000",
+        description: "personas formadas en todo Chile"
+      },
+      cta: {
+        text: "Contáctanos",
+        link: "/contacto" // O la ruta que tengas para contacto
+      },
+      banner: {
+        leftImage: "/programasyproyectos/ALIANZA.png",
+        rightImage: "/programasyproyectos/PARTICIPANTES.png", 
+        mainText: "5 alianzas activas",
+        subText: "impulsando oportunidades digitales",
+        statNumber: "+8.000",
+        statLabel: "personas formadas",
+        position: "after-section-1"
+      }
+    }
+  },
   techsoup: {
     slug: "techsoup",
     title: "TechSoup",
@@ -140,10 +202,13 @@ export const programasData: Record<string, ProgramaData> = {
         position: "after-section-1" // Se mostrará después de la segunda sección
       }
     }
-  }
+  },
+
+
 };
 
 export const proyectosData: Record<string, ProyectoData> = {
+
   transformate: {
     slug: "transformate",
     title: "Tránsfórmate",
@@ -187,8 +252,8 @@ export const proyectosData: Record<string, ProyectoData> = {
       },
       // Ejemplo de banner para Tránsfórmate
       banner: {
-        leftImage: "/images/hands-icon.svg", // Como en tu imagen de ejemplo
-        rightImage: "/images/people-group.svg", // Como en tu imagen de ejemplo
+        leftImage: "/images/banners/icons/hands.svg", // Como en tu imagen de ejemplo
+        rightImage: "/images/banners/icons/people-group.svg", // Como en tu imagen de ejemplo
         mainText: "4 años de alianza",
         subText: "impulsando emprendimientos",
         statNumber: "1945",
