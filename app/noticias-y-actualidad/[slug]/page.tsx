@@ -8,19 +8,20 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export default async function NewsDetailPage({ params }: Props) {
-  const news = getNewsBySlug(params.slug)
+  const { slug } = await params
+  const news = getNewsBySlug(slug)
 
   if (!news) {
     notFound()
   }
 
   // Rest of your component code remains the same
-  const relatedNews = getRelatedNews(params.slug, 3)
+  const relatedNews = getRelatedNews(slug, 3)
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
