@@ -3,11 +3,12 @@ import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 
 interface NewsPageProps {
-  searchParams: { page?: string }
+  searchParams: Promise<{ page?: string }>
 }
 
-export default function NewsPage({ searchParams }: NewsPageProps) {
-  const currentPage = Number(searchParams.page) || 1
+export default async function NewsPage({ searchParams }: NewsPageProps) {
+  const resolvedSearchParams = await searchParams
+  const currentPage = Number(resolvedSearchParams.page) || 1
   const { news, totalPages, hasNextPage, hasPrevPage } = getPaginatedNews(currentPage, 6)
 
   return (
