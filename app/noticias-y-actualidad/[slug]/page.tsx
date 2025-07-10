@@ -144,11 +144,15 @@ export default function NewsDetailPage({ params }: NewsDetailPageProps) {
                 {relatedNews.map((relatedItem) => (
                   <Link key={relatedItem.id} href={`/noticias/${relatedItem.slug}`} className="block group">
                     <div className="flex space-x-3">
-                      <img
-                        src={relatedItem.image || "/placeholder.svg"}
-                        alt={relatedItem.title}
-                        className="w-16 h-16 object-cover rounded border flex-shrink-0"
-                      />
+                      <div className="relative w-16 h-16 flex-shrink-0">
+                        <Image
+                          src={relatedItem.image || "/placeholder.svg"}
+                          alt={relatedItem.title}
+                          width={64}
+                          height={64}
+                          className="object-cover rounded border"
+                        />
+                      </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
                           {relatedItem.title}

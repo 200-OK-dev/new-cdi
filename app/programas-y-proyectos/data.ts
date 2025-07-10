@@ -1,8 +1,8 @@
 // programas-y-proyectos/data.ts
 
-import { ProgramaData, ProyectoData, BannerConfig } from './types';
+import { ProgramaData, ProyectoData } from './types';
 
-export type { BannerConfig, ProgramaData, ProyectoData } from './types';
+export type { ProgramaData, ProyectoData } from './types';
 
 export const programasData: Record<string, ProgramaData> = {
 

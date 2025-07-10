@@ -2,7 +2,7 @@
 "use client"
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { BannerConfig } from '../app/programas-y-proyectos/data';
+import { BannerConfig } from '../app/programas-y-proyectos/types';
 
 interface StatsBannerProps {
   config: BannerConfig;
