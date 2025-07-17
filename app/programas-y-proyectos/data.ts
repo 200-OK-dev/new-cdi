@@ -7,84 +7,84 @@ export type { ProgramaData, ProyectoData } from './types';
 export const programasData: Record<string, ProgramaData> = {
 
   "red-impacta-data": {
-  slug: "red-impacta-data",
-  title: "Red Impacta Data",
-  shortDescription: "Pasantías con propósito para fortalecer el uso estratégico de datos en organizaciones sociales. Conectamos a mujeres formadas en análisis de datos con organizaciones que necesitan fortalecer sus capacidades.",
-  category: "Datos y Tecnología Social",
-  beneficiarios: "ONGs y Mujeres Migrantes",
-  color: "#10B981", // Verde esmeralda
-  icon: "BarChart3",
-  fullContent: {
-    hero: {
-      title: "Pasantías con propósito para fortalecer el uso estratégico de datos en organizaciones sociales",
-      subtitle: "",
-      description: "**Datos con Impacto Social** es un proyecto colaborativo entre dos programas de CDI CHILE: **la Red Impacta Data** con **TechSoup**, que conecta a mujeres formadas en análisis de datos con organizaciones sociales que necesitan fortalecer sus capacidades en esta área.\n\nA través de pasantías prácticas, las participantes acompañan a las organizaciones en la revisión, organización y análisis de su información, ayudándolas a tomar mejores decisiones basadas en datos y aportando valor a sus procesos de gestión e impacto."
-    },
-    
-    sections: [
-      {
-        title: "",
-        content: "",
-        type: "video",
-        videoUrl: "https://www.youtube.com/watch?v=x-RmEJ-U2o8"
+    slug: "red-impacta-data",
+    title: "Red Impacta Data",
+    shortDescription: "Pasantías con propósito para fortalecer el uso estratégico de datos en organizaciones sociales. Conectamos a mujeres formadas en análisis de datos con organizaciones que necesitan fortalecer sus capacidades.",
+    category: "Datos y Tecnología Social",
+    beneficiarios: "ONGs y Mujeres Migrantes",
+    color: "#10B981", // Verde esmeralda
+    icon: "BarChart3",
+    fullContent: {
+      hero: {
+        title: "Pasantías con propósito para fortalecer el uso estratégico de datos en organizaciones sociales",
+        subtitle: "",
+        description: "**Datos con Impacto Social** es un proyecto colaborativo entre dos programas de CDI CHILE: **la Red Impacta Data** con **TechSoup**, que conecta a mujeres formadas en análisis de datos con organizaciones sociales que necesitan fortalecer sus capacidades en esta área.\n\nA través de pasantías prácticas, las participantes acompañan a las organizaciones en la revisión, organización y análisis de su información, ayudándolas a tomar mejores decisiones basadas en datos y aportando valor a sus procesos de gestión e impacto."
       },
-      {
-        title: "¿Cómo funciona?",
-        content: "Nuestro proceso está diseñado como una línea de tiempo que genera impacto real:",
-        type: "list",
-        items: [
-          "Mujeres que forman parte de la Red Impacta Data —muchas de ellas migrantes y egresadas de nuestros bootcamps— postulan a pasantías breves, diseñadas para resolver desafíos reales de organizaciones sociales.",
-          "Cada pasantía es acompañada por un equipo técnico que garantiza el aprendizaje mutuo, la calidad del proceso y el enfoque ético del uso de los datos.",
-          "Las organizaciones participantes reciben un apoyo concreto en el uso de su información, y las pasantes ganan experiencia aplicada y valiosa proyección profesional."
-        ]
+
+      sections: [
+        {
+          title: "",
+          content: "",
+          type: "video",
+          videoUrl: "https://www.youtube.com/watch?v=x-RmEJ-U2o8"
+        },
+        {
+          title: "¿Cómo funciona?",
+          content: "Nuestro proceso está diseñado como una línea de tiempo que genera impacto real:",
+          type: "list",
+          items: [
+            "Mujeres que forman parte de la Red Impacta Data —muchas de ellas migrantes y egresadas de nuestros bootcamps— postulan a pasantías breves, diseñadas para resolver desafíos reales de organizaciones sociales.",
+            "Cada pasantía es acompañada por un equipo técnico que garantiza el aprendizaje mutuo, la calidad del proceso y el enfoque ético del uso de los datos.",
+            "Las organizaciones participantes reciben un apoyo concreto en el uso de su información, y las pasantes ganan experiencia aplicada y valiosa proyección profesional."
+          ]
+        },
+        {
+          title: "",
+          content: "**Los datos no solo son cifras, sino una herramienta poderosa para el cambio social cuando están en manos de quienes conocen los territorios, viven las desigualdades y tienen la motivación de transformar.**",
+          type: "highlight"
+        },
+        {
+          title: "Nuestro Impacto",
+          content: "Resultados que transforman:",
+          type: "list",
+          items: [
+            "✅ +30 Organizaciones sociales con procesos más informados",
+            "✅ Mujeres migrantes desarrollando experiencia y confianza profesional",
+            "✅ Conexiones reales entre datos, personas y propósitos"
+          ]
+        },
+        {
+          title: "Conoce la experiencia de Policlínico El Salto",
+          content: "",
+          type: "video",
+          videoUrl: "https://www.youtube.com/watch?v=YU_xHL62hTo&t=37s"
+        },
+        {
+          title: "¿Quieres participar?",
+          content: "Hay múltiples formas de ser parte de esta iniciativa:\n\n• ¿Tienes una organización social y quieres recibir apoyo con tus datos?\n• ¿Eres parte de la Red Impacta Data y te interesa una pasantía?\n• ¿Quieres apoyar esta iniciativa desde tu institución?\n\n**Escríbenos a correo@cdichile.org**\n\nO síguenos en nuestras redes para conocer las próximas convocatorias",
+          type: "text"
+        }
+      ],
+      stats: {
+        number: "+30",
+        description: "organizaciones sociales con procesos más informados"
       },
-      {
-        title: "",
-        content: "**Los datos no solo son cifras, sino una herramienta poderosa para el cambio social cuando están en manos de quienes conocen los territorios, viven las desigualdades y tienen la motivación de transformar.**",
-        type: "highlight"
+      cta: {
+        text: "Contáctanos para participar",
+        link: "mailto:correo@cdichile.org"
       },
-      {
-        title: "Nuestro Impacto",
-        content: "Resultados que transforman:",
-        type: "list",
-        items: [
-          "✅ +30 Organizaciones sociales con procesos más informados",
-          "✅ Mujeres migrantes desarrollando experiencia y confianza profesional", 
-          "✅ Conexiones reales entre datos, personas y propósitos"
-        ]
-      },
-      {
-        title: "Conoce la experiencia de Policlínico El Salto",
-        content: "",
-        type: "video",
-        videoUrl: "https://www.youtube.com/watch?v=YU_xHL62hTo&t=37s"
-      },
-      {
-        title: "¿Quieres participar?",
-        content: "Hay múltiples formas de ser parte de esta iniciativa:\n\n• ¿Tienes una organización social y quieres recibir apoyo con tus datos?\n• ¿Eres parte de la Red Impacta Data y te interesa una pasantía?\n• ¿Quieres apoyar esta iniciativa desde tu institución?\n\n**Escríbenos a correo@cdichile.org**\n\nO síguenos en nuestras redes para conocer las próximas convocatorias",
-        type: "text"
+      banner: {
+        leftImage: "/programas-y-proyectos/DATA-ANALYSIS.png",
+        rightImage: "/programas-y-proyectos/SOCIAL-IMPACT.png",
+        mainText: "Datos + Propósito",
+        subText: "transformando organizaciones sociales",
+        statNumber: "+30",
+        statLabel: "organizaciones impactadas",
+        backgroundColor: "#10B981",
+        position: "after-section-1"
       }
-    ],
-    stats: {
-      number: "+30",
-      description: "organizaciones sociales con procesos más informados"
-    },
-    cta: {
-      text: "Contáctanos para participar",
-      link: "mailto:correo@cdichile.org"
-    },
-    banner: {
-      leftImage: "/programas-y-proyectos/DATA-ANALYSIS.png",
-      rightImage: "/programas-y-proyectos/SOCIAL-IMPACT.png",
-      mainText: "Datos + Propósito",
-      subText: "transformando organizaciones sociales",
-      statNumber: "+30",
-      statLabel: "organizaciones impactadas",
-      backgroundColor: "#10B981",
-      position: "after-section-1"
     }
-  }
-},
+  },
   "habilidades-digitales": {  // ← Clave corregida con guión
     slug: "habilidades-digitales",
     title: "Habilidades digitales para el emprendimiento y la empleabilidad",
@@ -132,7 +132,7 @@ export const programasData: Record<string, ProgramaData> = {
       },
       banner: {
         leftImage: "/programasyproyectos/ALIANZA.png",
-        rightImage: "/programasyproyectos/PARTICIPANTES.png", 
+        rightImage: "/programasyproyectos/PARTICIPANTES.png",
         mainText: "5 alianzas activas",
         subText: "impulsando oportunidades digitales",
         statNumber: "+8.000",
@@ -203,6 +203,81 @@ export const programasData: Record<string, ProgramaData> = {
       }
     }
   },
+  "inclusion-y-diversidad": {
+    slug: "inclusion-y-diversidad",
+    title: "Inclusión y Diversidad",
+    shortDescription: "Formación digital con propósito para promover el acceso laboral de personas históricamente excluidas. Desarrollado junto a Empresas SB desde 2017.",
+    category: "Inclusión Laboral",
+    beneficiarios: "Migrantes, Mayores de 50 años y Comunidad LGBTQIA+",
+    color: "#F59E0B", // Color ámbar
+    icon: "Users",
+    fullContent: {
+      hero: {
+        title: "Inclusión y Diversidad - Empresas SB",
+        subtitle: "Formación digital con propósito para promover el acceso laboral de personas históricamente excluidas",
+        description: "Desde 2017, **Empresas SB** y **CDI Chile** impulsan el programa **Inclusión y Diversidad**, una iniciativa que entrega herramientas concretas a personas migrantes, mayores de 50 años y miembros de la comunidad LGBTQIA+ para ampliar sus oportunidades laborales y mejorar su calidad de vida."
+      },
+      sections: [
+        {
+          title: "",
+          content: "",
+          type: "video",
+          videoUrl: "https://www.youtube.com/watch?v=B7nYovo2VZQ&t"
+        },
+        {
+          title: "Nuestra Metodología",
+          content: "A través de formaciones 100% online, con acompañamiento cercano y enfoque práctico, el programa entrega herramientas clave para desenvolverse en el entorno laboral chileno, fortalecer la autoconfianza y ampliar redes de apoyo.",
+          type: "text"
+        },
+        {
+          title: "¿Qué incluye la formación?",
+          content: "Los contenidos se estructuran en módulos que combinan habilidades técnicas y personales, conectadas con las áreas de interés de Empresas SB:",
+          type: "list",
+          items: [
+            "**Atención al cliente, calidad de servicio y neuroventas**: Herramientas prácticas para destacar en el área comercial.",
+            "**Apresto laboral y derechos en el mundo del trabajo**: Conocimientos fundamentales sobre el mercado laboral chileno.",
+            "**Fundamentos de dermocosmética para asesorías en tienda**: Capacitación especializada en productos de belleza y cuidado personal.",
+            "**Presentación personal y estilo profesional**: Desarrollo de habilidades blandas para el ámbito laboral.",
+            "**Masterclasses especializadas**: Herramientas digitales, redes profesionales y estrategias de venta.",
+            "**Visitas a tiendas**: Experiencias prácticas que permiten conocer de cerca el ambiente laboral real."
+          ]
+        },
+        {
+          title: "8 años impulsando trayectorias",
+          content: "El programa **Inclusión y Diversidad** ha transformado vidas desde 2017, consolidando un modelo de formación accesible, emocionalmente significativo y orientado al empleo digno y sostenible. Es un ejemplo concreto de cómo una empresa puede asumir su rol en la inclusión laboral y generar valor compartido.",
+          type: "highlight"
+        },
+        {
+          title: "Una alianza con impacto real",
+          content: "Este programa se ejecuta a través de la **franquicia tributaria SENCE**, lo que permite a **Empresas SB** canalizar su inversión en capacitación hacia acciones de alto valor social. **CDI Chile** se encarga del diseño metodológico, la formación y el seguimiento post programa, asegurando una experiencia transformadora para cada participante.",
+          type: "text"
+        },
+        {
+          title: "¿Tu empresa quiere ser parte?",
+          content: "¿Tu empresa quiere ser parte de un modelo que genera oportunidades reales?\n\n**Hablemos y construyamos juntos una alianza con propósito.**",
+          type: "text"
+        }
+      ],
+      stats: {
+        number: "+1.000",
+        description: "personas formadas desde 2017"
+      },
+      cta: {
+        text: "Contáctanos para crear una alianza",
+        link: "/contacto"
+      },
+      banner: {
+        leftImage: "/programas-y-proyectos/INCLUSION.png",
+        rightImage: "/programas-y-proyectos/DIVERSIDAD.png",
+        mainText: "8 años de alianza",
+        subText: "promoviendo inclusión laboral",
+        statNumber: "+1.000",
+        statLabel: "personas beneficiadas",
+        backgroundColor: "#F59E0B",
+        position: "after-section-2"
+      }
+    }
+  }
 
 
 };
@@ -211,15 +286,15 @@ export const proyectosData: Record<string, ProyectoData> = {
 
   transformate: {
     slug: "transformate",
-    title: "Tránsfórmate",
+    title: "Transfórmate",
     shortDescription: "Un programa de formación para emprendedoras formales, desarrollado junto a Walmart Chile, que busca fortalecer sus negocios a través del acceso a herramientas digitales y redes de apoyo.",
     partner: "Walmart Chile",
     duration: "12 meses",
-    color: "#ED3129",
+    color: "#60A5FA",
     icon: "Users",
     fullContent: {
       hero: {
-        title: "Tránsfórmate",
+        title: "Transfórmate",
         subtitle: "Emprender es un desafío constante: adaptarse, aprender y avanzar",
         description: "Este programa nace para apoyar a quienes ya dieron el paso de formalizar su negocio, entregándoles herramientas concretas, asesoría personalizada y una comunidad que impulsa."
       },
