@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "./ui/button"
-import { Instagram, Facebook, Twitter, Linkedin, Youtube, Copy, Check } from "lucide-react"
+import { Instagram, Facebook, Linkedin, Youtube, Copy, Check } from "lucide-react"
 import { Separator } from "./ui/separator"
 import { useState } from "react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
@@ -42,13 +42,8 @@ export function FooterSection() {
                 </Link>
               </li>
               <li>
-                <Link href="/impacto" className="hover:text-foreground">
-                  Impacto
-                </Link>
-              </li>
-              <li>
-                <Link href="/aliados" className="hover:text-foreground">
-                  Aliados
+                <Link href="/noticias-y-actualidad" className="hover:text-foreground">
+                  Noticias y Actualidad
                 </Link>
               </li>
 
@@ -102,17 +97,7 @@ export function FooterSection() {
                   YouTube
                 </Link>
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="justify-start h-8 px-2 text-muted-foreground hover:text-foreground"
-                asChild
-              >
-                <Link href="https://twitter.com/cdichile" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="w-4 h-4 mr-2" />
-                  Twitter
-                </Link>
-              </Button>
+              
             </div>
           </div>
           <div>

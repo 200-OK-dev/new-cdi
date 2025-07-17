@@ -302,12 +302,6 @@ export default function ContactPage() {
                       color: "text-red-600"
                     },
                     {
-                      icon: <Twitter className="h-5 w-5" />,
-                      title: "Twitter",
-                      href: "https://twitter.com/CDIChile",
-                      color: "text-sky-600"
-                    },
-                    {
                       icon: <MessageCircle className="h-5 w-5" />,
                       title: "WhatsApp",
                       href: "https://www.whatsapp.com/channel/0029Vb5TEQmHAdNW4ZsZlH1t",

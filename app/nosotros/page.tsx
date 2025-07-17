@@ -1,9 +1,7 @@
 "use client"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function QuienesSomos() {
@@ -179,9 +177,6 @@ export default function QuienesSomos() {
                 pionera para promover la democratización del acceso a las tecnologías de la información entre 
                 habitantes de las comunidades de Río de Janeiro.
               </p>
-              <Button variant="link" className="text-custom-green text-xs font-medium p-0 h-auto">
-                Leer más <ChevronRight size={12} className="ml-1" />
-              </Button>
             </div>
 
             <div className="relative mb-16 pl-16">
@@ -197,9 +192,6 @@ export default function QuienesSomos() {
                 Informática y Ciudadanía en diversas comunidades socialmente vulnerables, expandiendo 
                 su impacto a nivel internacional.
               </p>
-              <Button variant="link" className="text-custom-cyan text-xs font-medium p-0 h-auto">
-                Leer más <ChevronRight size={12} className="ml-1" />
-              </Button>
             </div>
 
             <div className="relative mb-16 pl-16">
@@ -221,9 +213,6 @@ export default function QuienesSomos() {
                 el colectivo/la comunidad (NOSOTROS) y el impacto sistémico (TODOS NOSOTROS), 
                 promoviendo soluciones multi-stakeholders.
               </p>
-              <Button variant="link" className="text-custom-purple text-xs font-medium p-0 h-auto">
-                Leer más <ChevronRight size={12} className="ml-1" />
-              </Button>
             </div>
 
             <div className="relative mb-16 pl-16">
@@ -238,9 +227,6 @@ export default function QuienesSomos() {
                 Celebramos 25 años de presencia en Chile, transformando vidas a través de la tecnología 
                 y promoviendo el empoderamiento digital en comunidades de todo el país.
               </p>
-              <Button variant="link" className="text-custom-yellow text-xs font-medium p-0 h-auto">
-                Leer más <ChevronRight size={12} className="ml-1" />
-              </Button>
             </div>
 
             <div className="relative mb-16 pl-16">
@@ -263,9 +249,6 @@ export default function QuienesSomos() {
                 catalizador de cambio, aprovechando el poder de las conexiones y redes para crear 
                 movimientos transformadores.
               </p>
-              <Button variant="link" className="text-custom-red text-xs font-medium p-0 h-auto">
-                Leer más <ChevronRight size={12} className="ml-1" />
-              </Button>
             </div>
 
             <div className="relative mb-16 pl-16">
@@ -281,9 +264,6 @@ export default function QuienesSomos() {
                 y ciudadano de la tecnología puede potenciar las posibilidades de acción y creación 
                 para un impacto positivo mundial.
               </p>
-              <Button variant="link" className="text-custom-green text-xs font-medium p-0 h-auto">
-                Leer más <ChevronRight size={12} className="ml-1" />
-              </Button>
             </div>
           </div>
         </section>
