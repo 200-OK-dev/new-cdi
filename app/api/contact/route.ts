@@ -5,8 +5,12 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('🔍 Contact API called');
+    
     const body = await request.json();
     const { contactName, position, email, organization, subject, message } = body;
+    
+    console.log('📝 Form data received:', { contactName, email, organization, subject });
 
     // Validación básica
     if (!contactName || !email || !organization || !subject || !message) {
@@ -98,6 +102,17 @@ export async function POST(request: NextRequest) {
       </html>
     `;
 
+    // Verificar si existe la API key
+    if (!process.env.RESEND_API_KEY) {
+      console.error('❌ RESEND_API_KEY no está configurada');
+      return NextResponse.json(
+        { error: 'Error de configuración del servidor' },
+        { status: 500 }
+      );
+    }
+    
+    console.log('🔑 API Key found, attempting to send email...');
+    
     // Enviar email usando Resend
     const { data, error } = await resend.emails.send({
       from: 'CDI Chile Contacto <onboarding@resend.dev>',
@@ -106,6 +121,8 @@ export async function POST(request: NextRequest) {
       html: emailHtml,
       replyTo: email, // Para que puedan responder directamente al remitente
     });
+    
+    console.log('📧 Resend response:', { data, error });
 
     if (error) {
       console.error('Error de Resend:', error);
