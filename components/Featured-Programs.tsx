@@ -17,27 +17,30 @@ const FeaturedPrograms = () => {
 
     checkIsDesktop();
     window.addEventListener('resize', checkIsDesktop);
-    
+
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
 
-  // Obtener los primeros 3 programas del data.ts en el mismo orden
-  const programs = Object.values(programasData).slice(0, 3).map((programa, index) => ({
-    id: index + 1,
-    title: programa.title,
-    description: programa.shortDescription,
-    image: programa.slug === "red-impacta-data" ? "/programasyproyectos/redimpactadata.webp" : "",
-    link: `/programas-y-proyectos/programa/${programa.slug}`
-  }));
+  // Obtener los primeros 3 programas del data.ts excluyendo "red-impacta-data"
+  const programs = Object.values(programasData)
+    .filter(programa => programa.slug !== "red-impacta-data")
+    .slice(0, 3)
+    .map((programa, index) => ({
+      id: index + 1,
+      title: programa.title,
+      description: programa.shortDescription,
+      image: programa.slug === "red-impacta-data" ? "/programasyproyectos/redimpactadata.webp" : "",
+      link: `/programas-y-proyectos/programa/${programa.slug}`
+    }));
 
   // Variantes de animación condicionales
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: isMounted && isDesktop ? 50 : 0 
+    hidden: {
+      opacity: 0,
+      y: isMounted && isDesktop ? 50 : 0
     },
-    visible: (index: number) => ({ 
-      opacity: 1, 
+    visible: (index: number) => ({
+      opacity: 1,
       y: 0,
       transition: {
         duration: isMounted && isDesktop ? 0.6 : 0,
@@ -48,12 +51,12 @@ const FeaturedPrograms = () => {
   };
 
   const textVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: isMounted && isDesktop ? -100 : 0 
+    hidden: {
+      opacity: 0,
+      x: isMounted && isDesktop ? -100 : 0
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: isMounted && isDesktop ? 0.8 : 0,
@@ -64,12 +67,12 @@ const FeaturedPrograms = () => {
   };
 
   const gridVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: isMounted && isDesktop ? 100 : 0 
+    hidden: {
+      opacity: 0,
+      x: isMounted && isDesktop ? 100 : 0
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: isMounted && isDesktop ? 0.8 : 0,
@@ -83,9 +86,9 @@ const FeaturedPrograms = () => {
     <div className="bg-background pt-8 pb-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-20 items-start">
-          
+
           {/* Texto principal - lado izquierdo */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-1 mb-8 lg:mb-0"
             initial="hidden"
             whileInView="visible"
@@ -100,9 +103,9 @@ const FeaturedPrograms = () => {
               En CDI Chile trabajamos a través de programas estratégicos que agrupan diversos proyectos e iniciativas, adaptadas a las necesidades de las comunidades.
             </p>
           </motion.div>
-          
+
           {/* Tarjetas de programas - lado derecho */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             initial="hidden"
             whileInView="visible"
@@ -111,14 +114,14 @@ const FeaturedPrograms = () => {
           >
             {programs.map((program, index) => {
               const cardContent = (
-                <motion.div 
+                <motion.div
                   className="bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
                   variants={cardVariants}
                   custom={index}
-                  whileHover={isMounted && isDesktop ? { 
+                  whileHover={isMounted && isDesktop ? {
                     scale: 1.02,
                     transition: { duration: 0.2 }
                   } : {}}
@@ -158,7 +161,7 @@ const FeaturedPrograms = () => {
                     <Link
                       href={program.link}
                       passHref
-                      
+
                       className="cursor-pointer block h-full no-underline"
                     >
                       {cardContent}
