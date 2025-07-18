@@ -29,7 +29,8 @@ const FeaturedPrograms = () => {
       id: index + 1,
       title: programa.title,
       description: programa.shortDescription,
-      image: programa.slug === "red-impacta-data" ? "/programasyproyectos/redimpactadata.webp" : "",
+      image: programa.slug === "habilidades-digitales" ? "/programasyproyectos/habilidades.webp" :
+        programa.slug === "techsoup" ? "/programasyproyectos/tech.webp" : "",
       link: `/programas-y-proyectos/programa/${programa.slug}`
     }));
 

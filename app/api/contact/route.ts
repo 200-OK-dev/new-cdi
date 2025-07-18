@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     
     // Enviar email usando Resend
     const { data, error } = await resend.emails.send({
-      from: 'CDI Chile Contacto <onboarding@resend.dev>',
+      from: 'CDI Chile Contacto <contacto@cdichile.org>',
       to: ['info@cdichile.org'],
       subject: `🤝 Nueva solicitud de colaboración: ${subject}`,
       html: emailHtml,
