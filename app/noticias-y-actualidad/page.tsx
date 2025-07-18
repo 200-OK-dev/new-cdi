@@ -5,8 +5,9 @@ import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function NewsPage() {
+function NewsContent() {
   const searchParams = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || 1
   const { news, totalPages, hasNextPage, hasPrevPage } = getPaginatedNews(currentPage, 6)
@@ -56,5 +57,13 @@ export default function NewsPage() {
         hasPrevPage={hasPrevPage}
       />
     </div>
+  )
+}
+
+export default function NewsPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto px-4 py-24 text-center">Cargando noticias...</div>}>
+      <NewsContent />
+    </Suspense>
   )
 }
