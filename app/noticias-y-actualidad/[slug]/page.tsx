@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, Calendar, Clock, User, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
 import { getNewsBySlug, getRelatedNews } from "@/app/noticias-y-actualidad/news"
 import { Button } from "@/components/ui/button"
@@ -51,9 +52,11 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
         <div className="lg:col-span-2">
           {/* Hero Image */}
           <div className="mb-8">
-            <img
+            <Image
               src={news.image || "/placeholder.svg"}
               alt={news.title}
+              width={800}
+              height={400}
               className="w-full h-64 md:h-96 object-cover rounded-lg border"
             />
           </div>
@@ -145,9 +148,11 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
                 {relatedNews.map((relatedItem) => (
                   <Link key={relatedItem.id} href={`/noticias/${relatedItem.slug}`} className="block group">
                     <div className="flex space-x-3">
-                      <img
+                      <Image
                         src={relatedItem.image || "/placeholder.svg"}
                         alt={relatedItem.title}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 object-cover rounded border flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">

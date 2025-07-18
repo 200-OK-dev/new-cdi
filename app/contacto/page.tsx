@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, MessageCircle, Youtube, Loader2, CheckCircle, AlertCircle, Copy } from "lucide-react"
+import { Mail, Phone, Facebook, Instagram, Linkedin, MessageCircle, Youtube, Loader2, CheckCircle, AlertCircle, Copy } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
