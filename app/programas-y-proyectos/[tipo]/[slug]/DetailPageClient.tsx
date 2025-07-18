@@ -316,7 +316,7 @@ export default function DetailPageClient({ data, tipo }: DetailPageClientProps) 
                   href={data.fullContent.cta.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center bg-white text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors"
+                  className="inline-flex items-center bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors"
                 >
                   {data.fullContent.cta.text}
                   <ExternalLink className="w-5 h-5 ml-2" />

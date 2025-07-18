@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from "framer-motion";
 import Image from 'next/image';
+import { programasData } from '@/app/programas-y-proyectos/data';
 
 const FeaturedPrograms = () => {
   // Hook para detectar si es desktop después de la hidratación
@@ -20,28 +21,14 @@ const FeaturedPrograms = () => {
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
 
-  const programs = [
-    {
-      id: 1,
-      title: "TechSoup",
-      description: "A través de este programa, facilitamos tecnología donada o con descuentos para organizaciones sin fines de lucro, permitiéndoles maximizar su impacto digital.",
-      image: "", // Imagen eliminada para mejorar rendimiento
-      link: "/programas-y-proyectos/programa/techsoup"
-    },
-    {
-      id: 2,
-      title: "Habilidades digitales para el emprendimiento y la empleabilidad",
-      description: "Capacitamos en habilidades digitales a emprendedores, jefas de hogar y personas vulnerables para mejorar sus oportunidades laborales y económicas a través de alianzas público-privadas.",
-      image: "" // Imagen eliminada para mejorar rendimiento
-    },
-    {
-      id: 3,
-      title: "Red Impacta Data",
-      description: "Una red que promueve la participación de mujeres migrantes en el sector tecnológico y de datos. Es un espacio de encuentro y desarrollo profesional, buscando reducir brechas de género en el ecosistema de datos.",
-      image: "/programasyproyectos/redimpactadata.webp",
-      
-    }
-  ];
+  // Obtener los primeros 3 programas del data.ts en el mismo orden
+  const programs = Object.values(programasData).slice(0, 3).map((programa, index) => ({
+    id: index + 1,
+    title: programa.title,
+    description: programa.shortDescription,
+    image: programa.slug === "red-impacta-data" ? "/programasyproyectos/redimpactadata.webp" : "",
+    link: `/programas-y-proyectos/programa/${programa.slug}`
+  }));
 
   // Variantes de animación condicionales
   const cardVariants = {

@@ -191,15 +191,137 @@ export const programasData: Record<string, ProgramaData> = {
         text: "Visita techsoup.cl",
         link: "https://techsoup.cl"
       },
-      // Ejemplo de banner para TechSoup
       banner: {
-        leftImage: "/programasyproyectos/ALIANZA.png", // Ajusta la ruta según tu estructura
-        rightImage: "/programasyproyectos/PARTICIPANTES.png", // Ajusta la ruta según tu estructura
+        leftImage: "/programasyproyectos/ALIANZA.png",
+        rightImage: "/programasyproyectos/PARTICIPANTES.png",
         mainText: "16 años conectando",
         subText: "tecnología con propósito social",
         statNumber: "5.000+",
         statLabel: "organizaciones beneficiadas",
-        position: "after-section-1" // Se mostrará después de la segunda sección
+        position: "after-section-1"
+      }
+    }
+  }
+
+
+};
+
+export const proyectosData: Record<string, ProyectoData> = {
+
+  "emprende-y-aprende": {
+    slug: "emprende-y-aprende",
+    title: "Emprende y Aprende",
+    shortDescription: "Proyecto desarrollado por CDI Chile en alianza con AFP Capital, que entrega herramientas concretas a personas emprendedoras, especialmente mujeres, para fortalecer sus capacidades digitales y avanzar hacia la formalización.",
+    partner: "AFP Capital",
+    duration: "Desde 2022",
+    color: "#8B5CF6", // Color violeta
+    icon: "Target",
+    fullContent: {
+      hero: {
+        title: "Emprende y Aprende",
+        subtitle: "Herramientas digitales para emprendedoras con propósito",
+        description: "**Emprende y Aprende** es un proyecto desarrollado por **CDI Chile** en alianza con **AFP Capital**, que entrega herramientas concretas a personas emprendedoras, especialmente mujeres, para fortalecer sus capacidades digitales, mejorar la visibilidad de sus negocios y avanzar hacia la formalización.\n\nA través de una metodología práctica, cercana y aplicada, el proyecto acompaña el desarrollo de microemprendimientos que enfrentan barreras de acceso a formación, redes y herramientas digitales."
+      },
+      sections: [
+        {
+          title: "",
+          content: "",
+          type: "video",
+          videoUrl: "https://www.youtube.com/watch?v=LhCtoRYnK18"
+        },
+        {
+          title: "¿A quién está dirigido?",
+          content: "El proyecto está enfocado en:",
+          type: "list",
+          items: [
+            "**Mujeres emprendedoras** con negocios en etapa inicial o en desarrollo.",
+            "**Trabajadoras independientes** que buscan mejorar su gestión y comunicación digital.",
+            "**Personas que no necesariamente cuentan con formación previa**, pero quieren proyectar sus negocios con más estrategia."
+          ]
+        },
+        {
+          title: "¿Qué incluye el proyecto?",
+          content: "**Emprende y Aprende** entrega herramientas concretas para construir una marca con propósito, comunicar con claridad su valor, y usar redes sociales como canales efectivos para visibilizar y posicionar el negocio.\n\nEl eje formativo es el curso **Gestión Estratégica de Redes Sociales**, que se complementa con sesiones de mentoría, clases especiales y apoyo en la aplicación de tecnologías digitales, incluyendo el uso de **inteligencia artificial generativa** como herramienta creativa.",
+          type: "text"
+        },
+        {
+          title: "Una alianza con propósito",
+          content: "**Emprende y Aprende** se ejecuta a través de la **franquicia tributaria SENCE**, lo que permite a empresas como **AFP Capital** convertir su inversión en capacitación en un proyecto de alto impacto social.\n\n**CDI Chile** diseña e implementa esta formación con metodologías accesibles, enfoque de género y acompañamiento humano, generando oportunidades reales de desarrollo económico y digital para mujeres emprendedoras de todo Chile.",
+          type: "highlight"
+        }
+      ],
+      stats: {
+        number: "+270",
+        description: "personas beneficiadas desde 2022"
+      },
+      cta: {
+        text: "Contáctanos para participar",
+        link: "/contacto"
+      },
+      banner: {
+        leftImage: "/programasyproyectos/ALIANZA.png",
+        rightImage: "/programasyproyectos/PARTICIPANTES.png",
+        mainText: "Alianza estratégica",
+        subText: "impulsando emprendimiento femenino",
+        statNumber: "+270",
+        statLabel: "emprendedoras formadas",
+        backgroundColor: "#8B5CF6",
+        position: "after-section-1"
+      }
+    }
+  },
+
+  transformate: {
+    slug: "transformate",
+    title: "Transfórmate",
+    shortDescription: "Un programa de formación para emprendedoras formales, desarrollado junto a Walmart Chile, que busca fortalecer sus negocios a través del acceso a herramientas digitales y redes de apoyo.",
+    partner: "Walmart Chile",
+    duration: "12 meses",
+    color: "#60A5FA",
+    icon: "Users",
+    fullContent: {
+      hero: {
+        title: "Transfórmate",
+        subtitle: "Emprender es un desafío constante: adaptarse, aprender y avanzar",
+        description: "Este programa nace para apoyar a quienes ya dieron el paso de formalizar su negocio, entregándoles herramientas concretas, asesoría personalizada y una comunidad que impulsa."
+      },
+      sections: [
+        {
+          title: "Sobre el Programa",
+          content: "**Tránsfórmate** es un proyecto de formación impulsado por **CDI Chile** en alianza con **Walmart Chile**, como parte de su **Ruta del Emprendimiento**. Está dirigido a personas emprendedoras con negocios formalizados, que buscan mejorar sus habilidades digitales, proyectar su crecimiento y conectar con nuevas oportunidades.",
+          type: "text"
+        },
+        {
+          title: "¿Qué ofrece el programa?",
+          content: "Te acompañamos en tu crecimiento empresarial con:",
+          type: "list",
+          items: [
+            "**Capacitación práctica en herramientas digitales**: Aprenderás sobre redes sociales, ventas online, inteligencia artificial aplicada al negocio, diseño digital y más.",
+            "**Asesoría y acompañamiento estratégico**: Contarás con mentorías personalizadas para aplicar lo aprendido a tu emprendimiento real.",
+            "**Red de apoyo entre emprendedores**: Un espacio para compartir experiencias, generar redes y crecer junto a otros que viven desafíos similares.",
+            "**Certificación**: Al finalizar, recibirás una certificación respaldada por SENCE, **CDI Chile** y **Walmart Chile**."
+          ]
+        },
+        {
+          title: "Ruta del Emprendimiento Walmart Chile",
+          content: "**Tránsfórmate** forma parte de la **Ruta del Emprendimiento de Walmart Chile**, una iniciativa que busca potenciar a pequeños negocios con formación, visibilidad y oportunidades reales de crecimiento. En conjunto con **CDI Chile**, llevamos esta experiencia formativa a distintas regiones del país.",
+          type: "highlight"
+        }
+      ],
+      cta: {
+        text: "Ver video del programa",
+        link: "https://www.youtube.com/watch?v=P9agKQxUjVM"
+      },
+      // Ejemplo de banner para Tránsfórmate
+      banner: {
+        leftImage: "/images/banners/icons/hands.svg", // Como en tu imagen de ejemplo
+        rightImage: "/images/banners/icons/people-group.svg", // Como en tu imagen de ejemplo
+        mainText: "4 años de alianza",
+        subText: "impulsando emprendimientos",
+        statNumber: "1945",
+        statLabel: "participantes",
+        backgroundColor: "#8B5CF6", // Color diferente al del proyecto si quieres
+        position: "after-video" // Se mostrará después del video de YouTube
       }
     }
   },
@@ -207,8 +329,8 @@ export const programasData: Record<string, ProgramaData> = {
     slug: "inclusion-y-diversidad",
     title: "Inclusión y Diversidad",
     shortDescription: "Formación digital con propósito para promover el acceso laboral de personas históricamente excluidas. Desarrollado junto a Empresas SB desde 2017.",
-    category: "Inclusión Laboral",
-    beneficiarios: "Migrantes, Mayores de 50 años y Comunidad LGBTQIA+",
+    partner: "Empresas SB",
+    duration: "8 años",
     color: "#F59E0B", // Color ámbar
     icon: "Users",
     fullContent: {
@@ -275,66 +397,6 @@ export const programasData: Record<string, ProgramaData> = {
         statLabel: "personas beneficiadas",
         backgroundColor: "#F59E0B",
         position: "after-section-2"
-      }
-    }
-  }
-
-
-};
-
-export const proyectosData: Record<string, ProyectoData> = {
-
-  transformate: {
-    slug: "transformate",
-    title: "Transfórmate",
-    shortDescription: "Un programa de formación para emprendedoras formales, desarrollado junto a Walmart Chile, que busca fortalecer sus negocios a través del acceso a herramientas digitales y redes de apoyo.",
-    partner: "Walmart Chile",
-    duration: "12 meses",
-    color: "#60A5FA",
-    icon: "Users",
-    fullContent: {
-      hero: {
-        title: "Transfórmate",
-        subtitle: "Emprender es un desafío constante: adaptarse, aprender y avanzar",
-        description: "Este programa nace para apoyar a quienes ya dieron el paso de formalizar su negocio, entregándoles herramientas concretas, asesoría personalizada y una comunidad que impulsa."
-      },
-      sections: [
-        {
-          title: "Sobre el Programa",
-          content: "**Tránsfórmate** es un proyecto de formación impulsado por **CDI Chile** en alianza con **Walmart Chile**, como parte de su **Ruta del Emprendimiento**. Está dirigido a personas emprendedoras con negocios formalizados, que buscan mejorar sus habilidades digitales, proyectar su crecimiento y conectar con nuevas oportunidades.",
-          type: "text"
-        },
-        {
-          title: "¿Qué ofrece el programa?",
-          content: "Te acompañamos en tu crecimiento empresarial con:",
-          type: "list",
-          items: [
-            "**Capacitación práctica en herramientas digitales**: Aprenderás sobre redes sociales, ventas online, inteligencia artificial aplicada al negocio, diseño digital y más.",
-            "**Asesoría y acompañamiento estratégico**: Contarás con mentorías personalizadas para aplicar lo aprendido a tu emprendimiento real.",
-            "**Red de apoyo entre emprendedores**: Un espacio para compartir experiencias, generar redes y crecer junto a otros que viven desafíos similares.",
-            "**Certificación**: Al finalizar, recibirás una certificación respaldada por SENCE, **CDI Chile** y **Walmart Chile**."
-          ]
-        },
-        {
-          title: "Ruta del Emprendimiento Walmart Chile",
-          content: "**Tránsfórmate** forma parte de la **Ruta del Emprendimiento de Walmart Chile**, una iniciativa que busca potenciar a pequeños negocios con formación, visibilidad y oportunidades reales de crecimiento. En conjunto con **CDI Chile**, llevamos esta experiencia formativa a distintas regiones del país.",
-          type: "highlight"
-        }
-      ],
-      cta: {
-        text: "Ver video del programa",
-        link: "https://www.youtube.com/watch?v=P9agKQxUjVM"
-      },
-      // Ejemplo de banner para Tránsfórmate
-      banner: {
-        leftImage: "/images/banners/icons/hands.svg", // Como en tu imagen de ejemplo
-        rightImage: "/images/banners/icons/people-group.svg", // Como en tu imagen de ejemplo
-        mainText: "4 años de alianza",
-        subText: "impulsando emprendimientos",
-        statNumber: "1945",
-        statLabel: "participantes",
-        backgroundColor: "#8B5CF6", // Color diferente al del proyecto si quieres
-        position: "after-video" // Se mostrará después del video de YouTube
       }
     }
   }

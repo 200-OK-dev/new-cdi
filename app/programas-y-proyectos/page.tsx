@@ -65,7 +65,7 @@ export default function ProgramasYProyectos() {
           variants={staggerContainer}
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-2xl md:text-4xl font-bold mb-6"
             variants={fadeInUp}
           >
             <span className="text-custom-cyan">Nuestros</span>{" "}

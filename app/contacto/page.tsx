@@ -7,18 +7,18 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, MessageCircle, Youtube, Loader2, CheckCircle, AlertCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, MessageCircle, Youtube, Loader2, CheckCircle, AlertCircle, Copy } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
 // Variantes de animación
 const fadeInUp = {
-  hidden: { 
-    opacity: 0, 
-    y: 60 
+  hidden: {
+    opacity: 0,
+    y: 60
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
@@ -30,16 +30,18 @@ const fadeInUp = {
 export default function ContactPage() {
   // Estado del formulario
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    contactName: '',
+    position: '',
     email: '',
+    organization: '',
     subject: '',
     message: ''
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   type SubmitStatus = 'success' | 'error' | null;
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
+  const [emailCopied, setEmailCopied] = useState(false);
 
   // Manejar cambios en inputs
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -48,6 +50,25 @@ export default function ContactPage() {
       ...prev,
       [name]: value
     }));
+  };
+
+  // Función para copiar email al portapapeles
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('info@cdichile.org');
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Error al copiar email:', err);
+    }
+  };
+
+  // Función para abrir WhatsApp
+  const openWhatsApp = () => {
+    const phoneNumber = '56951303647';
+    const message = encodeURIComponent('Hola, me gustaría obtener más información sobre CDI Chile.');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   // Manejar envío del formulario
@@ -71,9 +92,10 @@ export default function ContactPage() {
         setSubmitStatus('success');
         // Limpiar formulario
         setFormData({
-          firstName: '',
-          lastName: '',
+          contactName: '',
+          position: '',
           email: '',
+          organization: '',
           subject: '',
           message: ''
         });
@@ -91,68 +113,83 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24">
         {/* Header Section */}
         <motion.div className="text-center mb-12"
-        variants={fadeInUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h1 className="text-4xl font-bold tracking-tight mb-4"
-          variants={fadeInUp}
+            variants={fadeInUp}
           >
             Contáctanos
           </motion.h1>
-          <motion.p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <motion.p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             ¿Tienes alguna pregunta o quieres saber más sobre nosotros? Nos encantaría saber de ti.
           </motion.p>
+
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <Card>
-            <CardHeader>
-              <CardTitle>Envíanos un mensaje</CardTitle>
-              <CardDescription>Completa el formulario y te responderemos lo antes posible.</CardDescription>
+            <CardHeader className="text-center">
+              <CardTitle className="text-xl font-semibold">¿Tu empresa/organización quiere colaborar con nosotros?</CardTitle>
+              <p className="text-sm text-muted-foreground">Completa este formulario y conversemos sobre cómo generar impacto juntos.</p>
+              <p className="text-sm text-muted-foreground">Buscamos alianzas con propósito para ampliar el acceso a herramientas digitales, formación y empleabilidad.</p>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName">Nombre *</Label>
-                    <Input 
-                      id="firstName" 
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      placeholder="Tu nombre" 
-                      required
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName">Apellido</Label>
-                    <Input 
-                      id="lastName" 
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      placeholder="Tu apellido" 
-                      disabled={isSubmitting}
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contactName">Nombre de contacto *</Label>
+                  <Input
+                    id="contactName"
+                    name="contactName"
+                    value={formData.contactName}
+                    onChange={handleInputChange}
+                    placeholder="Ej. Camila Rojas"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="position">Cargo o rol *</Label>
+                  <Input
+                    id="position"
+                    name="position"
+                    value={formData.position}
+                    onChange={handleInputChange}
+                    placeholder="Ej. Encargada de RSE, Director de Fundación, etc."
+                    required
+                    disabled={isSubmitting}
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input 
-                    id="email" 
+                  <Input
+                    id="email"
                     name="email"
-                    type="email" 
+                    type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="tu@email.com" 
+                    placeholder="Ej. contacto@empresa.cl"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="organization">Nombre de la organización o empresa *</Label>
+                  <Input
+                    id="organization"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleInputChange}
+                    placeholder="Ej. Fundación Raíces, Inmobiliaria Vivo, etc."
                     required
                     disabled={isSubmitting}
                   />
@@ -160,12 +197,12 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="subject">Asunto *</Label>
-                  <Input 
-                    id="subject" 
+                  <Input
+                    id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    placeholder="¿En qué podemos ayudarte?" 
+                    placeholder="Ej. Propuesta de alianza / Consulta sobre programas / Quiero conocer más"
                     required
                     disabled={isSubmitting}
                   />
@@ -173,13 +210,13 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Mensaje *</Label>
-                  <Textarea 
-                    id="message" 
+                  <Textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Escribe tu mensaje aquí..." 
-                    className="min-h-[120px]" 
+                    placeholder="Cuéntanos brevemente en qué están interesados y cómo podríamos colaborar."
+                    className="min-h-[120px]"
                     required
                     disabled={isSubmitting}
                   />
@@ -204,9 +241,9 @@ export default function ContactPage() {
                   </Alert>
                 )}
 
-                <Button 
-                  type="submit" 
-                  className="w-full" 
+                <Button
+                  type="submit"
+                  className="w-full"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -227,56 +264,21 @@ export default function ContactPage() {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            {/* Contact Details */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Información de contacto</CardTitle>
-                <CardDescription>También puedes contactarnos directamente a través de estos medios.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">contacto@cdichile.org</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Teléfono</p>
-                    <p className="text-muted-foreground">+56 9 5130 3647</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Dirección</p>
-                    <p className="text-muted-foreground">
-                      Puma 1180, Recoleta - If Blanco Recoleta, 8420200 Santiago, Región Metropolitana, Chile
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Social Media Links */}
             <Card>
-              <CardHeader>
-                <CardTitle>Síguenos</CardTitle>
-                <CardDescription>Conéctate con nosotros en nuestras redes sociales.</CardDescription>
+              <CardHeader className='text-center'>
+                <CardTitle>¿Quieres ser parte de nuestros programas como participante?</CardTitle>
+                <CardDescription>Entérate de nuestras convocatorias a través de redes sociales</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {[
+                    {
+                      icon: <Instagram className="h-5 w-5" />,
+                      title: "Instagram",
+                      href: "https://www.instagram.com/cdichile",
+                      color: "text-pink-600"
+                    },
                     {
                       icon: <Facebook className="h-5 w-5" />,
                       title: "Facebook",
@@ -284,10 +286,10 @@ export default function ContactPage() {
                       color: "text-blue-600"
                     },
                     {
-                      icon: <Instagram className="h-5 w-5" />,
-                      title: "Instagram",
-                      href: "https://www.instagram.com/cdichile",
-                      color: "text-pink-600"
+                      icon: <MessageCircle className="h-5 w-5" />,
+                      title: "WhatsApp",
+                      href: "https://www.whatsapp.com/channel/0029Vb5TEQmHAdNW4ZsZlH1t",
+                      color: "text-green-600"
                     },
                     {
                       icon: <Linkedin className="h-5 w-5" />,
@@ -300,12 +302,6 @@ export default function ContactPage() {
                       title: "YouTube",
                       href: "https://www.youtube.com/@ongcdichile7907",
                       color: "text-red-600"
-                    },
-                    {
-                      icon: <MessageCircle className="h-5 w-5" />,
-                      title: "WhatsApp",
-                      href: "https://www.whatsapp.com/channel/0029Vb5TEQmHAdNW4ZsZlH1t",
-                      color: "text-green-600"
                     }
                   ].map((social, index) => (
                     <Link
@@ -319,6 +315,58 @@ export default function ContactPage() {
                       <span className="ml-2 text-sm font-medium">{social.title}</span>
                     </Link>
                   ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Contact Details */}
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle>¿Prefieres escribirnos directo?</CardTitle>
+                <CardDescription>También puedes comunicarte con nuestro equipo a través de estos canales:</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Email con funcionalidad de copiar */}
+                  <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent transition-colors">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0">
+                        <Mail className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium">Email</p>
+                        <p className="text-muted-foreground cursor-pointer" onClick={copyEmail}>
+                          info@cdichile.org
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={copyEmail}
+                      className="h-8 w-8 p-0"
+                    >
+                      {emailCopied ? (
+                        <CheckCircle className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <Copy className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </div>
+
+                  {/* WhatsApp con funcionalidad de abrir */}
+                  <div
+                    className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors cursor-pointer"
+                    onClick={openWhatsApp}
+                  >
+                    <div className="flex-shrink-0">
+                      <Phone className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-medium">WhatsApp</p>
+                      <p className="text-muted-foreground">+56 9 51303647</p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>

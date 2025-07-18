@@ -38,7 +38,7 @@ export default function QuienesSomos() {
       <main>
          {/* Hero Section */}
          <motion.section 
-           className="py-16 container mx-auto px-4"
+           className="py-24 container mx-auto px-4"
            initial="hidden"
            whileInView="visible"
            viewport={{ once: true, amount: 0.2 }}

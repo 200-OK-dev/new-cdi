@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from "framer-motion";
+import { proyectosData } from '@/app/programas-y-proyectos/data';
 
 const FeaturedProjects = () => {
   // Hook para detectar si es desktop después de la hidratación
@@ -20,27 +21,21 @@ const FeaturedProjects = () => {
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Transfórmate",
-      description: "Un programa de formación para emprendedoras formales, desarrollado junto a Walmart Chile, que busca fortalecer sus negocios a través del acceso a herramientas digitales y redes de apoyo.",
-      image: "/programasyproyectos/transformate.webp",
-      link: "/programas-y-proyectos/proyecto/transformate"
-    },
-    {
-      id: 2,
-      title: "Red Impacta Data",
-      description: "Una red que promueve la participación de mujeres migrantes en el sector tecnológico y de datos. Es un espacio de encuentro y desarrollo profesional, buscando reducir brechas de género en el ecosistema de datos.",
-      image: "/programasyproyectos/redimpactadata.webp"
-    },
-    {
-      id: 3,
-      title: "Emprendo y Aprendo",
-      description: "Proyecto junto a AFP Capital, orientado a entregar herramientas digitales y apoyo al emprendimiento para trabajadores independientes y sus familias.",
-      image: "/programasyproyectos/emprendoaprendo.webp"
-    }
-  ];
+  // Mapeo de imágenes para los proyectos
+  const projectImages: { [key: string]: string } = {
+    "emprende-y-aprende": "/programasyproyectos/emprendoaprendo.webp",
+    "transformate": "/programasyproyectos/transformate.webp",
+    "inclusion-y-diversidad": "/programasyproyectos/inclusion.webp"
+  };
+
+  // Obtener los primeros 3 proyectos del data.ts en el mismo orden
+  const projects = Object.values(proyectosData).slice(0, 3).map((proyecto, index) => ({
+    id: index + 1,
+    title: proyecto.title,
+    description: proyecto.shortDescription,
+    image: projectImages[proyecto.slug] || "/programasyproyectos/default.webp",
+    link: `/programas-y-proyectos/proyectos/${proyecto.slug}`
+  }));
 
   // Variantes de animación condicionales
   const cardVariants = {
