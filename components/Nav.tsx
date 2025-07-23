@@ -8,37 +8,35 @@ import Image from "next/image";
 const navLinks = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/programas-y-proyectos", label: "Programas y Proyectos" },
-  { href: "/noticias-y-actualidad", label: "Noticias y Actualidad" },
-  
   { href: "/contacto", label: "Contacto" },
 ];
 
 export function NavFullWidth() {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="max-w-screen-2xl mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo a la izquierda */}
-<div className="flex-shrink-0">
-  <Link href="/" className="flex items-center space-x-2">
-  <Image
-  src="/cdi25.png"
-  alt="Cdi Chile"
-  width={1566}
-  height={400}
-  priority
-  className="h-10 w-[156px]"
-/>
-  </Link>
-</div>
+        <div className="flex-shrink-0">
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/cdi25.png"
+              alt="Cdi Chile"
+              width={1566}
+              height={400}
+              priority
+              className="h-10 w-[156px]"
+            />
+          </Link>
+        </div>
         {/* Links centrados - solo visibles en desktop */}
         <div className="hidden md:flex flex-1 justify-center">
           <nav className="flex items-center space-x-6">
             {navLinks.map(link => (
-              <Link 
-                key={link.href} 
-                href={link.href} 
+              <Link
+                key={link.href}
+                href={link.href}
                 className="text-sm font-medium transition-colors hover:text-primary whitespace-nowrap"
               >
                 {link.label}
@@ -56,9 +54,9 @@ export function NavFullWidth() {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
         </div>
@@ -77,8 +75,8 @@ export function NavFullWidth() {
               onClick={() => setMenuOpen(false)}
             >
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"/>
-                <line x1="6" y1="6" x2="18" y2="18"/>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
             <nav className="flex flex-col space-y-4">

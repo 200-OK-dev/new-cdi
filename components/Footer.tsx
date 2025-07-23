@@ -42,11 +42,10 @@ export function FooterSection() {
                 </Link>
               </li>
               <li>
-                <Link href="/noticias-y-actualidad" className="hover:text-foreground">
-                  Noticias y Actualidad
+                <Link href="/contacto" className="hover:text-foreground">
+                  Contacto
                 </Link>
               </li>
-
               
             </ul>
           </div>

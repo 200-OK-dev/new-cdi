@@ -89,8 +89,8 @@ export default function ProgramasYProyectos() {
           variants={staggerContainer}
         >
           <motion.div className="mb-12" variants={fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-500 mb-4">
-              NUESTROS PROGRAMAS
+            <h2 className="text-2xl md:text-4xl font-bold text-orange-500 mb-4">
+              Nuestros Programas
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl">
               En CDI Chile trabajamos a través de programas estratégicos que agrupan diversos proyectos e 
@@ -172,8 +172,8 @@ export default function ProgramasYProyectos() {
           variants={staggerContainer}
         >
           <motion.div className="mb-12" variants={fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-500 mb-4">
-              NUESTROS PROYECTOS
+            <h2 className="text-2xl md:text-4xl font-bold text-orange-500 mb-4">
+              Nuestros Proyectos
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl">
               Desarrollamos proyectos específicos con socios públicos y privados, adaptando nuestras 
