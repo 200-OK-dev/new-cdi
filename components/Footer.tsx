@@ -36,9 +36,15 @@ export function FooterSection() {
                   Nosotros
                 </Link>
               </li>
+              
               <li>
                 <Link href="/programas-y-proyectos" className="hover:text-foreground">
                   Programas y Proyectos
+                </Link>
+              </li>
+              <li>
+                <Link href="/noticias-y-actualidad" className="hover:text-foreground">
+                  Noticias y Actualidad
                 </Link>
               </li>
               <li>

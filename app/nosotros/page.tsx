@@ -115,7 +115,7 @@ export default function QuienesSomos() {
             {/* Second Row - 4 members */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               {[
-                { name: 'Diego Cooper', position: 'Director de Estrategia e Innovación', image: '/Equipo/Diego Cooper - Director de Estrategia e Innovación.png' },
+                { name: 'Jocelyn Olivares', position: 'Coordinadora de Comunicación Digital', image: '/Equipo/Jocelyn Olivares - Coordinadora de Comunicación Digital.png' },
                 { name: 'Anyeli Mantilla', position: 'Coordinadora de Operaciones', image: '/Equipo/Anyeli Mantilla - Coordinadora de Operaciones.png' },
                 { name: 'Daisy Campaña', position: 'Coordinadora de Finanzas y Administración', image: '/Equipo/Daisy Campaña - Coordinadora de FInanzas y Administración.png' },
                 { name: 'Francisca Núñez', position: 'Coordinadora Programa TechSoup Chile', image: '/Equipo/Francisca Núñez - Coordinadora Programa TechSoup Chile.png' },
@@ -132,9 +132,9 @@ export default function QuienesSomos() {
             </div>
 
             {/* Third Row - 3 members */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {[
-                { name: 'Jocelyn Olivares', position: 'Encargada Comunicación Digital', image: '/Equipo/Jocelyn Olivares - Encargada Comunicación Digital.png' },
+                
                 { name: 'Macarena Contreras', position: 'Coordinadora de Administración', image: '/Equipo/Macarena Contreras - Coordinadora de Administración.png' },
                 { name: 'Nataly Cueto', position: 'Coordinadora de Convocatoria', image: '/Equipo/Nataly Cueto - Coordinadora de Convocatoria.png' }
               ].map((member, index) => (
