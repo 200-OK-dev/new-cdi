@@ -50,15 +50,15 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
       {/* Main Content - Centered */}
       <div className="max-w-4xl mx-auto">
        {/* Hero Image */}
-<div className="mb-8">
+       <div className="mb-8">
   <Image
     src={news.image || "/placeholder.svg"}
     alt={news.title}
-    width={2000}      // Usa el tamaño real de tu imagen
-    height={1125}     // Mantén la proporción original
-    className="w-full h-64 md:h-96 object-cover rounded-lg border"
-    quality={95}      // Mejora la calidad
-    priority          // Carga prioritaria para imagen principal
+    width={1200}
+    height={675}      // Ajusta según la proporción real de tus imágenes
+    className="w-full h-auto rounded-lg border"
+    quality={95}
+    priority
     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
   />
 </div>
@@ -66,7 +66,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
         {/* Article Header */}
         <div className="mb-8">
           <div className="flex flex-wrap items-center gap-4 mb-4">
-            <Badge className={`${news.categoryColor} text-white border-0`}>{news.category}</Badge>
+            <Badge className={`${news.categoryColor} text-black border-0`}>{news.category}</Badge>
             <div className="flex items-center text-muted-foreground text-sm">
               <Calendar className="w-4 h-4 mr-1" />
               {new Date(news.date).toLocaleDateString("es-ES", {
@@ -75,10 +75,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
                 day: "numeric",
               })}
             </div>
-            <div className="flex items-center text-muted-foreground text-sm">
-              <Clock className="w-4 h-4 mr-1" />
-              {news.readTime}
-            </div>
+            
             <div className="flex items-center text-muted-foreground text-sm">
               <User className="w-4 h-4 mr-1" />
               {news.author}

@@ -15,18 +15,16 @@ export function NewsCard({ news }: NewsCardProps) {
     <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border">
       <CardHeader className="p-0">
         <div className="relative overflow-hidden rounded-t-lg">
-          <div className="relative w-full h-48">
+        <div className="relative w-full aspect-[16/9] bg-gray-50 dark:bg-gray-900">
             <Image
               src={news.image || "/placeholder.svg"}
               alt={news.title}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              className="object-contain group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <div className="absolute top-4 left-4">
-            <Badge className={`${news.categoryColor} text-white border-0`}>{news.category}</Badge>
-          </div>
+          
         </div>
       </CardHeader>
 
@@ -41,8 +39,8 @@ export function NewsCard({ news }: NewsCardProps) {
             })}
           </div>
           <div className="flex items-center">
-            <Clock className="w-4 h-4 mr-1" />
-            {news.readTime}
+            
+            <Badge className={`${news.categoryColor} text-black border-0`}>{news.category}</Badge>
           </div>
         </div>
 
