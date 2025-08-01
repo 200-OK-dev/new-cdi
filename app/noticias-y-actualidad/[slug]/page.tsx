@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Calendar, Clock, User, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
+import { ArrowLeft, Calendar, User, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
 import { getNewsBySlug, getRelatedNews } from "@/app/noticias-y-actualidad/news"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
