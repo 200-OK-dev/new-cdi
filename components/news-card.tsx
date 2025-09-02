@@ -15,7 +15,7 @@ export function NewsCard({ news }: NewsCardProps) {
     <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border">
       <CardHeader className="p-0">
         <div className="relative overflow-hidden rounded-t-lg">
-        <div className="relative w-full aspect-[16/9] bg-gray-50 dark:bg-gray-900">
+        <div className="relative w-full aspect-[16/9] bg-transparent">
             <Image
               src={news.image || "/placeholder.svg"}
               alt={news.title}

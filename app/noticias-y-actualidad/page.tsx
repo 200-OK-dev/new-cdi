@@ -5,12 +5,42 @@ import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
 import { useSearchParams } from "next/navigation"
-import { Suspense } from "react"
+import { Suspense, useEffect, useState } from "react"
+import { NewsItem } from "./types"
 
 function NewsContent() {
   const searchParams = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || 1
-  const { news, totalPages, hasNextPage, hasPrevPage } = getPaginatedNews(currentPage, 6)
+  const [newsData, setNewsData] = useState<{
+    news: NewsItem[]
+    totalPages: number
+    hasNextPage: boolean
+    hasPrevPage: boolean
+  }>({
+    news: [],
+    totalPages: 0,
+    hasNextPage: false,
+    hasPrevPage: false
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true)
+      try {
+        const data = getPaginatedNews(currentPage, 6)
+        setNewsData(data)
+      } catch (error) {
+        console.error('Error fetching news:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchNews()
+  }, [currentPage])
+
+  const { news, totalPages, hasNextPage, hasPrevPage } = newsData
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -42,20 +72,37 @@ function NewsContent() {
         </motion.p>
       </motion.div>
 
+      {/* Loading State */}
+      {loading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="animate-pulse">
+              <div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
+              <div className="bg-gray-200 h-4 rounded mb-2"></div>
+              <div className="bg-gray-200 h-4 rounded w-3/4"></div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* News Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        {news.map((newsItem) => (
-          <NewsCard key={newsItem.id} news={newsItem} />
-        ))}
-      </div>
+      {!loading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {news.map((newsItem) => (
+            <NewsCard key={newsItem.id} news={newsItem} />
+          ))}
+        </div>
+      )}
 
       {/* Pagination */}
-      <NewsPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        hasNextPage={hasNextPage}
-        hasPrevPage={hasPrevPage}
-      />
+      {!loading && (
+        <NewsPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          hasNextPage={hasNextPage}
+          hasPrevPage={hasPrevPage}
+        />
+      )}
     </div>
   )
 }

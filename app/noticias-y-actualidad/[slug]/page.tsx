@@ -2,11 +2,12 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, Calendar, User, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
-import { getNewsBySlug, getRelatedNews } from "@/app/noticias-y-actualidad/news"
+import { getNewsBySlug, getRelatedNews } from "../news"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { NewsContentRenderer } from "@/components/news-content-renderer"
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>
@@ -90,7 +91,10 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
         <Separator className="mb-8" />
 
         {/* Article Content */}
-        <div className="prose prose-lg max-w-none mb-8" dangerouslySetInnerHTML={{ __html: news.content }} />
+        <NewsContentRenderer 
+          content={news.content} 
+          className="mb-8" 
+        />
 
         {/* Share Buttons - Now below content */}
         <div className="mb-8">
