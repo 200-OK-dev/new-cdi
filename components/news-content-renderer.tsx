@@ -7,12 +7,19 @@ interface NewsContentRendererProps {
   className?: string
 }
 
+interface ContentPart {
+  type: 'html' | 'youtube'
+  content?: string
+  videoId?: string
+  title?: string
+}
+
 export function NewsContentRenderer({ content, className }: NewsContentRendererProps) {
   // Función para procesar el contenido y reemplazar marcadores de YouTube
-  const processContent = (htmlContent: string) => {
+  const processContent = (htmlContent: string): ContentPart[] => {
     // Buscar marcadores de YouTube
     const youtubeRegex = /<div class="youtube-video" data-video-id="([^"]+)"(?:\s+data-video-title="([^"]*)")?><\/div>/g
-    const parts = []
+    const parts: ContentPart[] = []
     let lastIndex = 0
     let match
 
@@ -51,16 +58,17 @@ export function NewsContentRenderer({ content, className }: NewsContentRendererP
   return (
     <div className={className}>
       {contentParts.map((part, index) => {
-        if (part.type === 'youtube') {
+        // Solución 3: Type guard más explícito
+        if (part.type === 'youtube' && typeof part.videoId === 'string') {
           return (
             <YouTubeEmbed
               key={index}
               videoId={part.videoId}
-              title={part.title}
+              title={part.title || 'Video'}
               className="my-6"
             />
           )
-        } else {
+        } else if (part.type === 'html' && part.content) {
           return (
             <div
               key={index}
@@ -69,6 +77,7 @@ export function NewsContentRenderer({ content, className }: NewsContentRendererP
             />
           )
         }
+        return null
       })}
     </div>
   )
