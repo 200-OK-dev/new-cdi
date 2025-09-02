@@ -1,6 +1,6 @@
 'use client'
 
-import { YouTubeEmbed, extractYouTubeId } from './youtube-embed'
+import { YouTubeEmbed } from './youtube-embed'
 
 interface NewsContentRendererProps {
   content: string
