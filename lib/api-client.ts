@@ -2,15 +2,16 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://cmsexpress.onrender.
 
 export interface CMSNewsItem {
   id: string
-  titulo: string
-  contenido: string
-  resumen: string
-  autor: string
-  categoria: string
-  imagen: string
-  videoUrl?: string
+  title: string
+  content: string
+  summary: string
+  author: string
+  category: string
+  image: string | null
+  videoYoutube?: string
+  youtubeId?: string
   fechaCreacion: string
-  fechaModificacion: string
+  fechaActualizacion: string
   slug: string
   tags: string[]
 }
