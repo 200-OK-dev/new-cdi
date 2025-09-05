@@ -1,3 +1,5 @@
+import { apiClient, CMSNewsItem } from '@/lib/api-client'
+
 export interface NewsItem {
   id: string
   slug: string
@@ -92,34 +94,110 @@ export const newsData: NewsItem[] = [
   },
 ]
 
-export function getNewsById(id: string): NewsItem | undefined {
-  return newsData.find((news) => news.id === id)
+export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsItem[]> {
+  const currentNews = await getNewsById(newsId)
+  if (!currentNews) return []
+
+  const allNews = await getAllNews()
+  
+  // If current news has related news specified, use those
+  if (currentNews.relatedNews && currentNews.relatedNews.length > 0) {
+    return currentNews.relatedNews
+      .map((id) => allNews.find(news => news.id === id))
+      .filter(Boolean)
+      .slice(0, limit) as NewsItem[]
+  }
+  
+  // Otherwise, return news from same category or similar tags
+  return allNews
+    .filter(news => 
+      news.id !== newsId && 
+      (news.category === currentNews.category || 
+       news.tags.some(tag => currentNews.tags.includes(tag)))
+    )
+    .slice(0, limit)
 }
 
-export function getNewsBySlug(slug: string): NewsItem | undefined {
-  return newsData.find((news) => news.slug === slug)
+// Transform CMS news to NewsItem format
+function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
+  return {
+    id: `cms-${cmsNews.id}`,
+    slug: cmsNews.slug,
+    title: cmsNews.titulo,
+    summary: cmsNews.resumen,
+    content: cmsNews.contenido,
+    image: cmsNews.imagen,
+    category: cmsNews.categoria,
+    categoryColor: getCategoryColor(cmsNews.categoria),
+    date: cmsNews.fechaCreacion.split('T')[0], // Format date
+    author: cmsNews.autor,
+    readTime: calculateReadTime(cmsNews.contenido),
+    tags: cmsNews.tags,
+    relatedNews: [],
+  }
 }
 
-export function getRelatedNews(newsId: string, limit = 3): NewsItem[] {
-  const currentNews = getNewsById(newsId)
-  if (!currentNews || !currentNews.relatedNews) return []
-
-  return currentNews.relatedNews
-    .map((id) => getNewsById(id))
-    .filter(Boolean)
-    .slice(0, limit) as NewsItem[]
+// Get category color based on category name
+function getCategoryColor(category: string): string {
+  const colors: { [key: string]: string } = {
+    'Emprendimiento': 'bg-cyan-500',
+    'Financiamiento': 'bg-green-500',
+    'Educación': 'bg-blue-500',
+    'Tecnología': 'bg-purple-500',
+    'Comunidad': 'bg-orange-500',
+  }
+  return colors[category] || 'bg-gray-500'
 }
 
-export function getPaginatedNews(page = 1, limit = 6) {
+// Calculate reading time based on content length
+function calculateReadTime(content: string): string {
+  const wordsPerMinute = 200
+  const wordCount = content.split(' ').length
+  const minutes = Math.ceil(wordCount / wordsPerMinute)
+  return `${minutes} min`
+}
+
+// Fetch and combine all news (static + dynamic)
+export async function getAllNews(): Promise<NewsItem[]> {
+  try {
+    // Fetch dynamic news from CMS
+    const cmsNews = await apiClient.fetchNews()
+    const transformedCMSNews = cmsNews.map(transformCMSNews)
+    
+    // Combine static and dynamic news
+    const allNews = [...transformedCMSNews, ...newsData]
+    
+    // Sort by date (newest first)
+    return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  } catch (error) {
+    console.error('Error combining news:', error)
+    // Fallback to static news only
+    return newsData
+  }
+}
+
+export async function getPaginatedNews(page = 1, limit = 6) {
+  const allNews = await getAllNews()
+  
   const startIndex = (page - 1) * limit
   const endIndex = startIndex + limit
-  const paginatedData = newsData.slice(startIndex, endIndex)
+  const paginatedData = allNews.slice(startIndex, endIndex)
 
   return {
     news: paginatedData,
-    totalPages: Math.ceil(newsData.length / limit),
+    totalPages: Math.ceil(allNews.length / limit),
     currentPage: page,
-    hasNextPage: endIndex < newsData.length,
+    hasNextPage: endIndex < allNews.length,
     hasPrevPage: page > 1,
   }
+}
+
+export async function getNewsById(id: string): Promise<NewsItem | undefined> {
+  const allNews = await getAllNews()
+  return allNews.find((news) => news.id === id)
+}
+
+export async function getNewsBySlug(slug: string): Promise<NewsItem | undefined> {
+  const allNews = await getAllNews()
+  return allNews.find((news) => news.slug === slug)
 }

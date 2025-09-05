@@ -28,7 +28,7 @@ function NewsContent() {
     const fetchNews = async () => {
       setLoading(true)
       try {
-        const data = getPaginatedNews(currentPage, 6)
+        const data = await getPaginatedNews(currentPage, 6)
         setNewsData(data)
       } catch (error) {
         console.error('Error fetching news:', error)

@@ -15,13 +15,13 @@ interface NewsDetailPageProps {
 
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { slug } = await params
-  const news = getNewsBySlug(slug)
+  const news = await getNewsBySlug(slug)
 
   if (!news) {
     notFound()
   }
 
-  const relatedNews = getRelatedNews(news.id, 3)
+  const relatedNews = await getRelatedNews(news.id, 3)
 
   return (
     <div className="container mx-auto px-4 py-8">
