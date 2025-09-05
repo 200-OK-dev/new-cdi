@@ -122,17 +122,17 @@ export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsIte
 function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
   return {
     id: `cms-${cmsNews.id}`,
-    slug: cmsNews.slug,
-    title: cmsNews.titulo,
-    summary: cmsNews.resumen,
-    content: cmsNews.contenido,
-    image: cmsNews.imagen,
-    category: cmsNews.categoria,
-    categoryColor: getCategoryColor(cmsNews.categoria),
-    date: cmsNews.fechaCreacion.split('T')[0], // Format date
-    author: cmsNews.autor,
-    readTime: calculateReadTime(cmsNews.contenido),
-    tags: cmsNews.tags,
+    slug: cmsNews.slug || 'sin-slug',
+    title: cmsNews.titulo || 'Sin título',
+    summary: cmsNews.resumen || 'Sin resumen',
+    content: cmsNews.contenido || 'Sin contenido',
+    image: cmsNews.imagen || '/placeholder.svg',
+    category: cmsNews.categoria || 'General',
+    categoryColor: getCategoryColor(cmsNews.categoria || 'General'),
+    date: cmsNews.fechaCreacion ? cmsNews.fechaCreacion.split('T')[0] : new Date().toISOString().split('T')[0],
+    author: cmsNews.autor || 'Autor desconocido',
+    readTime: calculateReadTime(cmsNews.contenido || ''),
+    tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
     relatedNews: [],
   }
 }
