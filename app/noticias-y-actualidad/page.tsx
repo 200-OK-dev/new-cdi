@@ -1,6 +1,6 @@
 'use client'
 
-import { getPaginatedNews } from "./news"
+import { getPaginatedNews, getStaticNews, getDynamicNews } from "./news"
 import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
@@ -23,17 +23,46 @@ function NewsContent() {
     hasPrevPage: false
   })
   const [loading, setLoading] = useState(true)
+  const [loadingDynamic, setLoadingDynamic] = useState(true)
 
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true)
+      setLoadingDynamic(true)
+      
       try {
-        const data = await getPaginatedNews(currentPage, 6)
-        setNewsData(data)
+        // 1. Mostrar noticias estáticas INMEDIATAMENTE
+        const staticNews = getStaticNews()
+        const limit = 6
+        const startIndex = (currentPage - 1) * limit
+        const endIndex = startIndex + limit
+        const initialPaginatedStatic = staticNews.slice(startIndex, endIndex)
+        
+        setNewsData({
+          news: initialPaginatedStatic,
+          totalPages: Math.ceil(staticNews.length / limit),
+          hasNextPage: endIndex < staticNews.length,
+          hasPrevPage: currentPage > 1,
+        })
+        setLoading(false) // Quita skeleton loading
+        
+        // 2. Luego cargar dinámicas y combinar
+        const dynamicNews = await getDynamicNews()
+        const allNews = [...dynamicNews, ...staticNews]
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        
+        const finalPaginated = allNews.slice(startIndex, endIndex)
+        
+        setNewsData({
+          news: finalPaginated,
+          totalPages: Math.ceil(allNews.length / limit),
+          hasNextPage: endIndex < allNews.length,
+          hasPrevPage: currentPage > 1,
+        })
       } catch (error) {
         console.error('Error fetching news:', error)
       } finally {
-        setLoading(false)
+        setLoadingDynamic(false)
       }
     }
 
@@ -87,11 +116,20 @@ function NewsContent() {
 
       {/* News Grid */}
       {!loading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {news.map((newsItem) => (
-            <NewsCard key={newsItem.id} news={newsItem} />
-          ))}
-        </div>
+        <>
+          {/* Loading indicator for dynamic news */}
+          {loadingDynamic && (
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
+              📡 Cargando noticias más recientes desde el CMS...
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {news.map((newsItem) => (
+              <NewsCard key={newsItem.id} news={newsItem} />
+            ))}
+          </div>
+        </>
       )}
 
       {/* Pagination */}

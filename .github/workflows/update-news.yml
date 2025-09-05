@@ -1,0 +1,78 @@
+name: Update Static News
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+  
+  # Webhook trigger (will be configured with GitHub webhook URL)
+  repository_dispatch:
+    types: [update-news]
+  
+  # Schedule: Check for updates every hour
+  schedule:
+    - cron: '0 */6 0' # Every 6 hours
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Update news from CMS
+        run: node scripts/update-news.js
+        env:
+          CMS_API_URL: https://cmsexpress.onrender.com
+          
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Files changed:"
+            git status --porcelain
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
+          
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "🤖 Auto-update: Sync news from CMS
+
+          - Updated news content from CMS Express
+          - Downloaded new images to /public/noticias/
+          - Updated static news data
+
+          Generated automatically by GitHub Actions
+          $(date '+%Y-%m-%d %H:%M:%S UTC')" || exit 0
+          git push
+          
+      - name: Deploy summary
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          echo "✅ News updated successfully!"
+          echo "📰 Changes committed and pushed to repository"
+          echo "🚀 Vercel will auto-deploy the changes"
+          echo "⏱️  New content will be live in ~2-3 minutes"
+          
+      - name: No changes summary  
+        if: steps.verify-changed-files.outputs.changed == 'false'
+        run: |
+          echo "ℹ️  No new content found"
+          echo "📰 News is already up to date"

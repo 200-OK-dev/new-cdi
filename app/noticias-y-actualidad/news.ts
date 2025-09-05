@@ -157,6 +157,22 @@ function calculateReadTime(content: string): string {
   return `${minutes} min`
 }
 
+// Get static news immediately
+export function getStaticNews(): NewsItem[] {
+  return newsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+// Fetch dynamic news only
+export async function getDynamicNews(): Promise<NewsItem[]> {
+  try {
+    const cmsNews = await apiClient.fetchNews()
+    return cmsNews.map(transformCMSNews)
+  } catch (error) {
+    console.error('Error fetching dynamic news:', error)
+    return []
+  }
+}
+
 // Fetch and combine all news (static + dynamic)
 export async function getAllNews(): Promise<NewsItem[]> {
   try {
