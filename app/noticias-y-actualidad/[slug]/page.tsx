@@ -70,7 +70,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             <Badge className={`${news.categoryColor} text-black border-0`}>{news.category}</Badge>
             <div className="flex items-center text-muted-foreground text-sm">
               <Calendar className="w-4 h-4 mr-1" />
-              {new Date(news.date).toLocaleDateString("es-ES", {
+              {new Date(news.date + 'T00:00:00').toLocaleDateString("es-ES", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -162,7 +162,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
                         {relatedItem.title}
                       </h4>
                       <p className="text-xs text-muted-foreground mt-1">
-                        {new Date(relatedItem.date).toLocaleDateString("es-ES")}
+                        {new Date(relatedItem.date + 'T00:00:00').toLocaleDateString("es-ES")}
                       </p>
                     </div>
                   </div>

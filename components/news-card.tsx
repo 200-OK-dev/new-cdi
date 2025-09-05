@@ -32,7 +32,7 @@ export function NewsCard({ news }: NewsCardProps) {
         <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
           <div className="flex items-center">
             <Calendar className="w-4 h-4 mr-1" />
-            {new Date(news.date).toLocaleDateString("es-ES", {
+            {new Date(news.date + 'T00:00:00').toLocaleDateString("es-ES", {
               year: "numeric",
               month: "short",
               day: "numeric",
