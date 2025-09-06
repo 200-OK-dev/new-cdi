@@ -11,17 +11,17 @@ const API_URL = 'https://cmsexpress.onrender.com';
 function transformCMSNews(cmsNews) {
   return {
     id: cmsNews.id,
-    slug: cmsNews.slug,
-    title: cmsNews.titulo,
-    summary: cmsNews.resumen,
-    content: cmsNews.contenido,
+    slug: cmsNews.slug || 'sin-slug',
+    title: cmsNews.title || cmsNews.titulo || 'Sin título',
+    summary: cmsNews.summary || cmsNews.resumen || 'Sin resumen',
+    content: cmsNews.content || cmsNews.contenido || 'Sin contenido',
     image: `/noticias/${cmsNews.slug}.webp`, // Local image path
-    category: cmsNews.categoria,
-    categoryColor: getCategoryColor(cmsNews.categoria),
-    date: cmsNews.fechaCreacion.split('T')[0],
-    author: cmsNews.autor,
-    readTime: calculateReadTime(cmsNews.contenido),
-    tags: cmsNews.tags,
+    category: cmsNews.category || cmsNews.categoria || 'General',
+    categoryColor: getCategoryColor(cmsNews.category || cmsNews.categoria || 'General'),
+    date: (cmsNews.fechaCreacion || cmsNews.createdAt || new Date().toISOString()).split('T')[0],
+    author: cmsNews.author || cmsNews.autor || 'Autor desconocido',
+    readTime: calculateReadTime(cmsNews.content || cmsNews.contenido || ''),
+    tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
     relatedNews: [],
   };
 }
@@ -94,15 +94,16 @@ async function updateNews() {
     // 3. Download images and transform news
     const transformedNews = [];
     for (const news of cmsNews) {
-      console.log(`🖼️ Processing: ${news.titulo}`);
+      console.log(`🖼️ Processing: ${news.title || news.titulo || 'Untitled'}`);
       
       // Download image if it's from Cloudinary
-      if (news.imagen && news.imagen.includes('cloudinary')) {
+      const imageUrl = news.image || news.imagen;
+      if (imageUrl && imageUrl.includes('cloudinary')) {
         const imageExtension = '.webp'; // Assume webp format
         const imagePath = path.join(noticiasDir, `${news.slug}${imageExtension}`);
         
         try {
-          await downloadImage(news.imagen, imagePath);
+          await downloadImage(imageUrl, imagePath);
         } catch (error) {
           console.warn(`⚠️ Could not download image for ${news.slug}: ${error.message}`);
           // Keep original Cloudinary URL as fallback
