@@ -8,9 +8,9 @@ on:
   repository_dispatch:
     types: [update-news]
   
-  # Schedule: Check for updates every hour
+  # Schedule: Check for updates every 6 hours
   schedule:
-    - cron: '0 */6 0' # Every 6 hours
+    - cron: '0 */6 * * *' # Every 6 hours
 
 jobs:
   update-news:
