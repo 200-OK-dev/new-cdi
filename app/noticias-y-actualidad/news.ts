@@ -17,7 +17,6 @@ export interface NewsItem {
 }
 
 export const newsData: NewsItem[] = [
-  
   {
     "id": "1",
     "slug": "emprende-conectada-formacion-digital-huechuraba",
