@@ -18,80 +18,52 @@ export interface NewsItem {
 
 export const newsData: NewsItem[] = [
   {
-    id: "1",
-    slug: "emprende-conectada-formacion-digital-huechuraba",
-    title: "Lanzamos 'Emprende Conectad@': formación digital para mujeres líderes de Huechuraba",
-    summary: "Nueva iniciativa que busca potenciar los negocios de mujeres mayores de 40 años, entregando herramientas digitales, estratégicas y de liderazgo para avanzar hacia la autonomía económica.",
-    content: `
-    <h2>Transformación digital para emprendedoras</h2>
-<p>El 30 de julio se dio inicio al programa <strong>Emprende Conectad@</strong>, una iniciativa enmarcada en el programa Conectadas de la Municipalidad de Huechuraba y desarrollada en colaboración con <strong>Claro Chile, Travesía100 y CDI Chile.</strong> Este proyecto busca potenciar los negocios de mujeres mayores de 40 años, entregando <strong>herramientas digitales, estratégicas y de liderazgo para avanzar hacia la autonomía económica.</strong></p>
-
-<p>La sesión de lanzamiento, realizada de forma online, convocó a más de 130 emprendedoras, junto a autoridades municipales, representantes de Claro y equipos de Travesía100 y CDI Chile.</p>
-
-<h3>Un compromiso municipal con el emprendimiento femenino</h3>
-<blockquote>"Esto no es solo una capacitación o un taller. Es una herramienta concreta para fortalecer negocios y generar liderazgo. Mujeres valientes, perseverantes y creativas, que día a día empujan sus sueños"</blockquote>
-<p>expresó el alcalde Maximiliano Luksic, destacando el compromiso del municipio con el programa Conectadas.</p>
-
-<h3>80 horas de formación integral</h3>
-<p>Durante las 80 horas de formación, las participantes aprenderán a <strong>construir una marca con propósito, posicionarse en redes sociales, utilizar inteligencia artificial, crear contenido digital, preparar un pitch y formalizar sus negocios,</strong> entre otros temas clave para su crecimiento.</p>
-
-<h3>Alianza estratégica para el cambio</h3>
-<p><em>"Para Claro Chile, es un orgullo ser parte de este programa. Más que un curso, es un proceso de transformación personal y profesional. Queremos acompañarlas más allá de la formación, escuchar sus historias y apoyar sus avances"</em>, señaló Christopher Bitting, jefe de sostenibilidad de Claro Chile.</p>
-
-<p><em>"Esta es una alianza virtuosa. Desde Travesía100 acompañamos a personas de 50 y más en procesos de transformación, y junto a CDI hemos unido saberes para apoyar con sentido y propósito a estas emprendedoras"</em>, afirmó Olga Urra, directora ejecutiva de Travesía100, destacando que serán personas mayores quienes también acompañarán este proceso formativo.</p>
-
-<h3>Historias que inspiran</h3>
-<p>Uno de los momentos más emotivos del lanzamiento lo protagonizó Marisol Panat Banda, una de las participantes del programa:</p>
-
-<blockquote>"Espero conectarme, de verdad. No tengo otro ingreso que no sea mi emprendimiento, y mi plan es tener un huerto en casa. Me comprometo a terminar el curso, a postular a proyectos y formalizarme, porque yo quiero crecer y ser autónoma económicamente"</blockquote>
-
-<p>compartió Marisol Panat-Banda, una de las participantes, desde su puesto de venta frente a un banco, mientras asistía a la sesión online. <em>"Mi compromiso no es con Claro ni con el municipio. Es conmigo misma, porque yo soy una mujer que sí se la puede".</em></p>
-
-<h3>Oportunidades de financiamiento</h3>
-<p>Además de la formación, el programa incluye la posibilidad de postular al fondo concursable CDI Te Impulsa, que entrega apoyo económico y estratégico a los emprendimientos más destacados y comprometidos con la aplicación de lo aprendido.</p>
-
-<p>Emprende Conectad@ es un ejemplo concreto de cómo la colaboración entre lo público, lo privado y la sociedad civil puede abrir caminos de transformación real para mujeres que hoy están haciendo crecer sus negocios desde la experiencia, el talento y la determinación.</p>
-    `,
-    image: "/noticias/noticia1.webp",
-    category: "Emprendimiento",
-    categoryColor: "bg-cyan-500",
-    date: "2025-07-30",
-    author: "Municipalidad de Huechuraba",
-    readTime: "4 min",
-    tags: ["emprendimiento", "mujeres", "digital", "huechuraba", "formación"],
-    relatedNews: ["2"],
+    "id": "1",
+    "slug": "emprende-conectada-formacion-digital-huechuraba",
+    "title": "Lanzamos 'Emprende Conectad@': formación digital para mujeres líderes de Huechuraba",
+    "summary": "Nueva iniciativa que busca potenciar los negocios de mujeres mayores de 40 años, entregando herramientas digitales, estratégicas y de liderazgo para avanzar hacia la autonomía económica.",
+    "content": "\n    <h2>Transformación digital para emprendedoras</h2>\n<p>El 30 de julio se dio inicio al programa <strong>Emprende Conectad@</strong>, una iniciativa enmarcada en el programa Conectadas de la Municipalidad de Huechuraba y desarrollada en colaboración con <strong>Claro Chile, Travesía100 y CDI Chile.</strong> Este proyecto busca potenciar los negocios de mujeres mayores de 40 años, entregando <strong>herramientas digitales, estratégicas y de liderazgo para avanzar hacia la autonomía económica.</strong></p>\n\n<p>La sesión de lanzamiento, realizada de forma online, convocó a más de 130 emprendedoras, junto a autoridades municipales, representantes de Claro y equipos de Travesía100 y CDI Chile.</p>\n\n<h3>Un compromiso municipal con el emprendimiento femenino</h3>\n<blockquote>\"Esto no es solo una capacitación o un taller. Es una herramienta concreta para fortalecer negocios y generar liderazgo. Mujeres valientes, perseverantes y creativas, que día a día empujan sus sueños\"</blockquote>\n<p>expresó el alcalde Maximiliano Luksic, destacando el compromiso del municipio con el programa Conectadas.</p>\n\n<h3>80 horas de formación integral</h3>\n<p>Durante las 80 horas de formación, las participantes aprenderán a <strong>construir una marca con propósito, posicionarse en redes sociales, utilizar inteligencia artificial, crear contenido digital, preparar un pitch y formalizar sus negocios,</strong> entre otros temas clave para su crecimiento.</p>\n\n<h3>Alianza estratégica para el cambio</h3>\n<p><em>\"Para Claro Chile, es un orgullo ser parte de este programa. Más que un curso, es un proceso de transformación personal y profesional. Queremos acompañarlas más allá de la formación, escuchar sus historias y apoyar sus avances\"</em>, señaló Christopher Bitting, jefe de sostenibilidad de Claro Chile.</p>\n\n<p><em>\"Esta es una alianza virtuosa. Desde Travesía100 acompañamos a personas de 50 y más en procesos de transformación, y junto a CDI hemos unido saberes para apoyar con sentido y propósito a estas emprendedoras\"</em>, afirmó Olga Urra, directora ejecutiva de Travesía100, destacando que serán personas mayores quienes también acompañarán este proceso formativo.</p>\n\n<h3>Historias que inspiran</h3>\n<p>Uno de los momentos más emotivos del lanzamiento lo protagonizó Marisol Panat Banda, una de las participantes del programa:</p>\n\n<blockquote>\"Espero conectarme, de verdad. No tengo otro ingreso que no sea mi emprendimiento, y mi plan es tener un huerto en casa. Me comprometo a terminar el curso, a postular a proyectos y formalizarme, porque yo quiero crecer y ser autónoma económicamente\"</blockquote>\n\n<p>compartió Marisol Panat-Banda, una de las participantes, desde su puesto de venta frente a un banco, mientras asistía a la sesión online. <em>\"Mi compromiso no es con Claro ni con el municipio. Es conmigo misma, porque yo soy una mujer que sí se la puede\".</em></p>\n\n<h3>Oportunidades de financiamiento</h3>\n<p>Además de la formación, el programa incluye la posibilidad de postular al fondo concursable CDI Te Impulsa, que entrega apoyo económico y estratégico a los emprendimientos más destacados y comprometidos con la aplicación de lo aprendido.</p>\n\n<p>Emprende Conectad@ es un ejemplo concreto de cómo la colaboración entre lo público, lo privado y la sociedad civil puede abrir caminos de transformación real para mujeres que hoy están haciendo crecer sus negocios desde la experiencia, el talento y la determinación.</p>\n    ",
+    "image": "/noticias/noticia1.webp",
+    "category": "Emprendimiento",
+    "categoryColor": "bg-cyan-500",
+    "date": "2025-07-30",
+    "author": "Municipalidad de Huechuraba",
+    "readTime": "4 min",
+    "tags": [
+      "emprendimiento",
+      "mujeres",
+      "digital",
+      "huechuraba",
+      "formación"
+    ],
+    "relatedNews": [
+      "2"
+    ]
   },
   {
-    id: "2",
-    slug: "lanzamiento-fondo-cdi-te-impulsa-acti-huechuraba",
-    title: "Se lanza el Fondo Concursable CDI Te Impulsa en alianza con ACTI y la Municipalidad de Huechuraba",
-    summary: "Más de 30 emprendedores egresados del curso Digitalízate podrán acceder a apoyo económico, acompañamiento y herramientas prácticas para fortalecer sus negocios a través de este nuevo fondo concursable.",
-    content: `
-<div class="youtube-video" data-video-id="NdxnXFz52FQ" data-video-title="Lanzamiento Fondo CDI Te Impulsa"></div>
-
-<p>El pasado jueves 21 de agosto, en el restaurante Rustiko de Huechuraba, se realizó el lanzamiento del <strong>Fondo Concursable CDI Te Impulsa</strong>, en colaboración con la <strong>Asociación Chilena de Empresas de Tecnologías de Información (ACTI)</strong> y la <strong>Municipalidad de Huechuraba</strong>.</p>
-
-<p>Este fondo permitirá que más de 30 emprendedores y emprendedoras egresados del curso <strong>Digitalízate: Redes Sociales para Emprender</strong> puedan acceder a apoyo económico, acompañamiento y herramientas prácticas para fortalecer sus negocios y dar un paso más en el desarrollo de sus proyectos.</p>
-
-<h3>Una alianza público–privada que potencia el emprendimiento local</h3>
-<p>El evento contó con la presencia de autoridades municipales como los concejales <strong>Jorge Arancibia, Bárbara Plaza, Fresia Hernández, Genaro Román, Javiera Jiménez y María Kaelin</strong>, junto a <strong>Isabel Labbé</strong>, Encargada del Departamento Laboral, además de <strong>Valeska Tapia y María José Pérez</strong>. Por parte de ACTI asistió <strong>Diego Cooper</strong>, Líder de Alianzas, reforzando el compromiso del sector privado con la promoción del emprendimiento y la capacitación digital.</p>
-
-<p>La jornada también incluyó una masterclass a cargo de <strong>Nicolás Jara (@jarascript)</strong>, cofundador y CEO de AlFondo, quien guió a los participantes en la construcción de modelos de negocio. El taller se desarrolló en un ambiente participativo, donde los emprendedores compartieron ideas y proyectaron nuevas oportunidades para sus iniciativas.</p>
-
-<h3>¿Qué es el Fondo CDI Te Impulsa?</h3>
-<p>El <strong>Fondo CDI Te Impulsa</strong> es una iniciativa de CDI Chile que busca apoyar a emprendedores que han sido parte de sus programas de formación en CDI Chile. A través de este fondo, se entrega <strong>financiamiento directo, herramientas de gestión y acompañamiento</strong>, con el objetivo de que los participantes puedan aplicar lo aprendido en sus cursos y potenciar el crecimiento de sus negocios con propósito.</p>
-
-<p>Desde su creación en 2020, el Fondo ha beneficiado a cientos de emprendedores en distintas comunas del país, consolidándose como una plataforma de articulación entre el sector público, privado y la sociedad civil. Esta alianza en Huechuraba refuerza el compromiso de trabajar colaborativamente para abrir nuevas oportunidades a emprendedores locales y seguir impulsando el desarrollo económico con impacto social.</p>
-    `,
-    image: "/noticias/noticia2.webp",
-    category: "Financiamiento",
-    categoryColor: "bg-green-500",
-    date: "2025-08-21",
-    author: "CDI Chile",
-    readTime: "3 min",
-    tags: ["fondo concursable", "emprendimiento", "ACTI", "huechuraba", "financiamiento", "alianza público-privada"],
-    relatedNews: ["1"],
-  },
+    "id": "2",
+    "slug": "lanzamiento-fondo-cdi-te-impulsa-acti-huechuraba",
+    "title": "Se lanza el Fondo Concursable CDI Te Impulsa en alianza con ACTI y la Municipalidad de Huechuraba",
+    "summary": "Más de 30 emprendedores egresados del curso Digitalízate podrán acceder a apoyo económico, acompañamiento y herramientas prácticas para fortalecer sus negocios a través de este nuevo fondo concursable.",
+    "content": "\n<div class=\"youtube-video\" data-video-id=\"NdxnXFz52FQ\" data-video-title=\"Lanzamiento Fondo CDI Te Impulsa\"></div>\n\n<p>El pasado jueves 21 de agosto, en el restaurante Rustiko de Huechuraba, se realizó el lanzamiento del <strong>Fondo Concursable CDI Te Impulsa</strong>, en colaboración con la <strong>Asociación Chilena de Empresas de Tecnologías de Información (ACTI)</strong> y la <strong>Municipalidad de Huechuraba</strong>.</p>\n\n<p>Este fondo permitirá que más de 30 emprendedores y emprendedoras egresados del curso <strong>Digitalízate: Redes Sociales para Emprender</strong> puedan acceder a apoyo económico, acompañamiento y herramientas prácticas para fortalecer sus negocios y dar un paso más en el desarrollo de sus proyectos.</p>\n\n<h3>Una alianza público–privada que potencia el emprendimiento local</h3>\n<p>El evento contó con la presencia de autoridades municipales como los concejales <strong>Jorge Arancibia, Bárbara Plaza, Fresia Hernández, Genaro Román, Javiera Jiménez y María Kaelin</strong>, junto a <strong>Isabel Labbé</strong>, Encargada del Departamento Laboral, además de <strong>Valeska Tapia y María José Pérez</strong>. Por parte de ACTI asistió <strong>Diego Cooper</strong>, Líder de Alianzas, reforzando el compromiso del sector privado con la promoción del emprendimiento y la capacitación digital.</p>\n\n<p>La jornada también incluyó una masterclass a cargo de <strong>Nicolás Jara (@jarascript)</strong>, cofundador y CEO de AlFondo, quien guió a los participantes en la construcción de modelos de negocio. El taller se desarrolló en un ambiente participativo, donde los emprendedores compartieron ideas y proyectaron nuevas oportunidades para sus iniciativas.</p>\n\n<h3>¿Qué es el Fondo CDI Te Impulsa?</h3>\n<p>El <strong>Fondo CDI Te Impulsa</strong> es una iniciativa de CDI Chile que busca apoyar a emprendedores que han sido parte de sus programas de formación en CDI Chile. A través de este fondo, se entrega <strong>financiamiento directo, herramientas de gestión y acompañamiento</strong>, con el objetivo de que los participantes puedan aplicar lo aprendido en sus cursos y potenciar el crecimiento de sus negocios con propósito.</p>\n\n<p>Desde su creación en 2020, el Fondo ha beneficiado a cientos de emprendedores en distintas comunas del país, consolidándose como una plataforma de articulación entre el sector público, privado y la sociedad civil. Esta alianza en Huechuraba refuerza el compromiso de trabajar colaborativamente para abrir nuevas oportunidades a emprendedores locales y seguir impulsando el desarrollo económico con impacto social.</p>\n    ",
+    "image": "/noticias/noticia2.webp",
+    "category": "Financiamiento",
+    "categoryColor": "bg-green-500",
+    "date": "2025-08-21",
+    "author": "CDI Chile",
+    "readTime": "3 min",
+    "tags": [
+      "fondo concursable",
+      "emprendimiento",
+      "ACTI",
+      "huechuraba",
+      "financiamiento",
+      "alianza público-privada"
+    ],
+    "relatedNews": [
+      "1"
+    ]
+  }
 ]
 
 export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsItem[]> {
