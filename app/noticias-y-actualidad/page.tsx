@@ -23,12 +23,10 @@ function NewsContent() {
     hasPrevPage: false
   })
   const [loading, setLoading] = useState(true)
-  const [loadingDynamic, setLoadingDynamic] = useState(true)
 
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true)
-      setLoadingDynamic(true)
       
       try {
         // 1. Mostrar noticias estáticas INMEDIATAMENTE
@@ -62,7 +60,7 @@ function NewsContent() {
       } catch (error) {
         console.error('Error fetching news:', error)
       } finally {
-        setLoadingDynamic(false)
+        // Dynamic loading complete
       }
     }
 
