@@ -31,7 +31,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
           Inicio
         </Link>
         <span>/</span>
-        <Link href="/noticias" className="hover:text-foreground transition-colors">
+        <Link href="/noticias-y-actualidad" className="hover:text-foreground transition-colors">
           Noticias
         </Link>
         <span>/</span>
@@ -107,19 +107,19 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             </CardHeader>
             <CardContent className="flex flex-wrap gap-3">
               <Button variant="outline" className="flex-1 min-w-[160px] justify-start bg-transparent" asChild>
-                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://cdi.cl/noticias/${news.slug}`)}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://cdi.cl/noticias-y-actualidad/${news.slug}`)}`} target="_blank" rel="noopener noreferrer">
                   <Facebook className="w-4 h-4 mr-2" />
                   Facebook
                 </a>
               </Button>
               <Button variant="outline" className="flex-1 min-w-[160px] justify-start bg-transparent" asChild>
-                <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://cdi.cl/noticias/${news.slug}`)}&text=${encodeURIComponent(news.title)}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://cdi.cl/noticias-y-actualidad/${news.slug}`)}&text=${encodeURIComponent(news.title)}`} target="_blank" rel="noopener noreferrer">
                   <Twitter className="w-4 h-4 mr-2" />
                   Twitter
                 </a>
               </Button>
               <Button variant="outline" className="flex-1 min-w-[160px] justify-start bg-transparent" asChild>
-                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://cdi.cl/noticias/${news.slug}`)}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://cdi.cl/noticias-y-actualidad/${news.slug}`)}`} target="_blank" rel="noopener noreferrer">
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
                 </a>
@@ -148,7 +148,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {relatedNews.map((relatedItem) => (
-                <Link key={relatedItem.id} href={`/noticias/${relatedItem.slug}`} className="block group">
+                <Link key={relatedItem.id} href={`/noticias-y-actualidad/${relatedItem.slug}`} className="block group">
                   <div className="space-y-3">
                     <Image
                       src={relatedItem.image || "/placeholder.svg"}

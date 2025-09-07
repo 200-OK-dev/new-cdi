@@ -1,6 +1,6 @@
 'use client'
 
-import { getStaticNews, getDynamicNews } from "./news"
+import { getStaticNews, getAllNews } from "./news"
 import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
@@ -29,7 +29,7 @@ function NewsContent() {
       setLoading(true)
       
       try {
-        // 1. Mostrar noticias estáticas INMEDIATAMENTE
+        // 1. First load static news immediately for faster rendering
         const staticNews = getStaticNews()
         const limit = 6
         const startIndex = (currentPage - 1) * limit
@@ -42,13 +42,10 @@ function NewsContent() {
           hasNextPage: endIndex < staticNews.length,
           hasPrevPage: currentPage > 1,
         })
-        setLoading(false) // Quita skeleton loading
+        setLoading(false) // Remove skeleton loading
         
-        // 2. Luego cargar dinámicas y combinar
-        const dynamicNews = await getDynamicNews()
-        const allNews = [...dynamicNews, ...staticNews]
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        
+        // 2. Then load all news (this handles deduplication internally)
+        const allNews = await getAllNews()
         const finalPaginated = allNews.slice(startIndex, endIndex)
         
         setNewsData({
@@ -59,8 +56,6 @@ function NewsContent() {
         })
       } catch (error) {
         console.error('Error fetching news:', error)
-      } finally {
-        // Dynamic loading complete
       }
     }
 

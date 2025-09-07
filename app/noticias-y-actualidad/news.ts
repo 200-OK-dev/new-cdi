@@ -92,13 +92,26 @@ export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsIte
 
 // Transform CMS news to NewsItem format
 function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
+  // Clean and validate image URL
+  let imageUrl = cmsNews.image || '/placeholder.svg'
+  if (imageUrl && imageUrl !== '/placeholder.svg') {
+    // If it's already a full URL (Cloudinary), use it as is
+    // If it's a relative path, make sure it's properly formatted
+    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+      imageUrl = `/${imageUrl}`
+    }
+  }
+
+  // Generate slug if missing
+  const slug = cmsNews.slug || generateSlug(cmsNews.title || 'sin-titulo')
+
   return {
     id: `cms-${cmsNews.id}`,
-    slug: cmsNews.slug || 'sin-slug',
+    slug: slug,
     title: cmsNews.title || 'Sin título',
     summary: cmsNews.summary || 'Sin resumen',
     content: cmsNews.content || 'Sin contenido',
-    image: cmsNews.image || '/placeholder.svg',
+    image: imageUrl,
     category: cmsNews.category || 'General',
     categoryColor: getCategoryColor(cmsNews.category || 'General'),
     date: cmsNews.fechaCreacion ? cmsNews.fechaCreacion.split('T')[0] : new Date().toISOString().split('T')[0],
@@ -109,6 +122,16 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
   }
 }
 
+// Generate slug from title
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+    .trim()
+}
+
 // Get category color based on category name
 function getCategoryColor(category: string): string {
   const colors: { [key: string]: string } = {
@@ -117,6 +140,10 @@ function getCategoryColor(category: string): string {
     'Educación': 'bg-blue-500',
     'Tecnología': 'bg-purple-500',
     'Comunidad': 'bg-orange-500',
+    'Eventos': 'bg-orange-500',
+    'Alianzas': 'bg-pink-500',
+    'Noticias': 'bg-blue-500',
+    'General': 'bg-gray-500',
   }
   return colors[category] || 'bg-gray-500'
 }
@@ -145,23 +172,29 @@ export async function getDynamicNews(): Promise<NewsItem[]> {
   }
 }
 
-// Fetch and combine all news (static + dynamic)
+// Get all news (prioritizing static, with optional CMS fallback)
 export async function getAllNews(): Promise<NewsItem[]> {
+  // For now, only return static news since they're the primary source
+  // CMS is just for editing and then transferring to static
+  return getStaticNews()
+  
+  /* 
+  // Uncomment if you want CMS fallback for news not yet transferred to static:
   try {
-    // Fetch dynamic news from CMS
+    const staticNews = getStaticNews()
     const cmsNews = await apiClient.fetchNews()
     const transformedCMSNews = cmsNews.map(transformCMSNews)
-    
-    // Combine static and dynamic news
-    const allNews = [...transformedCMSNews, ...newsData]
-    
-    // Sort by date (newest first)
+    const staticNewsMap = new Map(staticNews.map(news => [news.slug, news]))
+    const fallbackCMSNews = transformedCMSNews.filter(
+      cmsNews => !staticNewsMap.has(cmsNews.slug)
+    )
+    const allNews = [...staticNews, ...fallbackCMSNews]
     return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   } catch (error) {
     console.error('Error combining news:', error)
-    // Fallback to static news only
-    return newsData
+    return getStaticNews()
   }
+  */
 }
 
 export async function getPaginatedNews(page = 1, limit = 6) {
