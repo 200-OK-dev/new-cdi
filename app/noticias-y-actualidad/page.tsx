@@ -117,12 +117,6 @@ function NewsContent() {
       {/* News Grid */}
       {!loading && (
         <>
-          {/* Loading indicator for dynamic news */}
-          {loadingDynamic && (
-            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
-              📡 Cargando noticias más recientes desde el CMS...
-            </div>
-          )}
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {news.map((newsItem) => (
