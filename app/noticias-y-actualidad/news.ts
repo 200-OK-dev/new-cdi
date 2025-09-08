@@ -63,6 +63,23 @@ export const newsData: NewsItem[] = [
     "relatedNews": [
       "1"
     ]
+  },
+  {
+    "id": "25831ce9-1e7d-49ea-80cc-3d2b5125f344",
+    "slug": "mujeres-que-florecen",
+    "title": "Mujeres que florecen",
+    "summary": "Así fue la ceremonia de cierre del curso de formación para emprendedoras impulsado por Euromonitor y CDI Chile.",
+    "content": "<div class=\"youtube-video\" data-video-id=\"1QECMFIARlw\" data-video-title=\"Video de YouTube\"></div>\n\n<p style=\"text-align: left;\">Este Martes 5 de Agosto se realizó la ceremonia de cierre del curso Gestión Estratégica para Redes Sociales, para emprendedoras, una iniciativa impulsada por <strong>Euromonitor International</strong> en alianza con <strong>CDI Chile</strong>, que tuvo como objetivo fortalecer las habilidades digitales y el desarrollo de negocios liderados por mujeres.</p><p style=\"text-align: left;\">El encuentro comenzó con un saludo inicial y un emotivo video que recopiló momentos vividos durante el curso, destacando la transformación personal y profesional de las participantes.</p><p style=\"text-align: left;\">Durante la jornada, <strong>Eugenio Vergara</strong>, director ejecutivo de CDI Chile, destacó el compromiso de ambas organizaciones con la generación de oportunidades reales para mujeres emprendedoras, especialmente aquellas que enfrentan barreras de acceso a la tecnología y a espacios de formación.</p><p style=\"text-align: left;\">La facilitadora del curso, <strong>Kervy Escobar</strong>, también entregó palabras de cierre reconociendo el esfuerzo, la entrega y la comunidad que se generó entre las participantes:</p><p style=\"text-align: left;\"><em>“Este grupo fue más que una clase. Fue un jardín que floreció con fuerza, cariño y propósito”.</em></p><h3 style=\"text-align: left;\"><strong>Testimonios que inspiran</strong></h3><p style=\"text-align: left;\">Uno de los momentos más emocionantes de la ceremonia fue el testimonio de <strong>Valeria Velmar</strong>, emprendedora participante del taller:</p><p style=\"text-align: left;\"><em>“Llegué al curso con miedo, con bloqueo total. Estuve a punto de abandonar, pero gracias a la profe Kervy y al apoyo de mis compañeras, hoy me siento empoderada, con más herramientas y un propósito claro. Estoy en mi segunda etapa de vida, y este espacio me ayudó a reconectar con mi ikigai. Fue solo un mes, pero crecí muchísimo”.</em></p><p style=\"text-align: left;\">Desde Euromonitor, <strong>Ximena Contardo</strong>, Office Manager de la empresa, compartió unas sentidas palabras en representación del equipo:</p><p style=\"text-align: left;\"><em>“Esta es la primera vez que trabajamos con CDI, y sinceramente ha sido una experiencia preciosa. Nos emociona ver lo que han logrado en tan poco tiempo. En Euromonitor creemos profundamente en el poder de la educación y en compartir conocimientos para impulsar a otras personas. Gracias por permitirnos ser parte de este proceso.”</em></p><h3 style=\"text-align: left;\"><strong>Un paso más hacia la autonomía</strong></h3><p style=\"text-align: left;\">La ceremonia concluyó con la presentación del fondo “<strong>CDI te impulsa</strong>”, una oportunidad de apoyo directo para las participantes que deseen seguir fortaleciendo sus proyectos.&nbsp;</p><p style=\"text-align: left;\">Te invitamos a ver los testimonios de algunas participantes del curso.</p>",
+    "image": "/noticias/mujeres-que-florecen.webp",
+    "category": "Emprendimiento",
+    "categoryColor": "bg-cyan-500",
+    "date": "2025-09-08",
+    "author": "CDI Chile",
+    "readTime": "2 min",
+    "tags": [
+      "mujeres"
+    ],
+    "relatedNews": []
   }
 ]
 
@@ -92,13 +109,26 @@ export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsIte
 
 // Transform CMS news to NewsItem format
 function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
+  // Clean and validate image URL
+  let imageUrl = cmsNews.image || '/placeholder.svg'
+  if (imageUrl && imageUrl !== '/placeholder.svg') {
+    // If it's already a full URL (Cloudinary), use it as is
+    // If it's a relative path, make sure it's properly formatted
+    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+      imageUrl = `/${imageUrl}`
+    }
+  }
+
+  // Generate slug if missing
+  const slug = cmsNews.slug || generateSlug(cmsNews.title || 'sin-titulo')
+
   return {
     id: `cms-${cmsNews.id}`,
-    slug: cmsNews.slug || 'sin-slug',
+    slug: slug,
     title: cmsNews.title || 'Sin título',
     summary: cmsNews.summary || 'Sin resumen',
     content: cmsNews.content || 'Sin contenido',
-    image: cmsNews.image || '/placeholder.svg',
+    image: imageUrl,
     category: cmsNews.category || 'General',
     categoryColor: getCategoryColor(cmsNews.category || 'General'),
     date: cmsNews.fechaCreacion ? cmsNews.fechaCreacion.split('T')[0] : new Date().toISOString().split('T')[0],
@@ -109,6 +139,16 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
   }
 }
 
+// Generate slug from title
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+    .trim()
+}
+
 // Get category color based on category name
 function getCategoryColor(category: string): string {
   const colors: { [key: string]: string } = {
@@ -117,6 +157,10 @@ function getCategoryColor(category: string): string {
     'Educación': 'bg-blue-500',
     'Tecnología': 'bg-purple-500',
     'Comunidad': 'bg-orange-500',
+    'Eventos': 'bg-orange-500',
+    'Alianzas': 'bg-pink-500',
+    'Noticias': 'bg-blue-500',
+    'General': 'bg-gray-500',
   }
   return colors[category] || 'bg-gray-500'
 }
@@ -145,23 +189,29 @@ export async function getDynamicNews(): Promise<NewsItem[]> {
   }
 }
 
-// Fetch and combine all news (static + dynamic)
+// Get all news (prioritizing static, with optional CMS fallback)
 export async function getAllNews(): Promise<NewsItem[]> {
+  // For now, only return static news since they're the primary source
+  // CMS is just for editing and then transferring to static
+  return getStaticNews()
+  
+  /* 
+  // Uncomment if you want CMS fallback for news not yet transferred to static:
   try {
-    // Fetch dynamic news from CMS
+    const staticNews = getStaticNews()
     const cmsNews = await apiClient.fetchNews()
     const transformedCMSNews = cmsNews.map(transformCMSNews)
-    
-    // Combine static and dynamic news
-    const allNews = [...transformedCMSNews, ...newsData]
-    
-    // Sort by date (newest first)
+    const staticNewsMap = new Map(staticNews.map(news => [news.slug, news]))
+    const fallbackCMSNews = transformedCMSNews.filter(
+      cmsNews => !staticNewsMap.has(cmsNews.slug)
+    )
+    const allNews = [...staticNews, ...fallbackCMSNews]
     return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   } catch (error) {
     console.error('Error combining news:', error)
-    // Fallback to static news only
-    return newsData
+    return getStaticNews()
   }
+  */
 }
 
 export async function getPaginatedNews(page = 1, limit = 6) {
