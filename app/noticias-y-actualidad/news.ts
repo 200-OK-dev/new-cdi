@@ -18,23 +18,6 @@ export interface NewsItem {
 
 export const newsData: NewsItem[] = [
   {
-    "id": "5c337782-c1a2-4406-8a31-400edfcf4c22",
-    "slug": "mujeres-que-florecen",
-    "title": "Mujeres que florecen",
-    "summary": "Así fue la ceremonia de cierre del curso de formación para emprendedoras impulsado por Euromonitor y CDI Chile.",
-    "content": "<div class=\"youtube-video\" data-video-id=\"1QECMFIARlw\" data-video-title=\"Video de YouTube\"></div>\n\n<p style=\"text-align: left;\">Este Martes 5 de Agosto se realizó la ceremonia de cierre del curso Gestión Estratégica para Redes Sociales, para emprendedoras, una iniciativa impulsada por <strong>Euromonitor International</strong> en alianza con <strong>CDI Chile</strong>, que tuvo como objetivo fortalecer las habilidades digitales y el desarrollo de negocios liderados por mujeres.</p><p style=\"text-align: left;\">El encuentro comenzó con un saludo inicial y un emotivo video que recopiló momentos vividos durante el curso, destacando la transformación personal y profesional de las participantes.</p><p style=\"text-align: left;\">Durante la jornada, <strong>Eugenio Vergara</strong>, director ejecutivo de CDI Chile, destacó el compromiso de ambas organizaciones con la generación de oportunidades reales para mujeres emprendedoras, especialmente aquellas que enfrentan barreras de acceso a la tecnología y a espacios de formación.</p><p style=\"text-align: left;\">La facilitadora del curso, <strong>Kervy Escobar</strong>, también entregó palabras de cierre reconociendo el esfuerzo, la entrega y la comunidad que se generó entre las participantes:</p><p style=\"text-align: left;\"><em>“Este grupo fue más que una clase. Fue un jardín que floreció con fuerza, cariño y propósito”.</em></p><h3 style=\"text-align: left;\"><strong>Testimonios que inspiran</strong></h3><p style=\"text-align: left;\">Uno de los momentos más emocionantes de la ceremonia fue el testimonio de <strong>Valeria Velmar</strong>, emprendedora participante del taller:</p><p style=\"text-align: left;\"><em>“Llegué al curso con miedo, con bloqueo total. Estuve a punto de abandonar, pero gracias a la profe Kervy y al apoyo de mis compañeras, hoy me siento empoderada, con más herramientas y un propósito claro. Estoy en mi segunda etapa de vida, y este espacio me ayudó a reconectar con mi ikigai. Fue solo un mes, pero crecí muchísimo”.</em></p><p style=\"text-align: left;\">Desde Euromonitor, <strong>Ximena Contardo</strong>, Office Manager de la empresa, compartió unas sentidas palabras en representación del equipo:</p><p style=\"text-align: left;\"><em>“Esta es la primera vez que trabajamos con CDI, y sinceramente ha sido una experiencia preciosa. Nos emociona ver lo que han logrado en tan poco tiempo. En Euromonitor creemos profundamente en el poder de la educación y en compartir conocimientos para impulsar a otras personas. Gracias por permitirnos ser parte de este proceso.”</em></p><h3 style=\"text-align: left;\"><strong>Un paso más hacia la autonomía</strong></h3><p style=\"text-align: left;\">La ceremonia concluyó con la presentación del fondo “<strong>CDI te impulsa</strong>”, una oportunidad de apoyo directo para las participantes que deseen seguir fortaleciendo sus proyectos.</p>",
-    "image": "/noticias/mujeres-que-florecen.webp",
-    "category": "Emprendimiento",
-    "categoryColor": "bg-cyan-500",
-    "date": "2025-09-07",
-    "author": "CDI Chile",
-    "readTime": "2 min",
-    "tags": [
-      "mujeres"
-    ],
-    "relatedNews": []
-  },
-  {
     "id": "1",
     "slug": "emprende-conectada-formacion-digital-huechuraba",
     "title": "Lanzamos 'Emprende Conectad@': formación digital para mujeres líderes de Huechuraba",
