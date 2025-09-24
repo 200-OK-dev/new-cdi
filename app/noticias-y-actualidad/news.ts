@@ -63,6 +63,25 @@ export const newsData: NewsItem[] = [
     "relatedNews": [
       "1"
     ]
+  },
+  {
+    "id": "450e5dde-2eb4-476e-bd03-16df0ea06beb",
+    "slug": "emprendedoras-ganan-el-fondo-concursable-cdi-te-impulsa-x-euromonitor-international-tras-capacitarse-en-redes-sociales",
+    "title": "Emprendedoras ganan el Fondo Concursable CDI Te Impulsa x Euromonitor International tras capacitarse en redes sociales",
+    "summary": "Tres emprendedoras de distintas regiones de Chile fueron reconocidas con el Fondo Concursable CDI Te Impulsa, tras su participación en el curso Gestión Estratégica de Redes Sociales. Con este apoyo, podrán fortalecer sus negocios y seguir generando impacto en sus comunidades.",
+    "content": "<p style=\"text-align: left;\">En CDI Chile estamos felices de anunciar a las tres emprendedoras que resultaron <strong>ganadoras del Fondo Concursable CDI Te Impulsa</strong>, una iniciativa que busca <strong>dar impulso a los negocios de emprendedoras que participaron en el curso Gestión Estratégica de Redes Sociales</strong>, realizado junto a <strong>Euromonitor International</strong>.</p><p style=\"text-align: left;\">Durante cuatro semanas, las participantes fortalecieron sus conocimientos en comunicación digital y gestión estratégica de redes sociales. Al finalizar, tuvieron la oportunidad de postular a este fondo, creado para seguir apoyando el crecimiento de sus emprendimientos.</p><p style=\"text-align: left;\">Hoy celebramos con mucho orgullo a:</p><p style=\"text-align: left;\">🌿 <strong>Joceline Cecilia Hinojosa Valdés – Villarrica, Región de La Araucanía</strong><br>Instagram: <a target=\"_new\" rel=\"noopener\" class=\"text-primary underline underline-offset-2 decorated-link\" href=\"https://www.instagram.com/eulaliacosmeticanatural\">@eulaliacosmeticanatural</a><br><strong>Eulalia Cosmética Natural</strong> desarrolla productos de cuidado personal con ingredientes certificados y sustentables. Su propuesta une ciencia y naturaleza para cuidar la piel y el entorno, con un enfoque consciente y cercano.</p><p style=\"text-align: left;\">🚀 <strong>Débora Mônica Dias de Moraes – Peñaflor, Región Metropolitana</strong><br>Instagram: <a target=\"_new\" rel=\"noopener\" class=\"text-primary underline underline-offset-2 decorated-link\" href=\"https://www.instagram.com/bk.aprendejugando\">@bk.aprendejugando</a><br>Desde <strong>Brinque Kids</strong>, impulsa la educación inclusiva a través de libros sensoriales y juguetes educativos hechos a mano. Cada pieza fomenta la creatividad y el aprendizaje infantil, con un sello sostenible y lleno de dedicación.</p><p style=\"text-align: left;\">♻️ <strong>Yennia Mariana Valdés Pérez – Colbún, Región del Maule</strong><br>Instagram: <a target=\"_new\" rel=\"noopener\" class=\"text-primary underline underline-offset-2 decorated-link\" href=\"https://www.instagram.com/reencantarte.panimavida\">@reencantarte.panimavida</a><br>Con <strong>ReEncantarte</strong>, lidera un proyecto de reciclaje textil y costura creativa que transforma ropa en desuso en piezas únicas. Su emprendimiento promueve la economía circular y el consumo consciente, siempre con un sello humano y sustentable.</p><hr><h2 style=\"text-align: left;\">🌟 Nuestro compromiso</h2><p style=\"text-align: left;\"><br>Felicitamos con entusiasmo a estas tres ganadoras que representan la fuerza creativa y la resiliencia de las emprendedoras en Chile.</p><p style=\"text-align: left;\">Agradecemos profundamente a <strong>Euromonitor International</strong> por confiar en esta alianza y a <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline underline-offset-2\" href=\"https://vinkodigital.com\"><strong>Vinko</strong></a> por sumarse al proceso como plataforma de postulación, facilitando que más emprendedoras pudieran acceder a esta oportunidad.</p><p style=\"text-align: left;\">En CDI Chile creemos firmemente que cuando una emprendedora crece, también lo hace su entorno, y estas historias son una clara muestra de ello.</p>",
+    "image": "/noticias/emprendedoras-ganan-el-fondo-concursable-cdi-te-impulsa-x-euromonitor-international-tras-capacitarse-en-redes-sociales.webp",
+    "category": "Financiamiento",
+    "categoryColor": "bg-green-500",
+    "date": "2025-09-24",
+    "author": "CDI Chile",
+    "readTime": "2 min",
+    "tags": [
+      "financiamiento",
+      "mujeres emprendedoras",
+      "fondo concursable"
+    ],
+    "relatedNews": []
   }
 ]
 
