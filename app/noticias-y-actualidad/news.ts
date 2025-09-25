@@ -63,6 +63,26 @@ export const newsData: NewsItem[] = [
     "relatedNews": [
       "1"
     ]
+  },
+  {
+    "id": "b4b53e53-9ecb-40f0-afcc-9976ad09d7d5",
+    "slug": "emprende-conectad-vive-jornada-presencial-de-pitch-en-huechuraba",
+    "title": "Emprende Conectad@ vive jornada presencial de pitch en Huechuraba",
+    "summary": "La actividad reunió a emprendedoras en el Centro de Iniciativas Económicas de Huechuraba para fortalecer sus habilidades de comunicación, grabar y publicar sus pitch en redes sociales.",
+    "content": "<p style=\"text-align: left;\">El pasado <strong>15 de septiembre</strong> se realizó un nuevo hito del proyecto <strong>Emprende Conectad@</strong>, iniciativa impulsada por <strong>Claro Chile</strong>, en conjunto con <strong>CDI Chile</strong> y <strong>Travesía 100</strong>. En esta ocasión, dos de los tres grupos del programa participaron en una <strong>jornada presencial</strong> que combinó teoría y práctica para fortalecer sus habilidades de comunicación.</p><p style=\"text-align: left;\">La actividad, desarrollada en el <strong>Centro de Iniciativas Económicas (Fomento Productivo) de Huechuraba</strong>, comenzó con un <strong>bloque teórico a cargo de la profesora Kervy Escobar</strong>, quien entregó herramientas clave para estructurar y presentar un pitch de manera clara y persuasiva.</p><p style=\"text-align: left;\">Posteriormente, las participantes vivieron un <strong>bloque práctico</strong> donde pusieron en acción lo aprendido: grabaron y publicaron sus pitch en redes sociales, dando un paso concreto hacia la visibilidad digital de sus proyectos.</p><p style=\"text-align: left;\">La jornada contó además con la presencia de <strong>Christopher Bittig</strong>, Jefe de Sostenibilidad de Claro, quien compartió con las emprendedoras y valoró el compromiso demostrado en su proceso de formación.</p><p style=\"text-align: left;\">Este encuentro marcó un nuevo avance en el camino de <em>Emprende Conectad@</em>. Con las clases ya finalizadas, los grupos se encuentran ahora en la etapa de preparación y postulación al fondo concursable <em>Te Impulsa</em>, que permitirá potenciar y dar continuidad a los proyectos trabajados durante el programa.</p>",
+    "image": "/noticias/emprende-conectad-vive-jornada-presencial-de-pitch-en-huechuraba.webp",
+    "category": "Educación",
+    "categoryColor": "bg-blue-500",
+    "date": "2025-09-25",
+    "author": "CDI Chile",
+    "readTime": "2 min",
+    "tags": [
+      "formación",
+      "mujeres",
+      "emprendedoras",
+      "emprendimiento"
+    ],
+    "relatedNews": []
   }
 ]
 
