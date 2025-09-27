@@ -1,16 +1,16 @@
 name: Update Static News
 
 on:
-  # Manual trigger
+  # Manual trigger only (disabled automatic sync)
   workflow_dispatch:
-  
-  # Webhook trigger (will be configured with GitHub webhook URL)
-  repository_dispatch:
-    types: [update-news]
-  
-  # Schedule: Check for updates every 6 hours
-  schedule:
-    - cron: '0 */6 * * *' # Every 6 hours
+
+  # Webhook trigger - DISABLED (news now load dynamically from CMS)
+  # repository_dispatch:
+  #   types: [update-news]
+
+  # Schedule - DISABLED (no more automatic sync to static files)
+  # schedule:
+  #   - cron: '0 */6 * * *' # Every 6 hours
 
 permissions:
   contents: write
