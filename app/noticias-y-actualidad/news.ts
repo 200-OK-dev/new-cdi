@@ -63,6 +63,23 @@ export const newsData: NewsItem[] = [
     "relatedNews": [
       "1"
     ]
+  },
+  {
+    "id": "0d254156-8ce8-44c5-ad83-b098f66ae9fe",
+    "slug": "se-lanza-el-fondo-concursable-cdi-te-impulsa-en-alianza-con-acti-y-la-municipalidad-de-huechuraba",
+    "title": "Se lanza el Fondo Concursable CDI Te Impulsa en alianza con ACTI y la Municipalidad de Huechuraba",
+    "summary": "Sin resumen",
+    "content": "<div class=\"youtube-video\" data-video-id=\"NdxnXFz52FQ\" data-video-title=\"Video de YouTube\"></div>\n\n<p style=\"text-align: left;\">Este fondo permitirá que más de 30 emprendedores y emprendedoras egresados del curso <strong>Digitalízate: Redes Sociales para Emprender</strong> puedan acceder a apoyo económico, acompañamiento y herramientas prácticas para fortalecer sus negocios y dar un paso más en el desarrollo de sus proyectos.</p><h3 style=\"text-align: left;\"><strong>Una alianza público–privada que potencia el emprendimiento local</strong></h3><p style=\"text-align: left;\">El evento contó con la presencia de autoridades municipales como los concejales Jorge Arancibia, Bárbara Plaza, Fresia Hernández, Genaro Román, Javiera Jiménez y María Kaelin, junto a Isabel Labbé, Encargada del Departamento Laboral, además de Valeska Tapia y María José Pérez. Por parte de ACTI asistió Diego Cooper, Líder de Alianzas, reforzando el compromiso del sector privado con la promoción del emprendimiento y la capacitación digital.</p><p style=\"text-align: left;\">La jornada también incluyó una <strong>masterclass a cargo de Nicolás Jara (@jarascript)</strong>, cofundador y CEO de <em>AlFondo</em>, quien guió a los participantes en la construcción de modelos de negocio. El taller se desarrolló en un ambiente participativo, donde los emprendedores compartieron ideas y proyectaron nuevas oportunidades para sus iniciativas.</p><h3 style=\"text-align: left;\"><strong>¿Qué es el Fondo CDI Te Impulsa?</strong></h3><p style=\"text-align: left;\">El <strong>Fondo CDI Te Impulsa</strong> es una iniciativa de CDI Chile que busca apoyar a emprendedores que han sido parte de sus programas de formación en CDI Chile. A través de este fondo, se entrega <strong>financiamiento directo, herramientas de gestión y acompañamiento,</strong> con el objetivo de que los participantes puedan aplicar lo aprendido en sus cursos y potenciar el crecimiento de sus negocios con propósito.</p><p style=\"text-align: left;\">Desde su creación en 2020, el Fondo ha beneficiado a cientos de emprendedores en distintas comunas del país, consolidándose como una plataforma de articulación entre el sector público, privado y la sociedad civil. Esta alianza en Huechuraba refuerza el compromiso de trabajar colaborativamente para abrir nuevas oportunidades a emprendedores locales y seguir impulsando el desarrollo económico con impacto social.</p>",
+    "image": "/noticias/se-lanza-el-fondo-concursable-cdi-te-impulsa-en-alianza-con-acti-y-la-municipalidad-de-huechuraba.webp",
+    "category": "sociedad",
+    "categoryColor": "bg-gray-500",
+    "date": "2025-09-27",
+    "author": "CDI Chile",
+    "readTime": "2 min",
+    "tags": [
+      "emprendimiento"
+    ],
+    "relatedNews": []
   }
 ]
 
