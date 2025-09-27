@@ -4,14 +4,15 @@ export interface CMSNewsItem {
   id: string
   title: string
   content: string
-  summary: string
+  excerpt: string
   author: string
   category: string
   image: string | null
-  videoYoutube?: string
+  videoUrl?: string
   youtubeId?: string
-  fechaCreacion: string
-  fechaActualizacion: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string  // Added publishedAt field
   slug: string
   tags: string[]
 }

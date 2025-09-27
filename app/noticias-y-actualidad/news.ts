@@ -96,12 +96,12 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
     id: `cms-${cmsNews.id}`,
     slug: cmsNews.slug || 'sin-slug',
     title: cmsNews.title || 'Sin título',
-    summary: cmsNews.summary || 'Sin resumen',
+    summary: cmsNews.excerpt || 'Sin resumen',  // Changed to use excerpt
     content: cmsNews.content || 'Sin contenido',
     image: cmsNews.image || '/placeholder.svg',
     category: cmsNews.category || 'General',
     categoryColor: getCategoryColor(cmsNews.category || 'General'),
-    date: cmsNews.fechaCreacion ? cmsNews.fechaCreacion.split('T')[0] : new Date().toISOString().split('T')[0],
+    date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],  // Use publishedAt for publication date
     author: cmsNews.author || 'Autor desconocido',
     readTime: calculateReadTime(cmsNews.content || ''),
     tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
