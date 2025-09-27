@@ -123,19 +123,19 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
   const slug = cmsNews.slug || generateSlug(cmsNews.title || 'sin-titulo')
 
   return {
-    id: `cms-${cmsNews.id}`,
+    id: cmsNews.id,
     slug: slug,
     title: cmsNews.title || 'Sin título',
-    summary: cmsNews.excerpt || 'Sin resumen',  // Changed to use excerpt
+    summary: cmsNews.summary || 'Sin resumen',
     content: cmsNews.content || 'Sin contenido',
     image: imageUrl,
     category: cmsNews.category || 'General',
-    categoryColor: getCategoryColor(cmsNews.category || 'General'),
-    date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],  // Use publishedAt for publication date
+    categoryColor: cmsNews.categoryColor || getCategoryColor(cmsNews.category || 'General'),
+    date: cmsNews.date || new Date().toISOString().split('T')[0],
     author: cmsNews.author || 'Autor desconocido',
-    readTime: calculateReadTime(cmsNews.content || ''),
+    readTime: cmsNews.readTime || calculateReadTime(cmsNews.content || ''),
     tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
-    relatedNews: [],
+    relatedNews: Array.isArray(cmsNews.relatedNews) ? cmsNews.relatedNews : [],
   }
 }
 
@@ -189,29 +189,23 @@ export async function getDynamicNews(): Promise<NewsItem[]> {
   }
 }
 
-// Get all news (prioritizing static, with optional CMS fallback)
+// Fetch and combine all news (CMS primary + static fallback)
 export async function getAllNews(): Promise<NewsItem[]> {
-  // For now, only return static news since they're the primary source
-  // CMS is just for editing and then transferring to static
-  return getStaticNews()
-  
-  /* 
-  // Uncomment if you want CMS fallback for news not yet transferred to static:
   try {
-    const staticNews = getStaticNews()
+    // Fetch dynamic news from CMS
     const cmsNews = await apiClient.fetchNews()
     const transformedCMSNews = cmsNews.map(transformCMSNews)
-    const staticNewsMap = new Map(staticNews.map(news => [news.slug, news]))
-    const fallbackCMSNews = transformedCMSNews.filter(
-      cmsNews => !staticNewsMap.has(cmsNews.slug)
-    )
-    const allNews = [...staticNews, ...fallbackCMSNews]
+
+    // Combine CMS and static news
+    const allNews = [...transformedCMSNews, ...newsData]
+
+    // Sort by date (newest first)
     return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   } catch (error) {
-    console.error('Error combining news:', error)
+    console.error('Error fetching news from CMS:', error)
+    // Fallback to static news only
     return getStaticNews()
   }
-  */
 }
 
 export async function getPaginatedNews(page = 1, limit = 6) {

@@ -4,17 +4,20 @@ export interface CMSNewsItem {
   id: string
   title: string
   content: string
-  excerpt: string
+  summary: string
   author: string
   category: string
+  categoryColor: string
   image: string | null
-  videoUrl?: string
+  videoYoutube?: string
   youtubeId?: string
-  createdAt: string
-  updatedAt: string
-  publishedAt: string  // Added publishedAt field
+  date: string
+  readTime: string
+  fechaCreacion: string
+  fechaActualizacion: string
   slug: string
   tags: string[]
+  relatedNews: string[]
 }
 
 export class ApiClient {
@@ -27,7 +30,7 @@ export class ApiClient {
   async fetchNews(): Promise<CMSNewsItem[]> {
     try {
       const response = await fetch(`${this.baseURL}/api/news`, {
-        next: { revalidate: 300 }, // Revalidate every 5 minutes
+        next: { revalidate: 0 }, // No cache - always fetch fresh data
         headers: {
           'Content-Type': 'application/json',
         },
