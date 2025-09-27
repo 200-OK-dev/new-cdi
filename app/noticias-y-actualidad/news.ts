@@ -63,6 +63,23 @@ export const newsData: NewsItem[] = [
     "relatedNews": [
       "1"
     ]
+  },
+  {
+    "id": "0d254156-8ce8-44c5-ad83-b098f66ae9fe",
+    "slug": "se-lanza-el-fondo-concursable-cdi-te-impulsa-en-alianza-con-acti-y-la-municipalidad-de-huechuraba",
+    "title": "Se lanza el Fondo Concursable CDI Te Impulsa en alianza con ACTI y la Municipalidad de Huechuraba",
+    "summary": "Sin resumen",
+    "content": "<div class=\"youtube-video\" data-video-id=\"NdxnXFz52FQ\" data-video-title=\"Video de YouTube\"></div>\n\n<p style=\"text-align: left;\">Este fondo permitirá que más de 30 emprendedores y emprendedoras egresados del curso <strong>Digitalízate: Redes Sociales para Emprender</strong> puedan acceder a apoyo económico, acompañamiento y herramientas prácticas para fortalecer sus negocios y dar un paso más en el desarrollo de sus proyectos.</p><h3 style=\"text-align: left;\"><strong>Una alianza público–privada que potencia el emprendimiento local</strong></h3><p style=\"text-align: left;\">El evento contó con la presencia de autoridades municipales como los concejales Jorge Arancibia, Bárbara Plaza, Fresia Hernández, Genaro Román, Javiera Jiménez y María Kaelin, junto a Isabel Labbé, Encargada del Departamento Laboral, además de Valeska Tapia y María José Pérez. Por parte de ACTI asistió Diego Cooper, Líder de Alianzas, reforzando el compromiso del sector privado con la promoción del emprendimiento y la capacitación digital.</p><p style=\"text-align: left;\">La jornada también incluyó una <strong>masterclass a cargo de Nicolás Jara (@jarascript)</strong>, cofundador y CEO de <em>AlFondo</em>, quien guió a los participantes en la construcción de modelos de negocio. El taller se desarrolló en un ambiente participativo, donde los emprendedores compartieron ideas y proyectaron nuevas oportunidades para sus iniciativas.</p><h3 style=\"text-align: left;\"><strong>¿Qué es el Fondo CDI Te Impulsa?</strong></h3><p style=\"text-align: left;\">El <strong>Fondo CDI Te Impulsa</strong> es una iniciativa de CDI Chile que busca apoyar a emprendedores que han sido parte de sus programas de formación en CDI Chile. A través de este fondo, se entrega <strong>financiamiento directo, herramientas de gestión y acompañamiento,</strong> con el objetivo de que los participantes puedan aplicar lo aprendido en sus cursos y potenciar el crecimiento de sus negocios con propósito.</p><p style=\"text-align: left;\">Desde su creación en 2020, el Fondo ha beneficiado a cientos de emprendedores en distintas comunas del país, consolidándose como una plataforma de articulación entre el sector público, privado y la sociedad civil. Esta alianza en Huechuraba refuerza el compromiso de trabajar colaborativamente para abrir nuevas oportunidades a emprendedores locales y seguir impulsando el desarrollo económico con impacto social.</p>",
+    "image": "/noticias/se-lanza-el-fondo-concursable-cdi-te-impulsa-en-alianza-con-acti-y-la-municipalidad-de-huechuraba.webp",
+    "category": "sociedad",
+    "categoryColor": "bg-gray-500",
+    "date": "2025-09-27",
+    "author": "CDI Chile",
+    "readTime": "2 min",
+    "tags": [
+      "emprendimiento"
+    ],
+    "relatedNews": []
   }
 ]
 
@@ -92,13 +109,26 @@ export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsIte
 
 // Transform CMS news to NewsItem format
 function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
+  // Clean and validate image URL
+  let imageUrl = cmsNews.image || '/placeholder.svg'
+  if (imageUrl && imageUrl !== '/placeholder.svg') {
+    // If it's already a full URL (Cloudinary), use it as is
+    // If it's a relative path, make sure it's properly formatted
+    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+      imageUrl = `/${imageUrl}`
+    }
+  }
+
+  // Generate slug if missing
+  const slug = cmsNews.slug || generateSlug(cmsNews.title || 'sin-titulo')
+
   return {
     id: `cms-${cmsNews.id}`,
-    slug: cmsNews.slug || 'sin-slug',
+    slug: slug,
     title: cmsNews.title || 'Sin título',
     summary: cmsNews.excerpt || 'Sin resumen',  // Changed to use excerpt
     content: cmsNews.content || 'Sin contenido',
-    image: cmsNews.image || '/placeholder.svg',
+    image: imageUrl,
     category: cmsNews.category || 'General',
     categoryColor: getCategoryColor(cmsNews.category || 'General'),
     date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],  // Use publishedAt for publication date
@@ -109,6 +139,16 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
   }
 }
 
+// Generate slug from title
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+    .trim()
+}
+
 // Get category color based on category name
 function getCategoryColor(category: string): string {
   const colors: { [key: string]: string } = {
@@ -117,6 +157,10 @@ function getCategoryColor(category: string): string {
     'Educación': 'bg-blue-500',
     'Tecnología': 'bg-purple-500',
     'Comunidad': 'bg-orange-500',
+    'Eventos': 'bg-orange-500',
+    'Alianzas': 'bg-pink-500',
+    'Noticias': 'bg-blue-500',
+    'General': 'bg-gray-500',
   }
   return colors[category] || 'bg-gray-500'
 }
@@ -145,23 +189,29 @@ export async function getDynamicNews(): Promise<NewsItem[]> {
   }
 }
 
-// Fetch and combine all news (static + dynamic)
+// Get all news (prioritizing static, with optional CMS fallback)
 export async function getAllNews(): Promise<NewsItem[]> {
+  // For now, only return static news since they're the primary source
+  // CMS is just for editing and then transferring to static
+  return getStaticNews()
+  
+  /* 
+  // Uncomment if you want CMS fallback for news not yet transferred to static:
   try {
-    // Fetch dynamic news from CMS
+    const staticNews = getStaticNews()
     const cmsNews = await apiClient.fetchNews()
     const transformedCMSNews = cmsNews.map(transformCMSNews)
-    
-    // Combine static and dynamic news
-    const allNews = [...transformedCMSNews, ...newsData]
-    
-    // Sort by date (newest first)
+    const staticNewsMap = new Map(staticNews.map(news => [news.slug, news]))
+    const fallbackCMSNews = transformedCMSNews.filter(
+      cmsNews => !staticNewsMap.has(cmsNews.slug)
+    )
+    const allNews = [...staticNews, ...fallbackCMSNews]
     return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   } catch (error) {
     console.error('Error combining news:', error)
-    // Fallback to static news only
-    return newsData
+    return getStaticNews()
   }
+  */
 }
 
 export async function getPaginatedNews(page = 1, limit = 6) {
