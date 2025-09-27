@@ -4,20 +4,21 @@ export interface CMSNewsItem {
   id: string
   title: string
   content: string
-  summary: string
+  excerpt: string
   author: string
   category: string
-  categoryColor: string
   image: string | null
-  videoYoutube?: string
-  youtubeId?: string
-  date: string
-  readTime: string
-  fechaCreacion: string
-  fechaActualizacion: string
+  videoUrl?: string
   slug: string
   tags: string[]
-  relatedNews: string[]
+  publishedAt: string
+  createdAt: string
+  updatedAt: string
+  metadata: {
+    readTime: number
+    wordCount: number
+    views: number
+  }
 }
 
 export class ApiClient {

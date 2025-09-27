@@ -109,16 +109,16 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
     id: cmsNews.id,
     slug: slug,
     title: cmsNews.title || 'Sin título',
-    summary: cmsNews.summary || 'Sin resumen',
+    summary: cmsNews.excerpt || 'Sin resumen',
     content: cmsNews.content || 'Sin contenido',
     image: imageUrl,
     category: cmsNews.category || 'General',
-    categoryColor: cmsNews.categoryColor || getCategoryColor(cmsNews.category || 'General'),
-    date: cmsNews.date || new Date().toISOString().split('T')[0],
+    categoryColor: getCategoryColor(cmsNews.category || 'General'),
+    date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],
     author: cmsNews.author || 'Autor desconocido',
-    readTime: cmsNews.readTime || calculateReadTime(cmsNews.content || ''),
+    readTime: cmsNews.metadata?.readTime ? `${cmsNews.metadata.readTime} min` : calculateReadTime(cmsNews.content || ''),
     tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
-    relatedNews: Array.isArray(cmsNews.relatedNews) ? cmsNews.relatedNews : [],
+    relatedNews: [],
   }
 }
 
