@@ -6,7 +6,18 @@ const nextConfig: NextConfig = {
     '192.168.100.6',
     // O más general para toda tu red local:
     '192.168.100.*'
-  ]
+  ],
+  images: {
+    domains: ['res.cloudinary.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
