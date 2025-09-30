@@ -104,33 +104,62 @@ export async function getRelatedNews(newsId: string, limit = 3): Promise<NewsIte
 
 // Transform CMS news to NewsItem format
 function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
-  // Clean and validate image URL
-  let imageUrl = cmsNews.image || '/placeholder.svg'
-  if (imageUrl && imageUrl !== '/placeholder.svg') {
-    // If it's already a full URL (Cloudinary), use it as is
-    // If it's a relative path, make sure it's properly formatted
-    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
-      imageUrl = `/${imageUrl}`
+  try {
+    // Validate input
+    if (!cmsNews || typeof cmsNews !== 'object') {
+      console.error('❌ transformCMSNews: Invalid input:', cmsNews)
+      throw new Error('Invalid CMS news data')
     }
-  }
 
-  // Generate slug if missing
-  const slug = cmsNews.slug || generateSlug(cmsNews.title || 'sin-titulo')
+    // Clean and validate image URL
+    let imageUrl = cmsNews.image || '/placeholder.svg'
+    if (imageUrl && imageUrl !== '/placeholder.svg') {
+      // If it's already a full URL (Cloudinary), use it as is
+      // If it's a relative path, make sure it's properly formatted
+      if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+        imageUrl = `/${imageUrl}`
+      }
+    }
 
-  return {
-    id: cmsNews.id,
-    slug: slug,
-    title: cmsNews.title || 'Sin título',
-    summary: cmsNews.excerpt || 'Sin resumen',
-    content: cmsNews.content || 'Sin contenido',
-    image: imageUrl,
-    category: cmsNews.category || 'General',
-    categoryColor: getCategoryColor(cmsNews.category || 'General'),
-    date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],
-    author: cmsNews.author || 'Autor desconocido',
-    readTime: cmsNews.metadata?.readTime ? `${cmsNews.metadata.readTime} min` : calculateReadTime(cmsNews.content || ''),
-    tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
-    relatedNews: [],
+    // Generate slug if missing
+    const slug = cmsNews.slug || generateSlug(cmsNews.title || 'sin-titulo')
+
+    const transformedNews: NewsItem = {
+      id: cmsNews.id || `cms-${Date.now()}`,
+      slug: slug,
+      title: cmsNews.title || 'Sin título',
+      summary: cmsNews.excerpt || 'Sin resumen',
+      content: cmsNews.content || 'Sin contenido',
+      image: imageUrl,
+      category: cmsNews.category || 'General',
+      categoryColor: getCategoryColor(cmsNews.category || 'General'),
+      date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],
+      author: cmsNews.author || 'Autor desconocido',
+      readTime: cmsNews.metadata?.readTime ? `${cmsNews.metadata.readTime} min` : calculateReadTime(cmsNews.content || ''),
+      tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
+      relatedNews: [],
+    }
+
+    console.log('✅ Transformada noticia CMS:', transformedNews.title)
+    return transformedNews
+  } catch (error) {
+    console.error('❌ Error transformando noticia CMS:', error, cmsNews)
+    // Return a safe fallback
+    return {
+      id: `error-${Date.now()}`,
+      slug: 'error-noticia',
+      title: 'Error en noticia',
+      summary: 'Error al cargar noticia',
+      content: 'Error al cargar contenido',
+      image: '/placeholder.svg',
+      category: 'Error',
+      categoryColor: 'bg-red-500',
+      date: new Date().toISOString().split('T')[0],
+      author: 'Sistema',
+      readTime: '1 min',
+      tags: [],
+      relatedNews: [],
+    }
   }
 }
 
@@ -196,16 +225,27 @@ export async function getAllNews(useCache: boolean = true): Promise<NewsItem[]> 
 
     if (preloadCacheValid && useCache) {
       console.log('⚡ Usando datos pre-cargados del hook')
-      // Transform CMS data and ALWAYS combine with static news
-      const transformedCMSNews = cmsCache.data!.map(transformCMSNews)
-      const allNews = [...newsData, ...transformedCMSNews] // Static first, then CMS
-      const sortedNews = allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      try {
+        // Transform CMS data and ALWAYS combine with static news
+        console.log('🔄 Transformando', cmsCache.data!.length, 'noticias del cache')
+        const transformedCMSNews = cmsCache.data!.map(transformCMSNews)
+        console.log('✅ Transformación completada')
 
-      // Update local cache too
-      globalNewsCache.data = sortedNews
-      globalNewsCache.timestamp = now
+        const allNews = [...newsData, ...transformedCMSNews] // Static first, then CMS
+        const sortedNews = allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-      return sortedNews
+        // Update local cache too
+        globalNewsCache.data = sortedNews
+        globalNewsCache.timestamp = now
+
+        console.log(`✅ Noticias combinadas: ${sortedNews.length} total (${newsData.length} estáticas + ${transformedCMSNews.length} CMS)`)
+        return sortedNews
+      } catch (error) {
+        console.error('❌ Error procesando cache pre-cargado:', error)
+        // Fallback to static news if pre-load processing fails
+        console.log('⚠️ Fallback: usando solo noticias estáticas')
+        return getStaticNews()
+      }
     }
 
     // Check local cache
