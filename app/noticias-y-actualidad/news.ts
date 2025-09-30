@@ -140,7 +140,6 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
       relatedNews: [],
     }
 
-    console.log('✅ Transformada noticia CMS:', transformedNews.title)
     return transformedNews
   } catch (error) {
     console.error('❌ Error transformando noticia CMS:', error, cmsNews)
@@ -227,10 +226,7 @@ export async function getAllNews(useCache: boolean = true): Promise<NewsItem[]> 
       console.log('⚡ Usando datos pre-cargados del hook')
       try {
         // Transform CMS data and ALWAYS combine with static news
-        console.log('🔄 Transformando', cmsCache.data!.length, 'noticias del cache')
         const transformedCMSNews = cmsCache.data!.map(transformCMSNews)
-        console.log('✅ Transformación completada')
-
         const allNews = [...newsData, ...transformedCMSNews] // Static first, then CMS
         const sortedNews = allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
@@ -238,12 +234,9 @@ export async function getAllNews(useCache: boolean = true): Promise<NewsItem[]> 
         globalNewsCache.data = sortedNews
         globalNewsCache.timestamp = now
 
-        console.log(`✅ Noticias combinadas: ${sortedNews.length} total (${newsData.length} estáticas + ${transformedCMSNews.length} CMS)`)
         return sortedNews
       } catch (error) {
         console.error('❌ Error procesando cache pre-cargado:', error)
-        // Fallback to static news if pre-load processing fails
-        console.log('⚠️ Fallback: usando solo noticias estáticas')
         return getStaticNews()
       }
     }

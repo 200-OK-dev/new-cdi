@@ -5,14 +5,12 @@ import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
 import { useSearchParams } from "next/navigation"
-import { Suspense, useEffect, useState, useCallback } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { NewsItem } from "./types"
-import { usePreloadedCMS } from "@/hooks/use-cms-preload"
 
 function NewsContent() {
   const searchParams = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || 1
-  const { getCacheInfo } = usePreloadedCMS()
   const [newsData, setNewsData] = useState<{
     news: NewsItem[]
     totalPages: number
@@ -26,50 +24,34 @@ function NewsContent() {
   })
   const [loading, setLoading] = useState(true)
 
-  const stableCacheInfo = useCallback(() => {
-    return getCacheInfo()
-  }, [getCacheInfo])
-
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true)
 
       try {
-        // 1. First load static news immediately
-        const staticNews = getStaticNews()
-        const limit = 12 // Aumentado de 6 a 12 noticias por página
+        const limit = 12 // 12 noticias por página
         const startIndex = (currentPage - 1) * limit
         const endIndex = startIndex + limit
-        const initialPaginatedStatic = staticNews.slice(startIndex, endIndex)
+
+        // Load all news (includes static + CMS with smart caching)
+        const allNews = await getAllNews()
+        const paginatedNews = allNews.slice(startIndex, endIndex)
 
         setNewsData({
-          news: initialPaginatedStatic,
-          totalPages: Math.ceil(staticNews.length / limit),
-          hasNextPage: endIndex < staticNews.length,
-          hasPrevPage: currentPage > 1,
-        })
-        setLoading(false)
-
-        // 2. Load all news (will automatically use pre-loaded cache if available)
-        const cacheInfo = stableCacheInfo()
-        console.log('📊 Cache info:', cacheInfo)
-
-        const allNews = await getAllNews() // This handles all cache logic internally
-        const finalPaginated = allNews.slice(startIndex, endIndex)
-
-        setNewsData({
-          news: finalPaginated,
+          news: paginatedNews,
           totalPages: Math.ceil(allNews.length / limit),
           hasNextPage: endIndex < allNews.length,
           hasPrevPage: currentPage > 1,
         })
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching news:', error)
+        setLoading(false)
       }
     }
 
     fetchNews()
-  }, [currentPage, stableCacheInfo]) // Incluir stableCacheInfo para cumplir con exhaustive-deps
+  }, [currentPage]) // Solo dependencia de currentPage
 
   const { news, totalPages, hasNextPage, hasPrevPage } = newsData
 
