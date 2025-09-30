@@ -7,10 +7,12 @@ import { motion } from "framer-motion"
 import { useSearchParams } from "next/navigation"
 import { Suspense, useEffect, useState } from "react"
 import { NewsItem } from "./types"
+import { usePreloadedCMS } from "@/hooks/use-cms-preload"
 
 function NewsContent() {
   const searchParams = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || 1
+  const { getCachedNews, isCacheValid, getCacheInfo } = usePreloadedCMS()
   const [newsData, setNewsData] = useState<{
     news: NewsItem[]
     totalPages: number
@@ -27,40 +29,59 @@ function NewsContent() {
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true)
-      
+
       try {
-        // 1. First load static news immediately for faster rendering
+        // 1. First load static news immediately
         const staticNews = getStaticNews()
         const limit = 6
         const startIndex = (currentPage - 1) * limit
         const endIndex = startIndex + limit
         const initialPaginatedStatic = staticNews.slice(startIndex, endIndex)
-        
+
         setNewsData({
           news: initialPaginatedStatic,
           totalPages: Math.ceil(staticNews.length / limit),
           hasNextPage: endIndex < staticNews.length,
           hasPrevPage: currentPage > 1,
         })
-        setLoading(false) // Remove skeleton loading
-        
-        // 2. Then load all news (this handles deduplication internally)
-        const allNews = await getAllNews()
-        const finalPaginated = allNews.slice(startIndex, endIndex)
-        
-        setNewsData({
-          news: finalPaginated,
-          totalPages: Math.ceil(allNews.length / limit),
-          hasNextPage: endIndex < allNews.length,
-          hasPrevPage: currentPage > 1,
-        })
+        setLoading(false)
+
+        // 2. Check if we have pre-loaded CMS data available
+        const cacheInfo = getCacheInfo()
+        console.log('📊 Cache info:', cacheInfo)
+
+        if (isCacheValid() && getCachedNews()) {
+          console.log('⚡ Usando datos pre-cargados del CMS - sin delay!')
+          // Use pre-loaded data immediately - no API call needed!
+          const allNews = await getAllNews() // This will use cached data internally
+          const finalPaginated = allNews.slice(startIndex, endIndex)
+
+          setNewsData({
+            news: finalPaginated,
+            totalPages: Math.ceil(allNews.length / limit),
+            hasNextPage: endIndex < allNews.length,
+            hasPrevPage: currentPage > 1,
+          })
+        } else {
+          console.log('🔄 Cache no válido, cargando desde CMS...')
+          // Fallback to normal API call if cache is not available
+          const allNews = await getAllNews()
+          const finalPaginated = allNews.slice(startIndex, endIndex)
+
+          setNewsData({
+            news: finalPaginated,
+            totalPages: Math.ceil(allNews.length / limit),
+            hasNextPage: endIndex < allNews.length,
+            hasPrevPage: currentPage > 1,
+          })
+        }
       } catch (error) {
         console.error('Error fetching news:', error)
       }
     }
 
     fetchNews()
-  }, [currentPage])
+  }, [currentPage, getCachedNews, isCacheValid, getCacheInfo])
 
   const { news, totalPages, hasNextPage, hasPrevPage } = newsData
 

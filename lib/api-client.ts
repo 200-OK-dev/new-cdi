@@ -28,10 +28,14 @@ export class ApiClient {
     this.baseURL = API_URL
   }
 
-  async fetchNews(): Promise<CMSNewsItem[]> {
+  async fetchNews(useCache: boolean = true): Promise<CMSNewsItem[]> {
     try {
+      const cacheConfig = useCache
+        ? { next: { revalidate: 180 } } // 3 minutos de cache
+        : { next: { revalidate: 0 } }  // Sin cache
+
       const response = await fetch(`${this.baseURL}/api/news`, {
-        next: { revalidate: 0 }, // No cache - always fetch fresh data
+        ...cacheConfig,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -42,7 +46,9 @@ export class ApiClient {
         return []
       }
 
-      return await response.json()
+      const data = await response.json()
+      console.log(`📡 CMS fetch completado: ${data.length} noticias`)
+      return data
     } catch (error) {
       console.error('Error fetching news from CMS:', error)
       return []

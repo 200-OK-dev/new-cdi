@@ -1,5 +1,16 @@
 import { apiClient, CMSNewsItem } from '@/lib/api-client'
 
+// Cache externo para getAllNews - compartido con hooks
+let globalNewsCache: {
+  data: NewsItem[] | null
+  timestamp: number | null
+} = {
+  data: null,
+  timestamp: null
+}
+
+const CACHE_DURATION = 3 * 60 * 1000 // 3 minutos
+
 export interface NewsItem {
   id: string
   slug: string
@@ -172,23 +183,57 @@ export async function getDynamicNews(): Promise<NewsItem[]> {
   }
 }
 
-// Fetch and combine all news (CMS primary + static fallback)
-export async function getAllNews(): Promise<NewsItem[]> {
+// Fetch and combine all news (CMS primary + static fallback) with smart caching
+export async function getAllNews(useCache: boolean = true): Promise<NewsItem[]> {
   try {
+    // Check if we have valid cached data
+    const now = Date.now()
+    const cacheIsValid = useCache &&
+      globalNewsCache.data &&
+      globalNewsCache.timestamp &&
+      (now - globalNewsCache.timestamp) < CACHE_DURATION
+
+    if (cacheIsValid) {
+      console.log('⚡ Usando cache local de noticias')
+      return globalNewsCache.data!
+    }
+
+    console.log('🔄 Actualizando cache de noticias...')
+
     // Fetch dynamic news from CMS
-    const cmsNews = await apiClient.fetchNews()
+    const cmsNews = await apiClient.fetchNews(useCache)
     const transformedCMSNews = cmsNews.map(transformCMSNews)
 
     // Combine CMS and static news
     const allNews = [...transformedCMSNews, ...newsData]
 
     // Sort by date (newest first)
-    return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const sortedNews = allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+    // Update cache
+    if (useCache) {
+      globalNewsCache.data = sortedNews
+      globalNewsCache.timestamp = now
+      console.log(`✅ Cache actualizado: ${sortedNews.length} noticias`)
+    }
+
+    return sortedNews
   } catch (error) {
     console.error('Error fetching news from CMS:', error)
-    // Fallback to static news only
+    // Return cached data if available, otherwise fallback to static
+    if (globalNewsCache.data) {
+      console.log('⚠️ Usando cache como fallback')
+      return globalNewsCache.data
+    }
     return getStaticNews()
   }
+}
+
+// Función para limpiar cache manualmente
+export function clearNewsCache(): void {
+  globalNewsCache.data = null
+  globalNewsCache.timestamp = null
+  console.log('🗑️ Cache de noticias limpiado')
 }
 
 export async function getPaginatedNews(page = 1, limit = 6) {
