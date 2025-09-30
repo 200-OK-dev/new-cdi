@@ -1,6 +1,6 @@
 'use client'
 
-import { getStaticNews, getAllNews } from "./news"
+import { getAllNews } from "./news"
 import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
