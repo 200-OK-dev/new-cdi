@@ -43,7 +43,7 @@ export function NewsPagination({ currentPage, totalPages, hasNextPage, hasPrevPa
         {/* Previous Button */}
         {hasPrevPage ? (
           <Button variant="outline" size="sm" asChild>
-            <Link href={`/noticias?page=${currentPage - 1}`}>
+            <Link href={`/noticias-y-actualidad?page=${currentPage - 1}`}>
               <ChevronLeft className="w-4 h-4 mr-1" />
               Anterior
             </Link>
@@ -67,7 +67,7 @@ export function NewsPagination({ currentPage, totalPages, hasNextPage, hasPrevPa
               {pageNum === currentPage ? (
                 <span>{pageNum}</span>
               ) : (
-                <Link href={`/noticias?page=${pageNum}`}>{pageNum}</Link>
+                <Link href={`/noticias-y-actualidad?page=${pageNum}`}>{pageNum}</Link>
               )}
             </Button>
           ))}
@@ -76,7 +76,7 @@ export function NewsPagination({ currentPage, totalPages, hasNextPage, hasPrevPa
         {/* Next Button */}
         {hasNextPage ? (
           <Button variant="outline" size="sm" asChild>
-            <Link href={`/noticias?page=${currentPage + 1}`}>
+            <Link href={`/noticias-y-actualidad?page=${currentPage + 1}`}>
               Siguiente
               <ChevronRight className="w-4 h-4 ml-1" />
             </Link>

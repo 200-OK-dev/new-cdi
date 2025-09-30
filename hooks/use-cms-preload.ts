@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { apiClient, CMSNewsItem } from '@/lib/api-client'
 
-// Cache global compartido entre componentes
+// Cache global compartido entre componentes - exportado para sincronización
 interface CacheEntry {
   data: CMSNewsItem[] | null
   timestamp: number | null
@@ -11,7 +11,7 @@ interface CacheEntry {
   error: Error | null
 }
 
-const cmsCache: CacheEntry = {
+export const cmsCache: CacheEntry = {
   data: null,
   timestamp: null,
   isLoading: false,

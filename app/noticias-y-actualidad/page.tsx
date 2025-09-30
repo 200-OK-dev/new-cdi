@@ -33,7 +33,7 @@ function NewsContent() {
       try {
         // 1. First load static news immediately
         const staticNews = getStaticNews()
-        const limit = 6
+        const limit = 12 // Aumentado de 6 a 12 noticias por página
         const startIndex = (currentPage - 1) * limit
         const endIndex = startIndex + limit
         const initialPaginatedStatic = staticNews.slice(startIndex, endIndex)
@@ -46,35 +46,19 @@ function NewsContent() {
         })
         setLoading(false)
 
-        // 2. Check if we have pre-loaded CMS data available
+        // 2. Load all news (will automatically use pre-loaded cache if available)
         const cacheInfo = getCacheInfo()
         console.log('📊 Cache info:', cacheInfo)
 
-        if (isCacheValid() && getCachedNews()) {
-          console.log('⚡ Usando datos pre-cargados del CMS - sin delay!')
-          // Use pre-loaded data immediately - no API call needed!
-          const allNews = await getAllNews() // This will use cached data internally
-          const finalPaginated = allNews.slice(startIndex, endIndex)
+        const allNews = await getAllNews() // This handles all cache logic internally
+        const finalPaginated = allNews.slice(startIndex, endIndex)
 
-          setNewsData({
-            news: finalPaginated,
-            totalPages: Math.ceil(allNews.length / limit),
-            hasNextPage: endIndex < allNews.length,
-            hasPrevPage: currentPage > 1,
-          })
-        } else {
-          console.log('🔄 Cache no válido, cargando desde CMS...')
-          // Fallback to normal API call if cache is not available
-          const allNews = await getAllNews()
-          const finalPaginated = allNews.slice(startIndex, endIndex)
-
-          setNewsData({
-            news: finalPaginated,
-            totalPages: Math.ceil(allNews.length / limit),
-            hasNextPage: endIndex < allNews.length,
-            hasPrevPage: currentPage > 1,
-          })
-        }
+        setNewsData({
+          news: finalPaginated,
+          totalPages: Math.ceil(allNews.length / limit),
+          hasNextPage: endIndex < allNews.length,
+          hasPrevPage: currentPage > 1,
+        })
       } catch (error) {
         console.error('Error fetching news:', error)
       }
@@ -118,7 +102,7 @@ function NewsContent() {
       {/* Loading State */}
       {loading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div key={i} className="animate-pulse">
               <div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
               <div className="bg-gray-200 h-4 rounded mb-2"></div>

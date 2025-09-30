@@ -1,4 +1,5 @@
 import { apiClient, CMSNewsItem } from '@/lib/api-client'
+import { cmsCache } from '@/hooks/use-cms-preload'
 
 // Cache externo para getAllNews - compartido con hooks
 const globalNewsCache: {
@@ -183,17 +184,37 @@ export async function getDynamicNews(): Promise<NewsItem[]> {
   }
 }
 
-// Fetch and combine all news (CMS primary + static fallback) with smart caching
+// Fetch and combine all news (CMS + static together) with smart caching
 export async function getAllNews(useCache: boolean = true): Promise<NewsItem[]> {
   try {
-    // Check if we have valid cached data
     const now = Date.now()
-    const cacheIsValid = useCache &&
+
+    // First check if we have pre-loaded CMS data from the hook
+    const preloadCacheValid = cmsCache.data &&
+      cmsCache.timestamp &&
+      (now - cmsCache.timestamp) < CACHE_DURATION
+
+    if (preloadCacheValid && useCache) {
+      console.log('⚡ Usando datos pre-cargados del hook')
+      // Transform CMS data and ALWAYS combine with static news
+      const transformedCMSNews = cmsCache.data!.map(transformCMSNews)
+      const allNews = [...newsData, ...transformedCMSNews] // Static first, then CMS
+      const sortedNews = allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+      // Update local cache too
+      globalNewsCache.data = sortedNews
+      globalNewsCache.timestamp = now
+
+      return sortedNews
+    }
+
+    // Check local cache
+    const localCacheValid = useCache &&
       globalNewsCache.data &&
       globalNewsCache.timestamp &&
       (now - globalNewsCache.timestamp) < CACHE_DURATION
 
-    if (cacheIsValid) {
+    if (localCacheValid) {
       console.log('⚡ Usando cache local de noticias')
       return globalNewsCache.data!
     }
@@ -204,27 +225,38 @@ export async function getAllNews(useCache: boolean = true): Promise<NewsItem[]> 
     const cmsNews = await apiClient.fetchNews(useCache)
     const transformedCMSNews = cmsNews.map(transformCMSNews)
 
-    // Combine CMS and static news
-    const allNews = [...transformedCMSNews, ...newsData]
+    // ALWAYS combine static news with CMS news
+    const allNews = [...newsData, ...transformedCMSNews] // Static first, then CMS
 
     // Sort by date (newest first)
     const sortedNews = allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-    // Update cache
+    // Update both caches
     if (useCache) {
       globalNewsCache.data = sortedNews
       globalNewsCache.timestamp = now
-      console.log(`✅ Cache actualizado: ${sortedNews.length} noticias`)
+      console.log(`✅ Cache actualizado: ${sortedNews.length} noticias (${newsData.length} estáticas + ${transformedCMSNews.length} CMS)`)
     }
 
     return sortedNews
   } catch (error) {
     console.error('Error fetching news from CMS:', error)
-    // Return cached data if available, otherwise fallback to static
+
+    // If CMS fails, try to return static + any cached CMS data
     if (globalNewsCache.data) {
-      console.log('⚠️ Usando cache como fallback')
+      console.log('⚠️ Error CMS - usando cache local')
       return globalNewsCache.data
     }
+
+    if (cmsCache.data) {
+      console.log('⚠️ Error CMS - combinando estáticas + cache pre-carga')
+      const transformedCMSNews = cmsCache.data.map(transformCMSNews)
+      const allNews = [...newsData, ...transformedCMSNews]
+      return allNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    }
+
+    // Last resort: only static news
+    console.log('⚠️ Error CMS total - solo noticias estáticas')
     return getStaticNews()
   }
 }
@@ -236,7 +268,7 @@ export function clearNewsCache(): void {
   console.log('🗑️ Cache de noticias limpiado')
 }
 
-export async function getPaginatedNews(page = 1, limit = 6) {
+export async function getPaginatedNews(page = 1, limit = 12) {
   const allNews = await getAllNews()
   
   const startIndex = (page - 1) * limit
