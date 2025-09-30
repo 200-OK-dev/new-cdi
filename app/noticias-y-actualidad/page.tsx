@@ -65,7 +65,7 @@ function NewsContent() {
     }
 
     fetchNews()
-  }, [currentPage, getCachedNews, isCacheValid, getCacheInfo])
+  }, [currentPage]) // Solo dependencia de currentPage para evitar loops
 
   const { news, totalPages, hasNextPage, hasPrevPage } = newsData
 
