@@ -1,7 +1,7 @@
 import { apiClient, CMSNewsItem } from '@/lib/api-client'
 
 // Cache externo para getAllNews - compartido con hooks
-let globalNewsCache: {
+const globalNewsCache: {
   data: NewsItem[] | null
   timestamp: number | null
 } = {
