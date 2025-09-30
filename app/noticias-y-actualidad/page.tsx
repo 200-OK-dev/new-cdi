@@ -5,14 +5,14 @@ import { NewsCard } from "@/components/news-card"
 import { NewsPagination } from "@/components/news-pagination"
 import { motion } from "framer-motion"
 import { useSearchParams } from "next/navigation"
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect, useState, useCallback } from "react"
 import { NewsItem } from "./types"
 import { usePreloadedCMS } from "@/hooks/use-cms-preload"
 
 function NewsContent() {
   const searchParams = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || 1
-  const { getCachedNews, isCacheValid, getCacheInfo } = usePreloadedCMS()
+  const { getCacheInfo } = usePreloadedCMS()
   const [newsData, setNewsData] = useState<{
     news: NewsItem[]
     totalPages: number
@@ -25,6 +25,10 @@ function NewsContent() {
     hasPrevPage: false
   })
   const [loading, setLoading] = useState(true)
+
+  const stableCacheInfo = useCallback(() => {
+    return getCacheInfo()
+  }, [getCacheInfo])
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -47,7 +51,7 @@ function NewsContent() {
         setLoading(false)
 
         // 2. Load all news (will automatically use pre-loaded cache if available)
-        const cacheInfo = getCacheInfo()
+        const cacheInfo = stableCacheInfo()
         console.log('📊 Cache info:', cacheInfo)
 
         const allNews = await getAllNews() // This handles all cache logic internally
@@ -65,7 +69,7 @@ function NewsContent() {
     }
 
     fetchNews()
-  }, [currentPage]) // Solo dependencia de currentPage para evitar loops
+  }, [currentPage, stableCacheInfo]) // Incluir stableCacheInfo para cumplir con exhaustive-deps
 
   const { news, totalPages, hasNextPage, hasPrevPage } = newsData
 
