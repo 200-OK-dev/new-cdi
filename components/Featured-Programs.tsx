@@ -116,7 +116,7 @@ const FeaturedPrograms = () => {
             {programs.map((program, index) => {
               const cardContent = (
                 <motion.div
-                  className="bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
+                  className="bg-card border border-border rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
@@ -139,10 +139,10 @@ const FeaturedPrograms = () => {
                     )}
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-gray-900 font-semibold text-lg mb-2">
+                    <h3 className="text-foreground font-semibold text-lg mb-2">
                       {program.title}
                     </h3>
-                    <p className="text-gray-700 text-sm mb-0 flex-grow">
+                    <p className="text-muted-foreground text-sm mb-0 flex-grow">
                       {program.description}
                     </p>
                     {program.link && (

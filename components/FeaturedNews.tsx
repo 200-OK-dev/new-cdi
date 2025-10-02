@@ -90,7 +90,7 @@ const FeaturedNews = () => {
           viewport={{ once: true, margin: "-50px" }}
           variants={headerVariants}
         >
-          <h2 className="text-4xl font-bold text-custom-red mb-4">
+          <h2 className="text-4xl font-bold text-custom-cyan mb-4">
             NOTICIAS DESTACADAS
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-6 max-w-2xl mx-auto">

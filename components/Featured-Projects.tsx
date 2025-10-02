@@ -118,14 +118,14 @@ const FeaturedProjects = () => {
           >
             {projects.map((project, index) => {
               const cardContent = (
-                <motion.div 
-                  className="bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
+                <motion.div
+                  className="bg-card border border-border rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300 transform group-hover:-translate-y-1 overflow-hidden flex flex-col h-full"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
                   variants={cardVariants}
                   custom={index}
-                  whileHover={isMounted && isDesktop ? { 
+                  whileHover={isMounted && isDesktop ? {
                     scale: 1.02,
                     transition: { duration: 0.2 }
                   } : {}}
@@ -141,10 +141,10 @@ const FeaturedProjects = () => {
                     />
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-gray-900 font-semibold text-lg mb-2">
+                    <h3 className="text-foreground font-semibold text-lg mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-700 text-sm mb-0 flex-grow">
+                    <p className="text-muted-foreground text-sm mb-0 flex-grow">
                       {project.description}
                     </p>
                     {project.link && (

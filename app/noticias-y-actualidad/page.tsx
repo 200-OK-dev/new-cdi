@@ -90,9 +90,9 @@ function NewsContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {[...Array(12)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
-              <div className="bg-gray-200 h-4 rounded mb-2"></div>
-              <div className="bg-gray-200 h-4 rounded w-3/4"></div>
+              <div className="bg-muted h-48 rounded-t-lg mb-4"></div>
+              <div className="bg-muted h-4 rounded mb-2"></div>
+              <div className="bg-muted h-4 rounded w-3/4"></div>
             </div>
           ))}
         </div>
@@ -125,7 +125,22 @@ function NewsContent() {
 
 export default function NewsPage() {
   return (
-    <Suspense fallback={<div className="container mx-auto px-4 py-24 text-center">Cargando noticias...</div>}>
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-24">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold tracking-tight mb-4">Noticias y Actualizaciones</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Mantente informado sobre nuestras últimas iniciativas, logros y el impacto que estamos generando en las comunidades que servimos.
+          </p>
+        </div>
+        <div className="flex justify-center items-center py-20">
+          <div className="relative w-16 h-16">
+            <div className="absolute top-0 left-0 w-full h-full border-4 border-muted rounded-full"></div>
+            <div className="absolute top-0 left-0 w-full h-full border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        </div>
+      </div>
+    }>
       <NewsContent />
     </Suspense>
   )
