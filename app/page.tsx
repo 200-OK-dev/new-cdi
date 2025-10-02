@@ -7,6 +7,7 @@ import GoogleTestimonials from "@/components/GoogleTestimonials"
 import { Aliados } from '@/components/Aliados'
 import FeaturedPrograms from '@/components/Featured-Programs'
 import FeaturedProjects from '@/components/Featured-Projects'
+import FeaturedNews from '@/components/FeaturedNews'
 import { useCMSPreload } from '@/hooks/use-cms-preload'
 
 
@@ -19,8 +20,10 @@ export default function Home() {
       
       {/* Resto del contenido */}
       <div className="container mx-auto px-4 relative z-10">
-        
-       
+
+        {/* Featured News Section */}
+        <FeaturedNews />
+
         {/* Featured Programs Section */}
         <FeaturedPrograms />
         
