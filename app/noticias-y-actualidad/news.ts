@@ -1,5 +1,6 @@
 import { apiClient, CMSNewsItem } from '@/lib/api-client'
 import { cmsCache } from '@/hooks/use-cms-preload'
+import { NewsItem } from './types'
 
 // Cache externo para getAllNews - compartido con hooks
 const globalNewsCache: {
@@ -11,22 +12,6 @@ const globalNewsCache: {
 }
 
 const CACHE_DURATION = 3 * 60 * 1000 // 3 minutos
-
-export interface NewsItem {
-  id: string
-  slug: string
-  title: string
-  summary: string
-  content: string
-  image: string
-  category: string
-  categoryColor: string
-  date: string
-  author: string
-  readTime: string
-  tags: string[]
-  relatedNews?: string[]
-}
 
 export const newsData: NewsItem[] = [
   {
