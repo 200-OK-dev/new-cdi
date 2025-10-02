@@ -87,14 +87,11 @@ function NewsContent() {
 
       {/* Loading State */}
       {loading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="animate-pulse">
-              <div className="bg-muted h-48 rounded-t-lg mb-4"></div>
-              <div className="bg-muted h-4 rounded mb-2"></div>
-              <div className="bg-muted h-4 rounded w-3/4"></div>
-            </div>
-          ))}
+        <div className="flex justify-center items-center py-20">
+          <div className="relative w-16 h-16">
+            <div className="absolute top-0 left-0 w-full h-full border-4 border-muted rounded-full"></div>
+            <div className="absolute top-0 left-0 w-full h-full border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
         </div>
       )}
 
