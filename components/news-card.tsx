@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import type { NewsItem } from "../app/noticias-y-actualidad/news"
+import type { NewsItem } from "@/app/noticias-y-actualidad/types"
 
 interface NewsCardProps {
   news: NewsItem
