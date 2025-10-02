@@ -4,22 +4,31 @@ export interface CMSNewsItem {
   id: string
   title: string
   content: string
-  excerpt: string
+  summary: string  // Backend devuelve 'summary' desde formatNewsForLegacyResponse
+  excerpt?: string  // Mantener por compatibilidad
   author: string
   category: string
+  categoryColor?: string  // Color de categoría calculado en backend
   image: string | null
   videoUrl?: string
+  videoYoutube?: string
+  youtubeId?: string
   slug: string
   tags: string[]
   featured?: boolean
-  publishedAt: string
-  createdAt: string
-  updatedAt: string
-  metadata: {
-    readTime: number
-    wordCount: number
-    views: number
+  date?: string  // Fecha formateada YYYY-MM-DD
+  publishedAt?: string  // Fecha ISO completa
+  createdAt?: string
+  updatedAt?: string
+  readTime?: string  // "X min"
+  metadata?: {
+    readTime?: number
+    wordCount?: number
+    views?: number
   }
+  fechaCreacion?: string
+  fechaActualizacion?: string
+  relatedNews?: string[]
 }
 
 export class ApiClient {

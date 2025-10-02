@@ -113,14 +113,14 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
       id: cmsNews.id || `cms-${Date.now()}`,
       slug: slug,
       title: cmsNews.title || 'Sin título',
-      summary: cmsNews.excerpt || 'Sin resumen',
+      summary: cmsNews.summary || cmsNews.excerpt || 'Sin resumen',  // Priorizar 'summary' del backend
       content: cmsNews.content || 'Sin contenido',
       image: imageUrl,
       category: cmsNews.category || 'General',
-      categoryColor: getCategoryColor(cmsNews.category || 'General'),
-      date: cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0],
+      categoryColor: cmsNews.categoryColor || getCategoryColor(cmsNews.category || 'General'),  // Usar color del backend si existe
+      date: cmsNews.date || (cmsNews.publishedAt ? cmsNews.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0]),  // Priorizar 'date' formateado
       author: cmsNews.author || 'Autor desconocido',
-      readTime: cmsNews.metadata?.readTime ? `${cmsNews.metadata.readTime} min` : calculateReadTime(cmsNews.content || ''),
+      readTime: cmsNews.readTime || (cmsNews.metadata?.readTime ? `${cmsNews.metadata.readTime} min` : calculateReadTime(cmsNews.content || '')),  // Usar readTime del backend
       tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
       relatedNews: [],
       featured: cmsNews.featured || false,
