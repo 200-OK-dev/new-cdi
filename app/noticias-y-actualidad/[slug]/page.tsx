@@ -9,6 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { NewsContentRenderer } from "@/components/news-content-renderer"
 
+// Revalidate every 60 seconds to get fresh data
+export const revalidate = 60
+
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>
 }

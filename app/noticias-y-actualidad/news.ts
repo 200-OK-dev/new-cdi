@@ -310,7 +310,8 @@ export async function getNewsById(id: string): Promise<NewsItem | undefined> {
 }
 
 export async function getNewsBySlug(slug: string): Promise<NewsItem | undefined> {
-  const allNews = await getAllNews()
+  // Force fresh data for individual news pages to avoid stale cache
+  const allNews = await getAllNews(false) // useCache = false
   return allNews.find((news) => news.slug === slug)
 }
 
