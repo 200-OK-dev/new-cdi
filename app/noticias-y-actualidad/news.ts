@@ -138,6 +138,7 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
       readTime: cmsNews.metadata?.readTime ? `${cmsNews.metadata.readTime} min` : calculateReadTime(cmsNews.content || ''),
       tags: Array.isArray(cmsNews.tags) ? cmsNews.tags : [],
       relatedNews: [],
+      featured: cmsNews.featured || false,
     }
 
     return transformedNews
@@ -158,6 +159,7 @@ function transformCMSNews(cmsNews: CMSNewsItem): NewsItem {
       readTime: '1 min',
       tags: [],
       relatedNews: [],
+      featured: false,
     }
   }
 }
@@ -325,4 +327,14 @@ export async function getNewsById(id: string): Promise<NewsItem | undefined> {
 export async function getNewsBySlug(slug: string): Promise<NewsItem | undefined> {
   const allNews = await getAllNews()
   return allNews.find((news) => news.slug === slug)
+}
+
+export async function getFeaturedNews(): Promise<NewsItem[]> {
+  try {
+    const cmsNews = await apiClient.fetchFeaturedNews()
+    return cmsNews.map(transformCMSNews)
+  } catch (error) {
+    console.error('Error fetching featured news:', error)
+    return []
+  }
 }

@@ -12,4 +12,5 @@ export interface NewsItem {
   readTime: string
   tags: string[]
   relatedNews?: string[]
+  featured?: boolean
 }
